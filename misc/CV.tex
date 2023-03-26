@@ -1,0 +1,45 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{geometry}
+\usepackage{tikz}
+\newcommand{\roundpic}[4][]{
+  \tikz\node [circle, minimum width = #2,
+    path picture = {
+      \node [#1] at (path picture bounding box.center) {
+        \includegraphics[width=#3]{#4}};
+    }] {};}
+\geometry{a4paper, top=2cm, bottom=2cm, left=1cm, right=1cm,  heightrounded, bindingoffset=5mm}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\begin{document}
+\section*{Riccardo Fusiello}
+\roundpic[xshift=0cm,yshift=-0.5cm]{5cm}{7cm}{1624954110553.jpg}\subsection*{About me}
+Hi, I'm Riccardo Fusiello, I'm an ex student of the ITIS Sen.Onofrio Jannuzzi in Andria. I completed the five years of the ITIS in 2021 with a lot of great grades, particularly in the main subjects. Actually I'm studying Computer Science at University of Trento and my inspiration is to work in a great company of Computer Science or generally in a great company that invests in Computer Science and Innovation.\\
+\textbf{Personal Website}: \\%TO-DEFINE
+\textbf{Email}: \href{mailto:fusyriccardo@gmail.com}{fusyriccardo@gmail.com}\\
+\textbf{Phone}: (+39) 3895398639\\
+\textbf{Date of birth}: 25/11/2002\\
+\textbf{Address}: Via Pericle 120, 76123 Andria (Italia)
+\subsection*{Working Experience}
+\textbf{13/03/2023 $-$ \dots} IT Service Desk at University of Trento\\
+\textbf{01/03/2022 $-$ 15/03/2022} Full Stack Developer at Reply S.p.A, Remote\\
+\textbf{15/06/2020 $-$ 15/09/2020} Full Stack Developer at Nuvité S.r.l, Andria \\
+\textbf{22/05/2019 $-$ 07/06/2019} Vocational Training at Exprivia S.p.A, Molfetta
+\subsection*{Education}
+\textbf{17/09/2021 $-$ \dots} Computer Science Student at University of Trento\\
+\textbf{15/09/2016 $-$ 15/06/2021} Diploma in IT at ITIS Sen. Onofrio Jannuzzi, Andria (100L/100)\\
+\textbf{15/09/2019 $-$ 21/06/2020} Certification on CCNA Routing and Switching: Introduction to Network of Cisco\\
+\textbf{15/01/2021 $-$ 04/06/2021} Certification on Use and Programming of Comau Academy
+\subsection*{Languages}
+\textbf{Italian} Mothertongue\\
+\textbf{English} B1/B2, spoken every day and used to write sometimes
+\end{document}
