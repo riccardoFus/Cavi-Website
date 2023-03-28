@@ -7,8 +7,8 @@ body {
 }
 p {
    text-align: justify;
-   margin-left: 30%; 
-   margin-right: 30%;
+   margin-left: 25%; 
+   margin-right: 25%;
 }
 #button {
     border:2px solid #3F4E4F;
@@ -27,13 +27,17 @@ p {
     box-shadow: 1;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#contatti {
+#lista {
     list-style-type: none;
     text-align: justify;
-    margin-left: 30%; 
-    margin-right: 30%;
+    margin-left: 25%; 
+    margin-right: 25%;
 }
-a:link {
+#achievements {
+    list-style-type: none;
+    text-align: justify;
+}
+a:link, h1 {
     color: #A27B5C;
     background-color: transparent;
     text-decoration: none;
