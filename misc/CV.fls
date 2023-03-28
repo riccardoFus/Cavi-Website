@@ -1,6 +1,6 @@
-PWD c:\Users\fusyr\OneDrive\Documenti\Riccardo\Curriculum
+PWD c:\Users\fusyr\OneDrive\Documenti\Riccardo\Cavi-Website\misc
 INPUT C:\Users\fusyr\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\fusyr\OneDrive\Documenti\Riccardo\Curriculum\CV.tex
+INPUT c:\Users\fusyr\OneDrive\Documenti\Riccardo\Cavi-Website\misc\CV.tex
 OUTPUT CV.log
 INPUT C:\Users\fusyr\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\fusyr\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls

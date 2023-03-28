@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1679846141 "c:/Users/fusyr/OneDrive/Documenti/Riccardo/Curriculum/CV.tex" "CV.pdf" "CV" 1679846144 0
-  "1624954110553.jpg" 1679841618 3309709 5764ad07c67b1d001cd7e67ba585a688 ""
+["pdflatex"] 1680004643 "c:/Users/fusyr/OneDrive/Documenti/Riccardo/Cavi-Website/misc/CV.tex" "CV.pdf" "CV" 1680004646 0
+  "1624954110553.jpg" 1679847690 1102279 d6aaf864a1d317405d3b11cfac4c178d ""
   "C:/Users/fusyr/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1679822904 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/fusyr/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1679395777 23176374 49b90b793bdc8b10c859b0cd1bc72824 ""
   "C:/Users/fusyr/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -129,10 +129,10 @@
   "C:/Users/fusyr/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/fusyr/AppData/Local/Programs/MiKTeX/tex/latex/wrapfig/wrapfig.sty" 1044403200 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "C:/Users/fusyr/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1656236890 56148 51a9a8571c07b9921892ae11063ae853 ""
-  "CV.aux" 1679846143 554 e6f85c6f44bbe194532b4fa1fd8ca02c "pdflatex"
-  "CV.out" 1679846143 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "CV.tex" 1679846141 2315 f4ce4c4141110115efeb04b7cb7e14a3 ""
-  "c:/Users/fusyr/OneDrive/Documenti/Riccardo/Curriculum/CV.tex" 1679846141 2315 f4ce4c4141110115efeb04b7cb7e14a3 ""
+  "CV.aux" 1680004646 554 e6f85c6f44bbe194532b4fa1fd8ca02c "pdflatex"
+  "CV.out" 1680004646 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "CV.tex" 1680004642 2355 8fc6e18461119d16ce692eef76a8b454 ""
+  "c:/Users/fusyr/OneDrive/Documenti/Riccardo/Cavi-Website/misc/CV.tex" 1680004642 2355 8fc6e18461119d16ce692eef76a8b454 ""
   (generated)
   "CV.aux"
   "CV.log"
