@@ -1,51 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.101.0">
-    <meta name="theme" content="Color Your World -- gitlab.com/rmaguiar/hugo-theme-color-your-world">
-    <meta name="robots" content="index follow">
-    <meta property="og:site_name" content="Cavi Website">
-    <meta property="og:title" content="Cavi">
-    <meta property="og:url" content="https://riccardofus.github.io/Cavi-Website/">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#222">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <link rel="stylesheet" href="style/style.css">
-    <title>Cavi</title>
-</head>
-<body>
-    <div id="header">
-        <div>
-            <h1><a href="index.html">Riccardo Fusiello (Cavi)</a></h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style/styleNew.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <title>Riccardo Fusiello</title>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Riccardo Fusiello</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#achievements">Achievements</a>
+            </li>
+          </ul>
         </div>
-        <div>
-            <form>
-                <input type="submit" value="About Me" id="button" formaction="aboutMe.html">
-                <input type="submit" value="Achievements" id="button" formaction="achievements.html">
-            </form>
+      </div>
+    </nav>
+
+    <div id="aboutMe">
+      <div class="container">
+        <div class="row align-items-center text-center">
+          <div class="col-md-6">
+            <img
+              class=""
+              src="misc/1624954110553.jpg"
+              width="250px"
+              style="border-radius: 50%; margin: 1.5rem auto"
+            />
+          </div>
+          <div class="col-md-6 text-center">
+            <p>
+              <strong>Riccardo Fusiello </strong> is a Computer Science Student
+              at Department of Information Engineering and Computer Science (<a
+                href="https://www.disi.unitn.it/"
+                target="_blank"
+                >DISI</a
+              >),
+              <a href="https://www.unitn.it/en" target="_blank"
+                >University of Trento</a
+              >
+            </p>
+            <div class="align-items-center gap-2 mb-3">
+              <a href="misc/CV.pdf" target="_blank"
+                ><button type="submit" class="btn btn-outline-danger">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-download"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
+                    />
+                    <path
+                      d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
+                    />
+                  </svg>
+                  Download my Curriculum Vitae
+                </button></a
+              >
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="container">
+        <h1 class="text-center">About</h1>
+        <p>
+          Hi, my name is Riccardo, and I was born on 25th November 2002 in
+          Andria. I'm a computer science student at the University of Trento and
+          a music enthusiast.<br />
+          My love for music began at a very young age. I grew up in a family
+          where music was always around me. My parents are both music lovers,
+          and they introduced me to different genres of music at a very early
+          age. As I grew older, I developed my taste in music and started
+          exploring different genres on my own. Music is more than just a hobby
+          for me; it's a way of life. It helps me to relax and unwind after a
+          long day of studying. I listen to a wide range of music, from
+          classical to modern, and I always discover something new and exciting
+          in each genre. <br />
+          My love for computer science began during my teenage years. I got my
+          diploma from ITIS Sen.Onofrio Jannuzzi, a great school with 100L/100,
+          and it provided me with an excellent foundation in computer science.
+          At the University of Trento, I am further expanding my knowledge and
+          skills in different areas, including algorithms, programming
+          languages, and artificial intelligence. In my free time, I enjoy
+          exploring other topics related to computer science, such as
+          cybersecurity and data science. I'm always seeking to improve my
+          skills and knowledge in this field.
+        </p>
+      </div>
     </div>
-    <p>
-        Hi, I'm Riccardo Fusiello, Computer Science Student at Department of Information Engineering and Computer Science (<a href="https://www.disi.unitn.it/" target="_blank">DISI</a>), <a href="https://www.unitn.it/en" target="_blank">University of Trento</a>
-    </p>
-    <figure style="align-items: center;">
-        <img src="misc/1624954110553.jpg" alt="Photo of Riccardo" style="margin:1.5rem auto; border-radius: 50%; display: block; margin-left: auto; margin-right: auto;" width="20%" height="20%">
-        <figcaption style="text-align: center;">Me, Myself & I</figcaption>
-    </figure>
-    <p>
-        Here you can find my contacts:
-    </p>
-    <p>Email 1: <a href="mailto:fusyriccardo@gmail.com" target="_blank">fusyriccardo@gmail.com</a></p>
-    <p>Email 2: <a href="mailto:riccardo.fusiello@studenti.unitn.it" target="_blank">riccardo.fusiello@studenti.unitn.it</a></p>
-    <p>Phone: <a href="tel:+39389538639" target="_blank">3895398639</a></p>
-    <p>Linkedin: <a href="https://www.linkedin.com/in/riccardo-fusiello-a02446216/" target="_blank">Riccardo Fusiello</a></p>
-    <p>Github: <a href="https://github.com/riccardoFus" target="_blank">riccardoFus</a></p>
-    <p>Instagram: <a href="https://www.instagram.com/riccardo.fusiello/" target="_blank">riccardo.fusiello</a></p>
-    <p>Spotify: <a href="https://open.spotify.com/user/11134519888?si=5ef3217eab024590" target="_blank">Cavi</a></p>
-    <p>Here you can find my <a href="misc/CV.pdf" target="_blank">CV</a>. It is still update at least I hope.</p>
-</body>
+    <div class="container" id="achievements">
+      <h1 class="text-center">Achievements</h1>
+      <p>
+        Diploma ITIS Sen.Onofrio Jannuzzi A.S. 2020/2021 (100L/100) <br />
+        Stay tuned...
+      </p>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+      <div class="container">
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a
+                class="nav-link"
+                href="mailto:fusyriccardo@gmail.com"
+                target="_blank"
+                >Email</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tel:+39389538639" target="_blank"
+                >Phone</a
+              >
+            </li>
+          </ul>
+
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item active">
+              <a
+                href="https://www.linkedin.com/in/riccardo-fusiello-a02446216/"
+                target="_blank"
+                class="nav-link"
+                ><img
+                  src="misc/linkedin-svgrepo-com.svg"
+                  alt="Logo Linkedin"
+                  class="img-fluid"
+                  height="75px"
+                  width="75px"
+              /></a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="https://github.com/riccardoFus"
+                target="_blank"
+                class="nav-link"
+                ><img
+                  src="misc/25231.png"
+                  alt="Logo Github"
+                  class="img-fluid"
+                  height="75px"
+                  width="75px"
+              /></a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="https://www.instagram.com/riccardo.fusiello/"
+                target="_blank"
+                class="nav-link"
+                ><img
+                  src="misc/instagram-logo-A807AD378B-seeklogo.com.png"
+                  alt="Logo Instagram"
+                  class="img-fluid"
+                  height="75px"
+                  width="75px"
+              /></a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="https://open.spotify.com/user/11134519888?si=5ef3217eab024590"
+                target="_blank"
+                class="nav-link"
+              >
+                <img
+                  src="misc/spotify-logo-7839B39C1B-seeklogo.com.png"
+                  alt="Logo Spotify"
+                  class="img-fluid"
+                  height="75px"
+                  width="75px"
+              /></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </body>
 </html>
