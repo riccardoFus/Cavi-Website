@@ -4,6 +4,10 @@
   width: 250px;
 }
 
-li{
-    margin: 10px;
+li {
+  margin: 10px;
+}
+
+p {
+    text-align: justify;
 }
