@@ -1,0 +1,9 @@
+.photo {
+  border-radius: 50%;
+  margin: 1.5rem auto;
+  width: 250px;
+}
+
+li{
+    margin: 10px;
+}
