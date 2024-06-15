@@ -20,33 +20,6 @@ body {
   color: #ffcccc !important; /* Light red on hover */
 }
 
-/* Footer styles */
-.navbar.bg-black {
-  background-color: #000000 !important; /* Entire footer background is black */
-  padding: 10px 0;
-  text-align: center;
-}
-
-.navbar.bg-black .nav-link {
-  color: #ff2020 !important; /* Red text color */
-  padding: 10px;
-  transition: color 0.3s ease; /* Smooth transition for color change */
-}
-
-.navbar.bg-black .nav-link:hover {
-  text-decoration: underline;
-}
-
-.navbar.bg-black .nav-item img {
-  padding: 10px;
-  filter: brightness(0) invert(1); /* Tint the icons white */
-  transition: filter 0.3s ease; /* Smooth transition for filter change */
-}
-
-.navbar.bg-black .nav-item img:hover {
-  filter: brightness(0) invert(0.8); /* Slightly lighten the icon on hover */
-}
-
 /* Button styles */
 .btn-outline-danger {
   font-weight: bold; /* Make the button text bold */
@@ -64,7 +37,7 @@ body {
 }
 
 .photo {
-  max-width: 85%;
+  max-width: 50%;
   height: auto;
   border-radius: 100%;
 }
@@ -91,10 +64,31 @@ div {
   color: white !important;
 }
 
-/* Additional padding to footer icons and text */
-.navbar-nav .nav-item .nav-link img,
-.navbar-nav .nav-item .nav-link {
+/* Footer styles */
+.navbar.bg-black {
+  background-color: #2b0101 !important; /* Entire footer background is black */
+  padding: 10px 0;
+  text-align: center;
+}
+
+.navbar.bg-black .nav-link {
+  color: #ff2020 !important; /* Red text color */
   padding: 10px;
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.navbar.bg-black .nav-link:hover {
+  text-decoration: underline;
+}
+
+.navbar.bg-black .nav-item img {
+  padding: 10px;
+  filter: brightness(0) invert(1); /* Tint the icons white */
+  transition: filter 0.3s ease; /* Smooth transition for filter change */
+}
+
+.navbar.bg-black .nav-item img:hover {
+  filter: brightness(0) invert(0.8); /* Slightly lighten the icon on hover */
 }
 
 /* Specific padding for Email and Phone links in the footer */

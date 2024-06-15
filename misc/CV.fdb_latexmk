@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1718038609.57432 "c:/Users/fusyr/OneDrive/Documenti/Riccardo/After_School/Cavi-Website/misc/CV.tex" "CV.pdf" "CV" 1718038611.18797 0
+["pdflatex"] 1718445322.12204 "c:/Users/fusyr/OneDrive/Documenti/Riccardo/After_School/Cavi-Website/misc/CV.tex" "CV.pdf" "CV" 1718445323.00614 0
   "C:/Users/fusyr/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1712741832 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/fusyr/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1712154653 24236005 3a3c8d974cabc20fdb74353cf2b2c8bd ""
   "C:/Users/fusyr/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
@@ -127,10 +127,10 @@
   "C:/Users/fusyr/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/fusyr/AppData/Local/Programs/MiKTeX/tex/latex/wrapfig/wrapfig.sty" 1044403200 26220 3701aebf80ccdef248c0c20dd062fea9 ""
   "C:/Users/fusyr/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "CV.aux" 1718038611 162 55205a9e8a8eca30d36afb389b0617bf "pdflatex"
-  "CV.out" 1718038610 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "CV.tex" 1718038609 2865 e0729153530823ed23e5a5b3242b221d ""
-  "c:/Users/fusyr/OneDrive/Documenti/Riccardo/After_School/Cavi-Website/misc/CV.tex" 1718038609 2865 e0729153530823ed23e5a5b3242b221d ""
+  "CV.aux" 1718445322 162 55205a9e8a8eca30d36afb389b0617bf "pdflatex"
+  "CV.out" 1718445322 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "CV.tex" 1718445321 2947 a3c89f7452abc56148cae2dd92f0c080 ""
+  "c:/Users/fusyr/OneDrive/Documenti/Riccardo/After_School/Cavi-Website/misc/CV.tex" 1718445321 2947 a3c89f7452abc56148cae2dd92f0c080 ""
   (generated)
   "CV.aux"
   "CV.log"
