@@ -1,29 +1,42 @@
+/* --- FUTURISTIC PALETTE (RED ACCENT) ---
+   Primary Dark/Background: #0A0F1A (Void Black)
+   Secondary Dark/Background: #1A233A (Cyber Slate)
+   Light Text / Subtle Glow: #E0EFFF (Starlight White)
+   Subtle Text: #80A0C0 (Hologram Grey)
+   Primary Accent (Links, Active): #00D1FF (Neon Cyan)
+   Secondary Accent (CTAs, Highlights): #FF004D (Laser Red)
+   Cyan Hover: #00A8CC
+   Red Hover: #CC003E
+*/
+
 /* General Styles */
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #34495e; /* Secondary Dark/Background */
-  color: #ecf0f1; /* Light Text */
+  font-family: 'Orbitron', 'Poppins', sans-serif;
+  background-color: #1A233A; /* Cyber Slate */
+  color: #E0EFFF; /* Starlight White */
   line-height: 1.7;
-  padding-top: 70px; /* Adjust if navbar height changes */
+  padding-top: 70px;
 }
 
 a {
-  color: #f39c12; /* Secondary Accent (Orange) for links */
+  color: #00D1FF; /* Neon Cyan for links */
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 a:hover {
-  color: #e67e22; /* Darker Orange for hover */
+  color: #00A8CC; /* Darker Neon Cyan for hover */
+  text-shadow: 0 0 5px rgba(0, 209, 255, 0.7); /* Cyan glow */
   text-decoration: none;
 }
 
 .section-title {
   font-weight: 700;
-  color: #ecf0f1;
+  color: #E0EFFF; /* Starlight White */
   margin-bottom: 1.5rem;
   position: relative;
   padding-bottom: 0.5rem;
+  text-shadow: 0 0 8px rgba(255, 0, 77, 0.3); /* Subtle Red glow */
 }
 
 .section-title::after {
@@ -34,213 +47,219 @@ a:hover {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background-color: #e74c3c; /* Primary Accent (Red) */
+  background-color: #FF004D; /* Laser Red */
+  box-shadow: 0 0 10px rgba(255, 0, 77, 0.6); /* Red glow for the line */
 }
 
 /* Navigation Bar */
 .navbar {
-  background-color: rgba(44, 62, 80, 0.9); /* Primary Dark with transparency */
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  background-color: rgba(10, 15, 26, 0.85); /* Void Black with transparency */
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease;
+  border-bottom: 1px solid rgba(0, 209, 255, 0.2); /* Subtle cyan border */
 }
 
 .navbar-brand {
-  color: #ecf0f1 !important;
+  color: #E0EFFF !important; /* Starlight White */
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  text-shadow: 0 0 5px rgba(0, 209, 255, 0.5); /* Cyan glow */
 }
 
 .nav-link {
-  color: #bdc3c7 !important; /* Subtle Text */
+  color: #80A0C0 !important; /* Hologram Grey */
   font-weight: 600;
   margin-left: 15px;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: #f39c12 !important; /* Orange for active/hover nav links */
+  color: #00D1FF !important; /* Neon Cyan for active/hover nav links */
+  text-shadow: 0 0 8px rgba(0, 209, 255, 0.7); /* Stronger Cyan glow */
 }
 
 .navbar-toggler {
-  border-color: rgba(236, 240, 241, 0.5);
+  border-color: rgba(0, 209, 255, 0.4); /* Cyan border for toggler */
 }
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(236, 240, 241, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 209, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); /* Cyan icon */
 }
 
 
 /* Hero Section */
 .hero-section {
   min-height: 100vh;
-  background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(52, 73, 94, 0.95)), url('your-cool-background-image.jpg') no-repeat center center/cover;
-  /* Replace 'your-cool-background-image.jpg' or remove if not using */
-  /* If no image, use: background-color: #2c3e50; (Primary Dark) */
+  background: linear-gradient(rgba(10, 15, 26, 0.9), rgba(26, 35, 58, 0.95)), url('your-futuristic-background.jpg') no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ecf0f1;
+  color: #E0EFFF; /* Starlight White */
 }
 
 .hero-title {
-  font-size: 3rem;
+  font-size: 3.2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 0 15px rgba(0, 209, 255, 0.6), 2px 2px 5px rgba(0,0,0,0.5); /* Cyan glow + depth */
 }
 
 .hero-subtitle {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 300;
-  color: #bdc3c7; /* Subtle text */
+  color: #80A0C0; /* Hologram Grey */
   margin-bottom: 2rem;
+  text-shadow: 0 0 5px rgba(128, 160, 192, 0.4);
 }
 
 .btn-cta {
-  background-color: #e74c3c; /* Primary Accent (Red) */
-  color: #fff;
-  padding: 12px 30px;
-  font-weight: 600;
-  border-radius: 50px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  background-color: #FF004D; /* Laser Red */
+  color: #E0EFFF; /* Starlight White text (better contrast than Void Black with red) */
+  padding: 14px 35px;
+  font-weight: 700;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   border: none;
+  box-shadow: 0 0 15px rgba(255, 0, 77, 0.4); /* Red glow */
 }
 
 .btn-cta:hover {
-  background-color: #c0392b; /* Darker Red */
-  color: #fff;
-  transform: translateY(-3px);
+  background-color: #CC003E; /* Darker Red */
+  color: #E0EFFF;
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 0, 77, 0.7); /* Stronger Red glow */
 }
 
 
 /* Profile Intro Section */
 .profile-intro-section {
-  background-color: #2c3e50; /* Primary Dark */
+  background-color: #0A0F1A; /* Void Black */
 }
 .profile-photo {
   max-width: 250px;
   border-radius: 50%;
-  border: 5px solid #f39c12; /* Secondary Accent (Orange) for border */
-  box-shadow: 0 0 20px rgba(243, 156, 18, 0.4); /* Orange shadow */
+  border: 5px solid #00D1FF; /* Neon Cyan border */
+  box-shadow: 0 0 25px rgba(0, 209, 255, 0.5); /* Cyan glow */
 }
 .lead-text {
-    font-size: 1.2rem;
-    color: #ecf0f1;
+    font-size: 1.3rem;
+    color: #E0EFFF; /* Starlight White */
 }
 .sub-text {
-    font-size: 1rem;
-    color: #bdc3c7;
+    font-size: 1.1rem;
+    color: #80A0C0; /* Hologram Grey */
 }
 
 
 /* About Me Section */
 .about-me-section {
-  background-color: #34495e; /* Secondary Dark/Background */
+  background-color: #1A233A; /* Cyber Slate */
 }
 .about-me-section p {
   font-size: 1.1rem;
-  color: #bdc3c7; /* Subtle Text */
+  color: #80A0C0; /* Hologram Grey */
   margin-bottom: 1.5rem;
 }
 .about-me-section p strong {
-    color: #ecf0f1;
+    color: #E0EFFF; /* Starlight White */
+    text-shadow: 0 0 3px rgba(224, 239, 255, 0.5);
 }
 
 /* Achievements Section */
 .achievements-section {
-  background-color: #2c3e50; /* Primary Dark */
+  background-color: #0A0F1A; /* Void Black */
 }
 
 .achievement-card {
-  background-color: #34495e; /* Secondary Dark/Background */
+  background-color: rgba(26, 35, 58, 0.7); /* Semi-transparent Cyber Slate */
   padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%; /* For equal height cards in a row */
-  border-left: 5px solid #e74c3c; /* Red accent border */
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
+  height: 100%;
+  border-left: 5px solid #FF004D; /* Laser Red accent border */
 }
 
 .achievement-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(243, 156, 18, 0.2); /* Orange shadow on hover */
+  transform: translateY(-7px);
+  box-shadow: 0 10px 30px rgba(0, 209, 255, 0.3); /* Neon Cyan shadow on hover */
+  border-left-color: #00D1FF; /* Change border color to Cyan on hover */
 }
 
 .achievement-title {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
-  color: #f39c12; /* Secondary Accent (Orange) for title */
+  color: #00D1FF; /* Neon Cyan for title */
   margin-bottom: 0.75rem;
+  text-shadow: 0 0 5px rgba(0, 209, 255, 0.5);
 }
 
 .achievement-detail {
   font-size: 1rem;
-  color: #bdc3c7; /* Subtle Text */
+  color: #80A0C0; /* Hologram Grey */
 }
 .stay-tuned {
     font-size: 1.2rem;
     font-style: italic;
-    color: #bdc3c7;
+    color: #80A0C0; /* Hologram Grey */
 }
 
 /* Contact Footer */
 .contact-footer {
-  background-color: #1f2b38; /* Even darker for footer */
-  color: #bdc3c7; /* Subtle Text */
+  background-color: #05080D; /* Even darker Void Black variant */
+  color: #80A0C0; /* Hologram Grey */
+  border-top: 1px solid rgba(0, 209, 255, 0.15); /* Subtle cyan top border */
 }
 
 .footer-link {
-  color: #bdc3c7;
+  color: #80A0C0; /* Hologram Grey */
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .footer-link:hover {
-  color: #f39c12; /* Orange on hover */
+  color: #00D1FF; /* Neon Cyan on hover */
+  text-shadow: 0 0 5px rgba(0, 209, 255, 0.7);
 }
 
 .contact-info .footer-link,
 .social-links .footer-link {
-    margin-bottom: 0.5rem; /* Spacing for mobile view */
+    margin-bottom: 0.5rem;
 }
 .copyright-text {
     font-size: 0.9rem;
-    color: #7f8c8d; /* Slightly desaturated grey */
+    color: #6080A0; /* Darker Hologram Grey */
 }
 
 
 /* Responsive Adjustments */
 @media (max-width: 991.98px) {
   .navbar-nav {
-    background-color: #2c3e50; /* Primary Dark for collapsed menu */
+    background-color: rgba(10, 15, 26, 0.95); /* Void Black for collapsed menu */
     border-radius: 5px;
     padding: 10px;
     margin-top: 10px;
+    border: 1px solid rgba(0, 209, 255, 0.2);
   }
-  /* ... (rest of the media queries can remain the same, as they are mostly structural) ... */
 }
-
-/* The rest of your @media queries can largely remain the same as they adjust layout,
-   but you might want to check if any specific color-dependent styles in them need tweaking.
-   For this example, I'm assuming the structural changes are fine. */
 
 @media (max-width: 767.98px) {
   body {
       padding-top: 60px;
   }
   .hero-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
   .hero-subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .profile-photo {
       max-width: 180px;
   }
   .section-title {
-      font-size: 1.8rem;
+      font-size: 1.9rem;
   }
   .achievement-card {
       margin-bottom: 20px;
@@ -249,7 +268,8 @@ a:hover {
       text-align: center;
   }
   .social-links a {
-      margin-right: 10px !important; /* Ensure spacing on mobile */
+      margin-right: 10px !important;
+      font-size: 1.5rem;
   }
   .social-links a:last-child {
       margin-right: 0 !important;
