@@ -1,104 +1,261 @@
-/* Global styles */
+/* General Styles */
 body {
-  background: linear-gradient(to bottom, #d9534f 0%, #000000 100%);
-  color: white;
+  font-family: 'Poppins', sans-serif;
+  background-color: #1a1a2e; /* Primary Dark */
+  color: #f0f0f0; /* Light Text */
+  line-height: 1.7;
+  padding-top: 70px; /* Adjust if navbar height changes */
 }
 
-/* Navbar styles */
+a {
+  color: #e94560; /* Accent Color */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #f76c82; /* Lighter accent for hover */
+  text-decoration: none;
+}
+
+.section-title {
+  font-weight: 700;
+  color: #f0f0f0;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #e94560; /* Accent Color */
+}
+
+/* Navigation Bar */
 .navbar {
-  background-color: #d9534f;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding shadow to navbar */
+  background-color: rgba(22, 33, 62, 0.9); /* Secondary Dark with transparency */
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
 }
 
-.navbar-brand,
-.navbar-nav .nav-link {
-  color: white !important;
-  transition: color 0.3s ease; /* Smooth transition for color change */
+.navbar-brand {
+  color: #f0f0f0 !important;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
-.navbar-nav .nav-link:hover {
-  color: #ffcccc !important; /* Light red on hover */
+.nav-link {
+  color: #a0a0c0 !important; /* Subtle Text */
+  font-weight: 600;
+  margin-left: 15px;
+  transition: color 0.3s ease;
 }
 
-/* Button styles */
-.btn-outline-danger {
-  font-weight: bold; /* Make the button text bold */
+.nav-link:hover,
+.nav-link.active {
+  color: #f0f0f0 !important;
 }
 
-/* Other styles */
-#aboutMe,
-#about,
-#achievements {
-  padding: 50px 0;
+.navbar-toggler {
+  border-color: rgba(240, 240, 240, 0.5);
 }
 
-.text-center {
-  text-align: center;
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(240, 240, 240, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-.photo {
-  max-width: 50%;
-  height: auto;
-  border-radius: 100%;
+
+/* Hero Section */
+.hero-section {
+  min-height: 100vh;
+  background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.95)), url('your-cool-background-image.jpg') no-repeat center center/cover;
+  /* Replace 'your-cool-background-image.jpg' with an actual image path or keep gradient */
+  /* If no image, just use: background-color: #1a1a2e; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f0f0f0;
 }
 
-.container {
-  margin-top: 20px;
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-h1 {
-  margin-bottom: 30px;
+.hero-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #a0a0c0;
+  margin-bottom: 2rem;
 }
 
-/* Ensure all text elements are white */
-p,
-h2,
-h3,
-h4,
-h5,
-h6,
-li,
-a,
-span,
-div {
-  color: white !important;
+.btn-cta {
+  background-color: #e94560; /* Accent Color */
+  color: #fff;
+  padding: 12px 30px;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  border: none;
 }
 
-/* Footer styles */
-.navbar.bg-black {
-  background-color: #2b0101 !important; /* Entire footer background is black */
-  padding: 10px 0;
-  text-align: center;
+.btn-cta:hover {
+  background-color: #f76c82; /* Lighter accent */
+  color: #fff;
+  transform: translateY(-3px);
 }
 
-.navbar.bg-black .nav-link {
-  color: #ff2020 !important; /* Red text color */
-  padding: 10px;
-  transition: color 0.3s ease; /* Smooth transition for color change */
+
+/* Profile Intro Section */
+.profile-intro-section {
+  background-color: #16213e; /* Secondary Dark/Accent */
+}
+.profile-photo {
+  max-width: 250px;
+  border-radius: 50%;
+  border: 5px solid #e94560; /* Accent Color */
+  box-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+}
+.lead-text {
+    font-size: 1.2rem;
+    color: #f0f0f0;
+}
+.sub-text {
+    font-size: 1rem;
+    color: #a0a0c0;
 }
 
-.navbar.bg-black .nav-link:hover {
-  text-decoration: underline;
+
+/* About Me Section */
+.about-me-section {
+  background-color: #1a1a2e; /* Primary Dark */
+}
+.about-me-section p {
+  font-size: 1.1rem;
+  color: #a0a0c0; /* Subtle Text */
+  margin-bottom: 1.5rem;
+}
+.about-me-section p strong {
+    color: #f0f0f0;
 }
 
-.navbar.bg-black .nav-item img {
-  padding: 10px;
-  filter: brightness(0) invert(1); /* Tint the icons white */
-  transition: filter 0.3s ease; /* Smooth transition for filter change */
+/* Achievements Section */
+.achievements-section {
+  background-color: #16213e; /* Secondary Dark/Accent */
 }
 
-.navbar.bg-black .nav-item img:hover {
-  filter: brightness(0) invert(0.8); /* Slightly lighten the icon on hover */
+.achievement-card {
+  background-color: #1a1a2e; /* Primary Dark */
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%; /* For equal height cards in a row */
 }
 
-/* Specific padding for Email and Phone links in the footer */
-.navbar-nav .nav-item a[href^="mailto"],
-.navbar-nav .nav-item a[href^="tel"] {
-  padding: 10px;
+.achievement-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(233, 69, 96, 0.3); /* Accent shadow on hover */
 }
 
-/* Specific color for About and Achievements sections */
-#about h1,
-#achievements h1 {
-  color: #ff2020;
+.achievement-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e94560; /* Accent Color */
+  margin-bottom: 0.75rem;
+}
+
+.achievement-detail {
+  font-size: 1rem;
+  color: #a0a0c0; /* Subtle Text */
+}
+.stay-tuned {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #a0a0c0;
+}
+
+/* Contact Footer */
+.contact-footer {
+  background-color: #0f101c; /* Even darker for footer */
+  color: #a0a0c0; /* Subtle Text */
+}
+
+.footer-link {
+  color: #a0a0c0;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #f0f0f0; /* Light Text on hover */
+}
+
+.contact-info .footer-link,
+.social-links .footer-link {
+    margin-bottom: 0.5rem; /* Spacing for mobile view */
+}
+.copyright-text {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    background-color: #16213e; /* Secondary Dark/Accent for collapsed menu */
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  .nav-link {
+      margin-left: 0;
+      padding: 8px 10px;
+  }
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-subtitle {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  body {
+      padding-top: 60px;
+  }
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  .profile-photo {
+      max-width: 180px;
+  }
+  .section-title {
+      font-size: 1.8rem;
+  }
+  .achievement-card {
+      margin-bottom: 20px;
+  }
+  .contact-footer .d-flex {
+      text-align: center;
+  }
+  .social-links a {
+      margin-right: 10px !important; /* Ensure spacing on mobile */
+  }
+  .social-links a:last-child {
+      margin-right: 0 !important;
+  }
 }

@@ -3,165 +3,176 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style/styleNew.css" />
+  <title>Riccardo Fusiello | AI Student & DJ</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
     crossorigin="anonymous"
   />
-  <title>Riccardo Fusiello Website</title>
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Custom CSS (styleNew.css) -->
+  <link rel="stylesheet" href="style/styleNew.css" />
 </head>
 <body>
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-danger sticky-top">
+  <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#"><b>Riccardo Fusiello (Cavi)</b></a>
+      <a class="navbar-brand" href="#">Riccardo Fusiello (Cavi)</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#"><b>Home</b></a>
+            <a class="nav-link" href="#hero">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><b>About me</b></a>
+            <a class="nav-link" href="#about-section">About me</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#achievements"><b>Achievements</b></a>
+            <a class="nav-link" href="#achievements">Achievements</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <div id="aboutMe">
+  <!-- Hero Section -->
+  <header id="hero" class="hero-section d-flex align-items-center justify-content-center text-center">
+    <div class="container" data-aos="fade-up">
+      <h1 class="hero-title">Riccardo Fusiello</h1>
+      <p class="hero-subtitle">Artificial Intelligence Student & Passionate DJ</p>
+      <a href="misc/CV.pdf" target="_blank" class="btn btn-cta mt-3" data-aos="fade-up" data-aos-delay="200">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download me-2" viewBox="0 0 16 16">
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+        </svg>
+        Download CV
+      </a>
+    </div>
+  </header>
+
+  <!-- Profile Intro Section -->
+  <section id="profile-intro" class="profile-intro-section py-5">
     <div class="container">
-      <div class="row align-items-center text-center">
-        <div class="col-md-6">
-          <img class="photo" src="misc/1624954110553.jpg" />
+      <div class="row align-items-center text-center text-md-start">
+        <div class="col-md-4 mb-4 mb-md-0" data-aos="fade-right">
+          <img class="profile-photo img-fluid" src="misc/1624954110553.jpg" alt="Riccardo Fusiello"/>
         </div>
-        <div class="col-md-6 text-center">
-          <p>
-            <strong>Riccardo Fusiello </strong> is a ex Computer Science Student
-            at Department of Information Engineering and Computer Science (<a
+        <div class="col-md-8" data-aos="fade-left">
+          <h2 class="section-title">Hello!</h2>
+          <p class="lead-text">
+            <strong>Riccardo Fusiello</strong> is an Artificial Intelligence Student at the Department of Computer Science
+            (<a href="https://www.uniba.it/en/research/departements/computer-science" target="_blank">DIB</a>),
+            <a href="https://www.uniba.it/it" target="_blank">University of Bari</a>.
+          </p>
+          <p class="sub-text">
+            Formerly a Computer Science Student at the Department of Information Engineering and Computer Science (<a
               href="https://www.disi.unitn.it/"
               target="_blank"
               >DISI</a
             >),
             <a href="https://www.unitn.it/en" target="_blank"
               >University of Trento</a
-            >. <br>Actually is a Artificial Intelligence Student at Department of Computer Science
-            (<a
-              href="https://www.uniba.it/en/research/departements/computer-science"
-              target="_blank">DIB</a>), 
-              <a href="https://www.uniba.it/it" target="_blank">
-                University of Bari
-              </a>.
+            >.
           </p>
-          <div class="align-items-center gap-2 mb-3">
-            <a href="misc/CV.pdf" target="_blank"
-              ><button type="submit" class="btn btn-danger">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-download"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"
-                  />
-                  <path
-                    d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"
-                  />
-                </svg>
-                <b>Download my Curriculum Vitae</b>
-              </button></a
-            >
-          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="container" id="about">
-      <h1 class="text-center"><b>About me</b></h1>
-      <p>
-        Hey there, I'm Riccardo, a Computer Science enthusiast with a passion for DJing. Born on November 25th, 2002, in Andria, Italy, I've always been surrounded by music, thanks to my music-loving parents.<br><br>
-Music isn't just a hobby for me; it's my way of life. From classical tunes to modern beats, I'm always exploring new sounds and finding inspiration for my DJ sets. <br><br>
-My journey into the world of technology began during my teenage years at ITIS Sen. Onofrio Jannuzzi, where I excelled in computer science. I completed my bachelor's degree at the University of Trento, diving deep into subjects like algorithms and programming languages.<br><br>
-Currently, I'm furthering my studies in Artificial Intelligence at the University of Bari. Beyond my academic pursuits, I'm always eager to learn more about the evolving field of AI and Computer Science. Whether I'm behind the decks or coding, I'm driven by a passion for creativity and innovation.<br><br>
-Welcome to my world, where music and technology collide to create something truly special!  
-      </p>
-    </div>
-  </div>
-  <div class="container" id="achievements">
-    <h1 class="text-center"><b>Achievements</b></h1>
-    <p>
-      Diploma ITIS Sen.Onofrio Jannuzzi A.S. 2020/2021 (100L/100) <br />
-      Bachelor's Degree in Computer Science at University of Trento (106/110)<br />
-      Stay Tuned...
-    </p>
-  </div>
-  <nav class="navbar navbar-expand-lg bg-black">
+  <!-- About Me Section -->
+  <section id="about-section" class="about-me-section py-5">
     <div class="container">
-      <ul class="navbar-nav mr-auto" style="flex-direction: row;">
-        <li class="nav-item active">
-          <a
-            class="nav-link"
-            href="mailto:fusyriccardo@gmail.com"
-            target="_blank"
-            ><b>Email</b></a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="tel:+393895398639" target="_blank"
-            ><b>Phone</b></a
-          >
-        </li>
-      </ul>
-
-      <ul class="navbar-nav ms-auto" style="flex-direction: row;">
-        <li class="nav-item active">
-          <a
-            href="https://www.linkedin.com/in/riccardo-fusiello-a02446216/"
-            target="_blank"
-            class="nav-link"
-            >
-            <b>Linkedin</b></a>
-        </li>
-        <li class="nav-item">
-          <a
-            href="https://github.com/riccardoFus"
-            target="_blank"
-            class="nav-link"
-            >
-            <b>GitHub</b></a>
-        </li>
-        <li class="nav-item">
-          <a
-            href="https://www.instagram.com/riccardo.fusiello/"
-            target="_blank"
-            class="nav-link"
-            >
-            <b>Instagram</b></a>
-        </li>
-        <li class="nav-item">
-          <a
-            href="https://open.spotify.com/user/11134519888?si=5ef3217eab024590"
-            target="_blank"
-            class="nav-link"
-          >
-            <b>Spotify</b>
-          </a>
-        </li>
-      </ul>
+      <h2 class="section-title text-center mb-4" data-aos="fade-up">About Me</h2>
+      <div class="row">
+        <div class="col-lg-10 mx-auto" data-aos="fade-up" data-aos-delay="100">
+          <p>
+            Hey there, I'm Riccardo, a Computer Science enthusiast with a passion for DJing. Born on November 25th, 2002, in Andria, Italy, I've always been surrounded by music, thanks to my music-loving parents.
+          </p>
+          <p>
+            Music isn't just a hobby for me; it's my way of life. From classical tunes to modern beats, I'm always exploring new sounds and finding inspiration for my DJ sets.
+          </p>
+          <p>
+            My journey into the world of technology began during my teenage years at ITIS Sen. Onofrio Jannuzzi, where I excelled in computer science. I completed my bachelor's degree at the University of Trento, diving deep into subjects like algorithms and programming languages.
+          </p>
+          <p>
+            Currently, I'm furthering my studies in Artificial Intelligence at the University of Bari. Beyond my academic pursuits, I'm always eager to learn more about the evolving field of AI and Computer Science. Whether I'm behind the decks or coding, I'm driven by a passion for creativity and innovation.
+          </p>
+          <p>
+            Welcome to my world, where music and technology collide to create something truly special!
+          </p>
+        </div>
+      </div>
     </div>
-  </nav>
+  </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-rlwDL6wcAPN6mlSkgGBgyi5pA0hHjw0W7w7Y7vIvQlt9II0QK1zUQpKLQo+8qoN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-QwZ62XPC0ETz2rMdEnS9nls/zlSx5qJDC/JATh+I5yFXY0s6tm1C2tCxe0C2MWzv" crossorigin="anonymous"></script>
+  <!-- Achievements Section -->
+  <section id="achievements" class="achievements-section py-5">
+    <div class="container">
+      <h2 class="section-title text-center mb-5" data-aos="fade-up">Achievements</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="achievement-card">
+            <h3 class="achievement-title">ITIS Sen.Onofrio Jannuzzi</h3>
+            <p class="achievement-detail">Diploma A.S. 2020/2021 (100L/100)</p>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="achievement-card">
+            <h3 class="achievement-title">University of Trento</h3>
+            <p class="achievement-detail">Bachelor's Degree in Computer Science (106/110)</p>
+          </div>
+        </div>
+        <!-- Add more achievements as cards here -->
+         <div class="col-12 text-center" data-aos="fade-up" data-aos-delay="300">
+             <p class="stay-tuned mt-4">More to come... Stay Tuned!</p>
+         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Footer -->
+  <footer id="contact" class="contact-footer py-4">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <div class="contact-info mb-3 mb-md-0">
+          <a class="footer-link" href="mailto:fusyriccardo@gmail.com" target="_blank">Email</a>
+          <span class="mx-2">|</span>
+          <a class="footer-link" href="tel:+393895398639" target="_blank">Phone</a>
+        </div>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/riccardo-fusiello-a02446216/" target="_blank" class="footer-link me-3">Linkedin</a>
+          <a href="https://github.com/riccardofus" target="_blank" class="footer-link me-3">GitHub</a>
+          <a href="https://www.instagram.com/riccardo.fusiello/" target="_blank" class="footer-link me-3">Instagram</a>
+          <a href="https://open.spotify.com/user/11134519888?si=5ef3217eab024590" target="_blank" class="footer-link">Spotify</a>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <p class="copyright-text">© 2024 Riccardo Fusiello. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800, // values from 0 to 3000, with step 50ms
+      once: true, // whether animation should happen only once - while scrolling down
+    });
+  </script>
 </body>
 </html>
