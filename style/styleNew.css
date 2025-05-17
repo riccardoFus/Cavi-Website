@@ -15,7 +15,7 @@ body {
   background-color: #1A233A; /* Cyber Slate */
   color: #E0EFFF; /* Starlight White */
   line-height: 1.7;
-  padding-top: 70px;
+  padding-top: 70px; /* Adjust if navbar height changes significantly with wrapped items */
 }
 
 a {
@@ -58,6 +58,8 @@ a:hover {
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease;
   border-bottom: 1px solid rgba(0, 209, 255, 0.2); /* Subtle cyan border */
+  /* Allow navbar content to wrap if needed. By default, navbar uses flex. */
+  flex-wrap: wrap;
 }
 
 .navbar-brand {
@@ -65,12 +67,25 @@ a:hover {
   font-weight: 700;
   font-size: 1.6rem;
   text-shadow: 0 0 5px rgba(0, 209, 255, 0.5); /* Cyan glow */
+  margin-right: 1rem; /* Add some space between brand and nav items */
 }
+
+/* NEW: Ensure .navbar-nav allows wrapping and centers items on smaller screens if desired */
+.navbar-nav {
+  flex-direction: row; /* Keep items in a row */
+  flex-wrap: wrap;    /* Allow items to wrap to the next line */
+  align-items: center; /* Vertically align items if they wrap to multiple lines */
+  /* Optional: justify-content: center; if you want nav items centered when they wrap */
+}
+
 
 .nav-link {
   color: #80A0C0 !important; /* Hologram Grey */
   font-weight: 600;
-  margin-left: 15px;
+  margin-left: 10px; /* Slightly reduced for potentially more items in a row */
+  margin-right: 10px;
+  padding-top: 0.5rem; /* Ensure consistent padding */
+  padding-bottom: 0.5rem;
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
@@ -80,13 +95,16 @@ a:hover {
   text-shadow: 0 0 8px rgba(0, 209, 255, 0.7); /* Stronger Cyan glow */
 }
 
+/* REMOVE OR COMMENT OUT: Navbar Toggler styles are no longer needed */
+/*
 .navbar-toggler {
-  border-color: rgba(0, 209, 255, 0.4); /* Cyan border for toggler */
+  border-color: rgba(0, 209, 255, 0.4);
 }
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 209, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); /* Cyan icon */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 209, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
+*/
 
 
 /* Hero Section */
@@ -235,19 +253,41 @@ a:hover {
 
 
 /* Responsive Adjustments */
-@media (max-width: 991.98px) {
+
+/* REMOVE OR MODIFY: This block styled the collapsed menu background, which is no longer relevant. */
+/* @media (max-width: 991.98px) {
   .navbar-nav {
-    background-color: rgba(10, 15, 26, 0.95); /* Void Black for collapsed menu */
+    background-color: rgba(10, 15, 26, 0.95); // Void Black for collapsed menu
     border-radius: 5px;
     padding: 10px;
     margin-top: 10px;
     border: 1px solid rgba(0, 209, 255, 0.2);
   }
+} */
+
+/* Optional: If you want to center nav items when they wrap on smaller screens */
+@media (max-width: 991.98px) { /* Or your preferred breakpoint */
+  .navbar {
+    /* If you have a .container or .container-fluid inside .navbar,
+       you might target .navbar-nav directly for centering if it's not full width */
+    justify-content: space-between; /* Keeps brand left, nav items potentially centered if space allows or pushed right */
+  }
+  .navbar-nav {
+    /* If you want to explicitly center the nav items themselves when they take up less than full width of their container */
+    /* justify-content: center; */ /* Uncomment this if you want the nav items centered */
+    width: auto; /* Allow it to not take full width if content is less */
+    margin-top: 0.5rem; /* Add a little space if brand is on one line and nav items on another */
+  }
+  .nav-link {
+    margin-left: 8px;
+    margin-right: 8px; /* Slightly less margin for more items per line */
+  }
 }
+
 
 @media (max-width: 767.98px) {
   body {
-      padding-top: 60px;
+      padding-top: 60px; /* May need adjustment based on wrapped navbar height */
   }
   .hero-title {
     font-size: 2.2rem;
@@ -274,4 +314,29 @@ a:hover {
   .social-links a:last-child {
       margin-right: 0 !important;
   }
+}
+
+/* Further fine-tuning for very small screens if nav items still cause issues */
+@media (max-width: 480px) {
+    .navbar-brand {
+        font-size: 1.4rem; /* Make brand slightly smaller */
+        margin-bottom: 0.5rem; /* Space below brand if nav items wrap underneath */
+    }
+    .navbar-nav {
+        /* If the brand and nav items are sharing space and wrapping,
+           you might want the nav to take full width below the brand. */
+        width: 100%;
+        justify-content: center; /* Center the wrapped nav items */
+    }
+    .nav-link {
+        font-size: 0.9rem; /* Make nav links smaller */
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    body {
+        /* You might need to increase padding-top if navbar becomes very tall */
+        /* padding-top: 80px; or more, test this value */
+    }
 }
