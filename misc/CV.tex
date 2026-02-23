@@ -5,13 +5,16 @@
 \usepackage{wrapfig}
 \usepackage{geometry}
 \usepackage{tikz}
+
 \newcommand{\roundpic}[4][]{
   \tikz\node [circle, minimum width = #2,
     path picture = {
       \node [#1] at (path picture bounding box.center) {
         \includegraphics[width=#3]{#4}};
     }] {};}
+
 \geometry{a4paper, top=2cm, bottom=2cm, left=1cm, right=1cm,  heightrounded, bindingoffset=5mm}
+
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -21,36 +24,65 @@
 }
 
 \begin{document}
-\section*{Riccardo Fusiello}\subsection*{About me}
-Hi, I'm Riccardo Fusiello, an ex-student of ITIS Sen. Onofrio Jannuzzi in Andria. I completed the five years of ITIS in 2021 with great grades, particularly in the main subjects.\\
-I completed my bachelor's degree in Computer Science at the University of Trento and am currently studying Artificial Intelligence at the University of Bari. My inspiration is to work in a leading company in Computer Science or a company that heavily invests in Computer Science and Innovation.\\
-\href{https://riccardofus.github.io/Cavi-Website/}{\textbf{Personal Website: https://riccardofus.github.io/Cavi-Website/}}\\
+
+\section*{Riccardo Fusiello}
+
+\subsection*{Chi sono}
+Ciao, sono Riccardo Fusiello, ex studente dell'ITIS "Sen. Onofrio Jannuzzi" di Andria. Ho completato il percorso quinquennale nel 2021 con ottimi voti, in particolare nelle materie di indirizzo.\\
+Ho conseguito la laurea triennale in Informatica presso l'Università degli Studi di Trento e attualmente frequento il corso di laurea magistrale in Artificial Intelligence presso l'Università degli Studi di Bari. La mia aspirazione è lavorare in un'azienda leader nel settore informatico o in una realtà che investa fortemente in innovazione tecnologica.\\
+Attualmente lavoro alla System Project Srl, realtà locale che concilia questa mia aspirazione.\\\\
+\href{https://riccardofus.github.io/Cavi-Website/}{\textbf{Sito Personale: https://riccardofus.github.io/Cavi-Website/}}\\
 \textbf{Email}: \href{mailto:riccardo.fusiello02@gmail.com}{riccardo.fusiello02@gmail.com}\\
-\textbf{Phone}: (+39) 3895398639\\
-\textbf{Date of birth}: 25/11/2002\\
-\textbf{Address}: Via Pericle 120, 76123 Andria (Italia)
-\subsection*{Working Experience}
-\textbf{06/09/2024 $-$ \dots} Software Developer at System Project S.r.L Andria \\
-\textbf{2023 $-$ \dots} Private lessons of science subjects with some students\\
-\textbf{10/05/2024 $-$ \dots} Automation of psychological tests with Google Suite\\
-\textbf{05/02/2024 $-$ 29/03/2024} Machine Learning Internship at University of Trento\\
-\textbf{13/03/2023 $-$ 29/03/2024} IT Service Desk at University of Trento\\
-\textbf{01/03/2022 $-$ 15/03/2022} Full Stack Developer at Reply S.p.A, Remote\\
-\textbf{15/06/2020 $-$ 15/09/2020} Full Stack Developer at Nuvité S.r.l, Andria \\
-\textbf{22/05/2019 $-$ 07/06/2019} Vocational Training at Exprivia S.p.A, Molfetta
-\subsection*{Education}
-\textbf{30/09/2024 $-$ \dots} Master's Degree in Artificial Intelligence at University of Bari\\
-\textbf{17/09/2021 $-$ 16/07/2024} Bachelor's Degree in Computer Science at University of Trento (106/110)\\
-\textbf{15/09/2016 $-$ 15/06/2021} Diploma in IT at ITIS Sen. Onofrio Jannuzzi, Andria (100L/100)\\
-\textbf{15/09/2019 $-$ 21/06/2020} Certification on CCNA Routing and Switching: Introduction to Network of Cisco\\
-\textbf{15/01/2021 $-$ 04/06/2021} Certification on Use and Programming of Comau Academy \\
-\textbf{11/11/2024 $-$ 15/11/2024} Masterclass on Odoo at Apulia Software
-\subsection*{Languages}
-\textbf{Italian} Mothertongue\\
-\textbf{English} B1/B2, spoken every day and used to write sometimes
-\subsection*{Programming Languages that I know:} C/C++, Java, Python, JavaScript, CSS, HTML, Arduino, SQL, Shell, Kotlin, Jetpack Compose
-\subsection*{Personal Projects}
-\textbf{Shelfy}, libreria digitale a portata di mano
+\textbf{Telefono}: (+39) 3895398639\\
+\textbf{Data di nascita}: 25/11/2002\\
+\textbf{Indirizzo}: Via Pericle 120, 76123 Andria (BT)
+
+\subsection*{Esperienze Lavorative}
+\textbf{06/09/2024 $-$ \dots} Sviluppatore Software presso System Project S.r.L, Andria
+  \begin{itemize}
+    \item Sviluppatore Odoo e Analista Funzionale (CRM, Vendite, Acquisti, Contabilità, \dots)
+    \item Soluzioni di Intelligenza Artificiale integrate con Odoo
+    \item Assistenza software e consulenza
+    \item Vedi altro sul nostro \href{https://www.system-project.it/}{sito aziendale}: \textbf{https://www.system-project.it/}
+  \end{itemize}
+\textbf{2023 $-$ \dots} Lezioni private di materie scientifiche per studenti delle scuole superiori\\
+\textbf{10/05/2024 $-$ 31/08/2024} Automazione di test psicologici con Google Suite\\
+\textbf{05/02/2024 $-$ 29/03/2024} Tirocinio sul Machine Learning presso l'Università di Trento\\
+\textbf{13/03/2023 $-$ 29/03/2024} IT Service Desk presso l'Università di Trento\\
+\textbf{01/03/2022 $-$ 15/03/2022} Full Stack Developer presso Reply S.p.A (Remoto)\\
+\textbf{15/06/2020 $-$ 15/09/2020} Full Stack Developer presso Nuvité S.r.l, Andria \\
+\textbf{22/05/2019 $-$ 07/06/2019} Alternanza Scuola-Lavoro presso Exprivia S.p.A, Molfetta
+
+\subsection*{Istruzione e Formazione}
+\textbf{30/09/2024 $-$ \dots} Laurea Magistrale in Artificial Intelligence presso l'Università di Bari\\
+\textbf{17/09/2021 $-$ 16/07/2024} Laurea Triennale in Informatica presso l'Università di Trento (106/110)\\
+\textbf{15/09/2016 $-$ 15/06/2021} Diploma in Informatica e Telecomunicazioni presso ITIS "Sen. Onofrio Jannuzzi", Andria (100L/100)\\
+\textbf{15/09/2019 $-$ 21/06/2020} Certificazione Cisco CCNA Routing and Switching: Introduction to Networks\\
+\textbf{15/01/2021 $-$ 04/06/2021} Certificazione su Uso e Programmazione Robotica Comau Academy \\
+\textbf{11/11/2024 $-$ 15/11/2024} Masterclass su Odoo presso Apulia Software
+
+\subsection*{Lingue}
+\textbf{Italiano}: Madrelingua\\
+\textbf{Inglese}: Livello B1/B2, parlato quotidianamente e utilizzato nella scrittura tecnica
+
+\subsection*{Linguaggi di Programmazione conosciuti} 
+C/C++, Java, Python, JavaScript, CSS, HTML, Arduino, SQL, Shell, Kotlin, Jetpack Compose, Flutter, Angular
+
+\subsection*{Progetti Personali}
+\textbf{Shelfy}: la tua libreria digitale a portata di mano \\\\
+\textbf{Esperimenti personali}: esperimenti con miriadi di pacchetti python per:
+\begin{itemize}
+  \item Automatizzare task personali 
+  \item Realizzare modelli di intelligenza artificiali per task di vario tipo
+  \begin{itemize}
+    \item Generazione contenuto 
+    \item Sistemi di raccomandazione conversazionali
+    \item Computer Vision
+  \end{itemize}
+\end{itemize}
+
+\vfill
 \subsection*{}
-Autorizzo il trattamento dei miei dati personali, ai sensi del D. lgs. 196 del 30 giugno 2003
+Autorizzo il trattamento dei miei dati personali ai sensi del D. lgs. 196 del 30 giugno 2003 e del GDPR (Regolamento UE 2016/679).
+
 \end{document}
