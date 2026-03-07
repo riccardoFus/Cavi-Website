@@ -340,3 +340,34 @@ a:hover {
         /* padding-top: 80px; or more, test this value */
     }
 }
+/* Inline styles for new sections to ensure they look good 
+       even if styleNew.css doesn't cover them yet */
+    .skill-badge {
+      background-color: #f0f2f5;
+      color: #333;
+      border: 1px solid #ddd;
+      padding: 8px 15px;
+      border-radius: 20px;
+      margin: 5px;
+      display: inline-block;
+      font-weight: 500;
+    }
+    .timeline-item {
+      border-left: 3px solid #00468c; /* Primary Color */
+      padding-left: 20px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -9px;
+      top: 0;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: #00468c;
+    }
+    .text-primary-custom {
+      color: #00468c;
+    }

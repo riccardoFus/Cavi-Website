@@ -1,11 +1,52 @@
-\documentclass[12pt]{article}
+\documentclass[11pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{hyperref}
-\usepackage{graphicx}
-\usepackage{wrapfig}
-\usepackage{geometry}
-\usepackage{tikz}
+\usepackage[T1]{fontenc}
+\usepackage{helvet} % Sans-serif font
+\renewcommand{\familydefault}{\sfdefault} 
 
+\usepackage{geometry}
+\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm} % Adjusted margins for single column
+
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fontawesome5} % For icons
+\usepackage{tabularx} % For full width tables
+
+% --- COLORS ---
+\definecolor{primary}{RGB}{0, 70, 140} % Professional Blue
+\definecolor{darkgrey}{RGB}{50, 50, 50}
+\definecolor{lightgrey}{RGB}{100, 100, 100}
+
+% --- HYPERLINKS ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    filecolor=primary,
+    urlcolor=primary,
+    citecolor=primary
+}
+
+% --- SECTIONS STYLE ---
+% Horizontal line style for single column
+\titleformat{\section}
+  {\Large\bfseries\color{primary}\uppercase}
+  {}{0em}
+  {}[\titlerule]
+\titlespacing{\section}{0pt}{18pt}{10pt}
+
+\titleformat{\subsection}
+  {\large\bfseries\color{darkgrey}}
+  {}{0em}
+  {}
+\titlespacing{\subsection}{0pt}{10pt}{5pt}
+
+% --- CUSTOM COMMANDS ---
+
+% Round Picture
 \newcommand{\roundpic}[4][]{
   \tikz\node [circle, minimum width = #2,
     path picture = {
@@ -13,76 +54,140 @@
         \includegraphics[width=#3]{#4}};
     }] {};}
 
-\geometry{a4paper, top=2cm, bottom=2cm, left=1cm, right=1cm,  heightrounded, bindingoffset=5mm}
+% Work Entry Command: Date | Title | Company | Description
+% Adapted for Single Column: Title and Date on top line, Company below, then description
+\newcommand{\workentry}[4]{
+    \noindent \textbf{#2} \hfill {\color{darkgrey}\footnotesize \faCalendar* \ #1} \\
+    {\color{primary}\textit{#3}} \vspace{0.3em} \\
+    {\small #4} \vspace{4mm}
+}
 
-\hypersetup{
-    colorlinks,
-    citecolor=black,
-    filecolor=black,
-    linkcolor=black,
-    urlcolor=black
+% Education Entry Command
+\newcommand{\eduentry}[4]{
+    \noindent \textbf{#2} \hfill {\color{darkgrey}\footnotesize \faCalendar* \ #1} \\
+    {\color{primary}\textit{#3}} \vspace{0.3em} \\
+    {\small #4} \vspace{4mm}
+}
+
+% Skill Badge Command (for horizontal list)
+\newcommand{\skill}[1]{
+    \fboxsep2pt
+    \colorbox{primary!10}{\small \color{darkgrey} #1} \hspace{2pt}
 }
 
 \begin{document}
+\pagestyle{empty} 
 
-\section*{Riccardo Fusiello}
+% --- HEADER (Centered) ---
+\begin{center}
+    % PHOTO
+    % Replace 'example-image' with your file 'photo.jpg'
+    \roundpic{3.5cm}{3.5cm}{1756748267986.png} \\[10pt]
+    
+    {\Huge \bfseries \color{primary} Riccardo Fusiello} \\[5pt]
+    {\Large \color{darkgrey} AI Student \& Software Developer} \\[10pt]
+    
+    \small
+    \faMapMarker* \ Via Pericle 120, 76123 Andria (Italia) \quad
+    \faBirthdayCake \ 25/11/2002 \quad
+    \faPhone \ (+39) 389 539 8639 \\
+    \vspace{3pt}
+    \faEnvelope \ \href{mailto:riccardo.fusiello02@gmail.com}{riccardo.fusiello02@gmail.com} \quad
+    \faGlobe \ \href{https://riccardofus.github.io/Cavi-Website/}{riccardofus.github.io/Cavi-Website}
+\end{center}
 
-\subsection*{Chi sono}
-Ciao, sono Riccardo Fusiello, ex studente dell'ITIS "Sen. Onofrio Jannuzzi" di Andria. Ho completato il percorso quinquennale nel 2021 con ottimi voti, in particolare nelle materie di indirizzo.\\
-Ho conseguito la laurea triennale in Informatica presso l'Università degli Studi di Trento e attualmente frequento il corso di laurea magistrale in Artificial Intelligence presso l'Università degli Studi di Bari. La mia aspirazione è lavorare in un'azienda leader nel settore informatico o in una realtà che investa fortemente in innovazione tecnologica.\\
-Attualmente lavoro alla System Project Srl, realtà locale che concilia questa mia aspirazione.\\\\
-\href{https://riccardofus.github.io/Cavi-Website/}{\textbf{Sito Personale: https://riccardofus.github.io/Cavi-Website/}}\\
-\textbf{Email}: \href{mailto:riccardo.fusiello02@gmail.com}{riccardo.fusiello02@gmail.com}\\
-\textbf{Telefono}: (+39) 3895398639\\
-\textbf{Data di nascita}: 25/11/2002\\
-\textbf{Indirizzo}: Via Pericle 120, 76123 Andria (BT)
+\vspace{0.5cm}
 
-\subsection*{Esperienze Lavorative}
-\textbf{06/09/2024 $-$ \dots} Sviluppatore Software presso System Project S.r.L, Andria
-  \begin{itemize}
-    \item Sviluppatore Odoo e Analista Funzionale (CRM, Vendite, Acquisti, Contabilità, \dots)
-    \item Soluzioni di Intelligenza Artificiale integrate con Odoo
-    \item Assistenza software e consulenza
-    \item Vedi altro sul nostro \href{https://www.system-project.it/}{sito aziendale}: \textbf{https://www.system-project.it/}
-  \end{itemize}
-\textbf{2023 $-$ \dots} Lezioni private di materie scientifiche per studenti delle scuole superiori\\
-\textbf{10/05/2024 $-$ 31/08/2024} Automazione di test psicologici con Google Suite\\
-\textbf{05/02/2024 $-$ 29/03/2024} Tirocinio sul Machine Learning presso l'Università di Trento\\
-\textbf{13/03/2023 $-$ 29/03/2024} IT Service Desk presso l'Università di Trento\\
-\textbf{01/03/2022 $-$ 15/03/2022} Full Stack Developer presso Reply S.p.A (Remoto)\\
-\textbf{15/06/2020 $-$ 15/09/2020} Full Stack Developer presso Nuvité S.r.l, Andria \\
-\textbf{22/05/2019 $-$ 07/06/2019} Alternanza Scuola-Lavoro presso Exprivia S.p.A, Molfetta
+% --- PROFILE ---
+\section{Profile}
+I am a Computer Science graduate from the University of Trento, currently specializing in Artificial Intelligence at the University of Bari. My goal is to work in a leading tech company that invests heavily in Innovation. I am passionate, precise, and have achieved top grades throughout my academic path.
 
-\subsection*{Istruzione e Formazione}
-\textbf{30/09/2024 $-$ \dots} Laurea Magistrale in Artificial Intelligence presso l'Università di Bari\\
-\textbf{17/09/2021 $-$ 16/07/2024} Laurea Triennale in Informatica presso l'Università di Trento (106/110)\\
-\textbf{15/09/2016 $-$ 15/06/2021} Diploma in Informatica e Telecomunicazioni presso ITIS "Sen. Onofrio Jannuzzi", Andria (100L/100)\\
-\textbf{15/09/2019 $-$ 21/06/2020} Certificazione Cisco CCNA Routing and Switching: Introduction to Networks\\
-\textbf{15/01/2021 $-$ 04/06/2021} Certificazione su Uso e Programmazione Robotica Comau Academy \\
-\textbf{11/11/2024 $-$ 15/11/2024} Masterclass su Odoo presso Apulia Software
+% --- SKILLS (Horizontal Layout) ---
+\section{Technical Skills}
+\noindent
+\textbf{Languages:} \\
+\skill{C / C++} \skill{Java} \skill{Kotlin} \skill{Python} \skill{JavaScript} \skill{HTML/CSS} \skill{SQL} \skill{Shell / Bash} \skill{PHP}
 
-\subsection*{Lingue}
-\textbf{Italiano}: Madrelingua\\
-\textbf{Inglese}: Livello B1/B2, parlato quotidianamente e utilizzato nella scrittura tecnica
+\vspace{5pt}
+\noindent
+\textbf{Frameworks \& Tools:} \\
+\skill{Jetpack Compose} \skill{Arduino} \skill{Google Suite Scripting} \skill{Git} \skill{Linux} \skill{Angular} \skill{Odoo} \skill{OWL Framework} \skill{TensorFlow} \skill{PyTorch} \skill{Scikit-learn} \skill{Keras} \skill{n8n} \skill{Dagshub}
 
-\subsection*{Linguaggi di Programmazione conosciuti} 
-C/C++, Java, Python, JavaScript, CSS, HTML, Arduino, SQL, Shell, Kotlin, Jetpack Compose, Flutter, Angular
+% --- EXPERIENCE ---
+\section{Working Experience}
 
-\subsection*{Progetti Personali}
-\textbf{Shelfy}: la tua libreria digitale a portata di mano \\\\
-\textbf{Esperimenti personali}: esperimenti con miriadi di pacchetti python per:
-\begin{itemize}
-  \item Automatizzare task personali 
-  \item Realizzare modelli di intelligenza artificiali per task di vario tipo
-  \begin{itemize}
-    \item Generazione contenuto 
-    \item Sistemi di raccomandazione conversazionali
-    \item Computer Vision
-  \end{itemize}
-\end{itemize}
+\workentry{06/09/2024 -- Present}
+{Software Developer}
+{System Project S.r.L, Andria}
+{Development of software solutions and system integration.}
+
+\workentry{10/05/2024 -- Present}
+{Freelance Developer}
+{Self-employed}
+{Automation of psychological tests using Google Suite scripting.}
+
+\workentry{05/02/2024 -- 29/03/2024}
+{Machine Learning Intern}
+{University of Trento}
+{Research and implementation of ML models for academic projects.}
+
+\workentry{13/03/2023 -- 29/03/2024}
+{IT Service Desk}
+{University of Trento}
+{Technical support and hardware/software troubleshooting for students and staff.}
+
+\workentry{01/03/2022 -- 15/03/2022}
+{Full Stack Developer}
+{Reply S.p.A, Remote}
+{Short-term intense development project.}
+
+\workentry{15/06/2020 -- 15/09/2020}
+{Full Stack Developer}
+{Nuvité S.r.l, Andria}
+{Web development and database management.}
+
+% --- EDUCATION ---
+\section{Education}
+
+\eduentry{30/09/2024 -- Present}
+{Master's Degree in Artificial Intelligence}
+{University of Bari}
+{Focus on Machine Learning, Deep Learning, and Data Science.}
+
+\eduentry{17/09/2021 -- 16/07/2024}
+{Bachelor's Degree in Computer Science (106/110)}
+{University of Trento}
+{Thesis focused on software architecture.}
+
+\eduentry{15/09/2016 -- 15/06/2021}
+{Diploma in IT (100L/100)}
+{ITIS Sen. Onofrio Jannuzzi, Andria}
+{Secondary School Diploma.}
+
+% --- OTHER INFO ---
+\section{Additional Information}
+
+\begin{minipage}[t]{\textwidth}
+    \subsection*{Certifications}
+    \begin{itemize}[noitemsep]
+        \item \textbf{CCNA Routing and Switching} (Cisco) - 2020
+        \item \textbf{Comau Academy} Use and Programming - 2021
+        \item \textbf{Odoo Masterclass} at Apulia Software - 2024
+    \end{itemize}
+    \subsection*{Languages}
+    \textbf{Italian}: Mother tongue \\
+    \textbf{English}: B1/B2 (Spoken daily, used for documentation)
+    
+    \vspace{1em}
+    \subsection*{Projects \& Other}
+    \textbf{Shelfy}: Digital library management app. \\
+    \textbf{Teaching}: Private lessons in science subjects (2023--Present).
+\end{minipage}
 
 \vfill
-\subsection*{}
-Autorizzo il trattamento dei miei dati personali ai sensi del D. lgs. 196 del 30 giugno 2003 e del GDPR (Regolamento UE 2016/679).
+\hrule
+\vspace{2mm}
+{\centering \footnotesize \color{lightgrey} 
+Autorizzo il trattamento dei miei dati personali, ai sensi del D. lgs. 196 del 30 giugno 2003 e del GDPR (Regolamento UE 2016/679). \par}
 
 \end{document}
