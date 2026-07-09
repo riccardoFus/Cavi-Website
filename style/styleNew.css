@@ -7,6 +7,7 @@
 
 /* --- CSS Custom Properties --- */
 :root {
+  color-scheme: dark;
   --bg-deep: #0b001a;
   --bg-dark: #120025;
   --bg-card: rgba(18, 0, 50, 0.85);
@@ -27,6 +28,7 @@
   --glow-magenta: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #ff00ff;
   --glow-cyan: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #00ffff;
   --glow-purple: 0 0 10px #8a2be2, 0 0 20px #8a2be2, 0 0 40px #8a2be2;
+  -webkit-text-size-adjust: 100%;
 }
 
 /* --- CRT Overlay Effect --- */
@@ -95,6 +97,10 @@ a, button, .nav-link, .btn, [role="button"] {
 }
 
 /* --- General Styles --- */
+html {
+  background-color: #0b001a;
+}
+
 body {
   font-family: var(--font-body);
   background-color: var(--bg-deep);
@@ -104,6 +110,20 @@ body {
   position: relative;
   margin: 0;
   padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Force exact colors on mobile browsers */
+  -webkit-text-fill-color: currentColor;
+}
+
+/* Fix mobile viewport height (address bar issue) */
+@supports (height: 100dvh) {
+  .hero-section {
+    min-height: 100dvh;
+  }
+  .loading-screen {
+    height: 100dvh;
+  }
 }
 
 /* --- Retro Grid Background --- */
@@ -198,12 +218,38 @@ a {
   color: var(--neon-cyan);
   text-decoration: none;
   transition: all 0.3s ease;
+  -webkit-text-fill-color: currentColor;
 }
 
 a:hover {
   color: var(--neon-magenta);
   text-shadow: var(--glow-magenta);
   text-decoration: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+/* Force neon colors on mobile browsers */
+.hero-title,
+.hero-subtitle,
+.section-title,
+.navbar-brand,
+.nav-link,
+.skill-badge,
+.neon-text,
+.neon-text-cyan,
+.btn-vapor,
+.btn-vapor-cyan,
+.lang-toggle,
+.loading-text,
+.dos-boot,
+.timeline-item .text-muted,
+.timeline-item h5,
+.text-primary-custom,
+.contact-footer h4,
+.certifications-section h5,
+.skills-section h4,
+.profile-intro-section h2 {
+  -webkit-text-fill-color: currentColor;
 }
 
 /* --- Section Titles --- */
@@ -1334,11 +1380,15 @@ a:hover {
 
   /* Loading screen */
   .loading-bar {
-    width: 250px;
+    width: min(250px, 80vw);
   }
 
   .loading-text {
     font-size: 1rem;
+  }
+
+  .loading-screen {
+    padding: 15px;
   }
 
   /* Glitch effect - reduce on mobile for performance */
@@ -1477,11 +1527,15 @@ a:hover {
 
   /* Loading */
   .loading-bar {
-    width: 200px;
+    width: min(200px, 75vw);
   }
 
   .loading-text {
     font-size: 0.85rem;
+  }
+
+  .loading-screen {
+    padding: 10px;
   }
 }
 
@@ -1669,6 +1723,7 @@ a:hover {
   left: 0;
   width: 100%;
   height: 100%;
+  height: 100dvh;
   background: var(--bg-deep);
   z-index: 99999;
   display: flex;
@@ -1676,11 +1731,15 @@ a:hover {
   align-items: center;
   justify-content: center;
   transition: opacity 0.8s ease, visibility 0.8s ease;
+  overflow: hidden;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .loading-screen.hidden {
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
 }
 
 .loading-text {
@@ -1688,15 +1747,20 @@ a:hover {
   color: var(--neon-cyan);
   font-size: 1.2rem;
   text-shadow: 0 0 10px var(--neon-cyan);
+  text-align: center;
+  word-break: break-word;
+  max-width: 90vw;
+  line-height: 1.4;
 }
 
 .loading-bar {
-  width: 300px;
+  width: min(300px, 80vw);
   height: 4px;
   background: rgba(0, 255, 255, 0.1);
   margin-top: 20px;
   border: 1px solid var(--neon-cyan);
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .loading-bar-fill {
