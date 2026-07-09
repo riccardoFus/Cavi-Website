@@ -1232,3 +1232,90 @@ main, section, header, footer, nav {
   position: relative;
   z-index: 1;
 }
+
+/* --- Language Toggle Button --- */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  border: 2px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  font-family: var(--font-sub);
+  font-size: 1rem;
+  padding: 4px 12px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 5px var(--neon-cyan);
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.2);
+  margin-left: 10px;
+  position: relative;
+  overflow: hidden;
+  align-self: center;
+  height: 38px;
+  line-height: 1;
+}
+
+.lang-toggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.15), transparent);
+  transition: left 0.4s ease;
+}
+
+.lang-toggle:hover::before {
+  left: 100%;
+}
+
+.lang-toggle:hover {
+  background: rgba(0, 255, 255, 0.1);
+  border-color: var(--neon-magenta);
+  color: var(--neon-magenta);
+  text-shadow: 0 0 10px var(--neon-magenta);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.lang-toggle:active {
+  transform: scale(0.95);
+}
+
+.lang-flag {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.lang-label {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+}
+
+/* Language switch animation */
+.lang-switching {
+  animation: lang-glitch 0.4s steps(3) 1;
+}
+
+@keyframes lang-glitch {
+  0% { transform: translate(0); filter: hue-rotate(0deg); }
+  20% { transform: translate(-3px, 1px); filter: hue-rotate(90deg); }
+  40% { transform: translate(3px, -1px); filter: hue-rotate(180deg); }
+  60% { transform: translate(-2px, -1px); filter: hue-rotate(270deg); }
+  80% { transform: translate(2px, 1px); filter: hue-rotate(180deg); }
+  100% { transform: translate(0); filter: hue-rotate(0deg); }
+}
+
+/* Content transition on language change */
+[data-i18n] {
+  transition: opacity 0.2s ease;
+}
+
+[data-i18n].lang-fade {
+  opacity: 0.3;
+}
