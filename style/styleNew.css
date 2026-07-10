@@ -2061,3 +2061,53 @@ main, section, header, footer, nav {
 [data-i18n].lang-fade {
   opacity: 0.3;
 }
+
+/* ============================================
+   FIX OVERFLOW MOBILE
+   ============================================ */
+
+/* 1. Reset vitale per evitare che padding e border ingrandiscano gli elementi */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Blocca categoricamente lo scrolling orizzontale a livello di radice */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+}
+
+/* 3. Forza la rottura delle parole molto lunghe (specialmente per il font Press Start 2P) */
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.hero-title,
+.win95-titlebar,
+.navbar-brand {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+/* 4. Assicura che le card e le finestre Win95 non superino mai la larghezza dello schermo */
+.win95-window,
+.neon-panel,
+.card,
+img {
+  max-width: 100%;
+}
+
+/* 5. Previene che l'animazione Glitch crei overflow invisibile durante i keyframe */
+.glitch {
+  max-width: 100%;
+}
+
+/* Fix specifico per schermi minuscoli sotto i 360px */
+@media (max-width: 360px) {
+  .section-title {
+    font-size: 0.55rem; /* Rimpicciolisce ulteriormente il font 8-bit per farlo entrare */
+  }
+}
