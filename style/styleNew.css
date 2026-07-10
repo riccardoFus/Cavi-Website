@@ -458,15 +458,20 @@ section, footer, header, nav {
   box-shadow: 0 2px 30px rgba(255, 0, 255, 0.3);
   padding: 0.5rem 0;
   z-index: 1000;
+  overflow: hidden;
 }
 
 .navbar-brand {
   font-family: var(--font-heading) !important;
   color: var(--neon-magenta) !important;
-  font-size: 0.9rem !important;
+  font-size: clamp(0.5rem, 2.5vw, 0.9rem) !important;
   text-shadow: 0 0 10px var(--neon-magenta), 0 0 20px var(--neon-magenta);
   letter-spacing: 2px;
   transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60vw;
 }
 
 .navbar-brand:hover {
@@ -507,6 +512,7 @@ section, footer, header, nav {
   color: var(--text-bright);
   position: relative;
   overflow: hidden;
+  text-align: center;
 }
 
 .hero-section::before {
@@ -525,7 +531,7 @@ section, footer, header, nav {
 
 .hero-title {
   font-family: var(--font-heading);
-  font-size: 2.8rem;
+  font-size: clamp(0.75rem, 4vw, 2.8rem);
   font-weight: 700;
   color: var(--neon-magenta);
   text-shadow:
@@ -534,15 +540,27 @@ section, footer, header, nav {
     0 0 40px var(--neon-magenta),
     0 0 80px var(--neon-magenta);
   animation: neon-breathe 2s ease-in-out infinite alternate;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  line-height: 1.3;
+  margin-bottom: 10px;
+  padding: 0 5px;
+  box-sizing: border-box;
 }
 
 .hero-subtitle {
   font-family: var(--font-sub);
-  font-size: 2rem;
+  font-size: clamp(0.9rem, 3.5vw, 2rem);
   color: var(--neon-cyan);
   text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  padding: 0 5px;
+  box-sizing: border-box;
 }
 
 /* Typing cursor blink */
@@ -1265,30 +1283,50 @@ section, footer, header, nav {
   /* Hero */
   .hero-section {
     min-height: 100vh;
-    padding-top: 70px;
-    padding-bottom: 40px;
+    padding-top: 60px;
+    padding-bottom: 30px;
   }
 
   .hero-title {
-    font-size: 1.4rem;
+    font-size: clamp(0.7rem, 5vw, 1.4rem);
     letter-spacing: 1px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    padding: 0 8px;
   }
 
   .hero-subtitle {
-    font-size: 1.15rem;
+    font-size: clamp(0.85rem, 4vw, 1.15rem);
+    margin-bottom: 1rem;
+    padding: 0 8px;
   }
 
   .typing-cursor {
-    height: 1.15rem;
-    width: 8px;
+    height: 1rem;
+    width: 6px;
   }
 
   .hero-section .btn-vapor {
-    font-size: 1rem;
-    padding: 10px 18px;
-    display: inline-block;
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .hero-section .btn-vapor.me-2 {
+    margin-right: auto !important;
+  }
+
+  .hero-section .mt-4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px;
   }
 
   /* Section titles */
@@ -1485,47 +1523,52 @@ section, footer, header, nav {
 @media (max-width: 480px) {
   /* Hero */
   .hero-title {
-    font-size: 1rem;
+    font-size: clamp(0.6rem, 4.5vw, 1rem);
     letter-spacing: 0;
+    line-height: 1.4;
+    padding: 0 5px;
   }
 
   .hero-subtitle {
-    font-size: 0.95rem;
+    font-size: clamp(0.75rem, 3.5vw, 0.95rem);
+    padding: 0 5px;
   }
 
   .typing-cursor {
-    height: 0.95rem;
-    width: 6px;
+    height: 0.85rem;
+    width: 5px;
   }
 
   .hero-section .btn-vapor {
-    font-size: 0.9rem;
-    padding: 8px 14px;
-    letter-spacing: 1px;
+    font-size: 0.8rem;
+    padding: 7px 12px;
+    letter-spacing: 0;
+    max-width: 260px;
   }
 
   /* Navbar */
   .navbar-brand {
-    font-size: 0.55rem !important;
+    font-size: 0.45rem !important;
     letter-spacing: 0;
+    max-width: 50vw;
   }
 
   .nav-link {
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
   }
 
   .lang-toggle {
-    font-size: 0.9rem;
-    padding: 3px 10px;
-    height: 34px;
+    font-size: 0.85rem;
+    padding: 3px 8px;
+    height: 32px;
   }
 
   .lang-flag {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .lang-label {
-    font-size: 0.55rem;
+    font-size: 0.5rem;
   }
 
   /* Section titles */
@@ -1625,51 +1668,54 @@ section, footer, header, nav {
 /* ===== VERY SMALL PHONES (≤360px) ===== */
 @media (max-width: 360px) {
   .hero-title {
-    font-size: 0.85rem;
+    font-size: 0.55rem;
+    letter-spacing: 0;
+    line-height: 1.5;
   }
 
   .hero-subtitle {
-    font-size: 0.85rem;
-  }
-
-  .navbar-brand {
-    font-size: 0.5rem !important;
-  }
-
-  .section-title {
     font-size: 0.7rem;
   }
 
+  .navbar-brand {
+    font-size: 0.4rem !important;
+    max-width: 45vw;
+  }
+
+  .section-title {
+    font-size: 0.65rem;
+  }
+
   .skill-badge {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 2px 6px;
   }
 
   .btn-vapor {
-    font-size: 0.85rem;
-    padding: 7px 12px;
+    font-size: 0.75rem;
+    padding: 6px 10px;
     letter-spacing: 0;
   }
 
   .profile-photo {
-    max-width: 110px;
+    max-width: 100px;
   }
 
   .neon-panel h4 {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .neon-panel h5 {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .win95-titlebar {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .win95-body {
-    padding: 10px;
-    font-size: 0.8rem;
+    padding: 8px;
+    font-size: 0.75rem;
   }
 }
 
