@@ -292,6 +292,11 @@ a:hover {
   color: var(--text-bright) !important;
 }
 
+/* Fix: lead text inside Win95 window must be dark */
+.win95-body .lead {
+  color: #222 !important;
+}
+
 .fw-bold {
   color: inherit;
 }
