@@ -492,6 +492,100 @@ section, footer, header, nav {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 0, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 
+/* --- Vaporwave Custom Toggler --- */
+.vapor-toggler {
+  border: 2px solid var(--neon-magenta) !important;
+  border-radius: 4px !important;
+  padding: 8px 10px !important;
+  background: rgba(11, 0, 26, 0.6) !important;
+  box-shadow: 0 0 8px rgba(255, 0, 255, 0.3), inset 0 0 5px rgba(255, 0, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.vapor-toggler:hover {
+  border-color: var(--neon-cyan) !important;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.4), inset 0 0 8px rgba(0, 255, 255, 0.15);
+}
+
+.vapor-toggler:focus {
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5), inset 0 0 8px rgba(255, 0, 255, 0.15);
+  outline: none;
+}
+
+/* Hide default Bootstrap icon */
+.vapor-toggler .navbar-toggler-icon {
+  display: none;
+}
+
+/* Custom animated bars container */
+.vapor-toggler-bars {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Each bar */
+.vapor-toggler-bars span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--neon-magenta);
+  border-radius: 2px;
+  box-shadow: 0 0 4px var(--neon-magenta), 0 0 8px rgba(255, 0, 255, 0.5);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center;
+}
+
+/* Middle bar is cyan for contrast */
+.vapor-toggler-bars span:nth-child(2) {
+  background: var(--neon-cyan);
+  box-shadow: 0 0 4px var(--neon-cyan), 0 0 8px rgba(0, 255, 255, 0.5);
+  width: 70%;
+  align-self: flex-end;
+}
+
+/* Hover: bars shift colors and glow more */
+.vapor-toggler:hover .vapor-toggler-bars span:nth-child(1),
+.vapor-toggler:hover .vapor-toggler-bars span:nth-child(3) {
+  background: var(--neon-cyan);
+  box-shadow: 0 0 6px var(--neon-cyan), 0 0 12px rgba(0, 255, 255, 0.6);
+}
+
+.vapor-toggler:hover .vapor-toggler-bars span:nth-child(2) {
+  background: var(--neon-magenta);
+  box-shadow: 0 0 6px var(--neon-magenta), 0 0 12px rgba(255, 0, 255, 0.6);
+  width: 100%;
+}
+
+/* Active/open state: transform into an X (glitch style) */
+.navbar-collapse.show ~ .vapor-toggler .vapor-toggler-bars span:nth-child(1),
+.vapor-toggler[aria-expanded="true"] .vapor-toggler-bars span:nth-child(1),
+.vapor-toggler.active .vapor-toggler-bars span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background: var(--neon-cyan);
+  box-shadow: 0 0 6px var(--neon-cyan), 0 0 12px rgba(0, 255, 255, 0.6);
+}
+
+.navbar-collapse.show ~ .vapor-toggler .vapor-toggler-bars span:nth-child(2),
+.vapor-toggler[aria-expanded="true"] .vapor-toggler-bars span:nth-child(2),
+.vapor-toggler.active .vapor-toggler-bars span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.navbar-collapse.show ~ .vapor-toggler .vapor-toggler-bars span:nth-child(3),
+.vapor-toggler[aria-expanded="true"] .vapor-toggler-bars span:nth-child(3),
+.vapor-toggler.active .vapor-toggler-bars span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background: var(--neon-cyan);
+  box-shadow: 0 0 6px var(--neon-cyan), 0 0 12px rgba(0, 255, 255, 0.6);
+}
+
 .nav-link {
   color: var(--text-dim) !important;
   font-family: var(--font-sub);
@@ -1283,6 +1377,15 @@ section, footer, header, nav {
 
   .navbar-toggler {
     padding: 0.25rem 0.5rem;
+  }
+
+  .vapor-toggler {
+    padding: 6px 8px !important;
+  }
+
+  .vapor-toggler-bars {
+    width: 18px;
+    height: 14px;
   }
 
   /* Hero */

@@ -52,8 +52,12 @@
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
       <a class="navbar-brand" href="#">Riccardo.exe</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler vapor-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="vapor-toggler-bars">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
@@ -412,6 +416,24 @@
         }
       });
     });
+
+    // Vaporwave toggler: toggle 'active' class for X animation
+    const vaporToggler = document.querySelector('.vapor-toggler');
+    const navbarCollapse = document.getElementById('navbarNav');
+    if (vaporToggler && navbarCollapse) {
+      vaporToggler.addEventListener('click', function() {
+        setTimeout(() => {
+          const isOpen = navbarCollapse.classList.contains('show');
+          vaporToggler.classList.toggle('active', isOpen);
+        }, 10);
+      });
+      // Also close menu when a nav link is clicked
+      navbarCollapse.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          vaporToggler.classList.remove('active');
+        });
+      });
+    }
 
     // ============================================
     // MULTILINGUAL SYSTEM (EN / IT)
