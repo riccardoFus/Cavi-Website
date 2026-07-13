@@ -466,6 +466,14 @@ section, footer, header, nav {
   overflow: hidden;
 }
 
+/* Center nav links on desktop (no brand) */
+@media (min-width: 992px) {
+  .navbar-nav {
+    margin: 0 auto !important;
+    justify-content: center;
+  }
+}
+
 .navbar-brand {
   font-family: var(--font-heading) !important;
   color: var(--neon-magenta) !important;
