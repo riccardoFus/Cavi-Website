@@ -585,48 +585,20 @@
     });
 
     // ============================================
-    // SONG ROULETTE — Random track picker
+    // SONG ROULETTE — Random track picker (loads from JSON)
     // ============================================
-    const songDatabase = [
-      // Jazz-Funky House
-      { id: '3uDikYhOqUyEBFxiEmIIuO', playlist: 'Jazz-Funky House' },
-      { id: '3HnJq0iCE0bVO1yYFxNX1C', playlist: 'Jazz-Funky House' },
-      { id: '7feieBR6UkUYjgjKhlMvo9', playlist: 'Jazz-Funky House' },
-      { id: '2I1fQi4hOUMwdGGOdNP7gL', playlist: 'Jazz-Funky House' },
-      { id: '5WeQ2Y5nPsldSFwmqfBbXJ', playlist: 'Jazz-Funky House' },
-      { id: '7BpyfQEmvi0sUmOq29plEE', playlist: 'Jazz-Funky House' },
-      { id: '1ULn7HUoNkc7KgAonydM2i', playlist: 'Jazz-Funky House' },
-      { id: '08XDypkeVbvjZkVBEkORmT', playlist: 'Jazz-Funky House' },
-      { id: '0aL5jEWqfIwNDB3tdzyzH4', playlist: 'Jazz-Funky House' },
-      { id: '27FmM2RvYOFVqv3kkR5yXO', playlist: 'Jazz-Funky House' },
-      { id: '7BFXQINSdAqgOmMydTGnKG', playlist: 'Jazz-Funky House' },
-      { id: '7LiBdIjTaowl2NIy92FA3g', playlist: 'Jazz-Funky House' },
-      { id: '4AgAhaqv9RA6q7JnnyCMdv', playlist: 'Jazz-Funky House' },
-      { id: '0jHbdahuCNgwy6Th5vbZFt', playlist: 'Jazz-Funky House' },
-      { id: '5mLH2SnrW7cpJmxeBYc53T', playlist: 'Jazz-Funky House' },
-      { id: '5LKcFDG0QW6gKYlL0dmket', playlist: 'Jazz-Funky House' },
-      { id: '01uTWsJMRCTtQtj8esSN97', playlist: 'Jazz-Funky House' },
-      { id: '598lzqNKYDQo8M17IQznRk', playlist: 'Jazz-Funky House' },
-      { id: '3pEfNOwk9Z12QP2qMfu5kM', playlist: 'Jazz-Funky House' },
-      { id: '3uzebsHzwFBBYTd2qFPRh9', playlist: 'Jazz-Funky House' },
-      { id: '6z7Y23tSMqnHVDU51I3VjT', playlist: 'Jazz-Funky House' },
-      { id: '23PIMIlFx1FeiCmmIf1RgZ', playlist: 'Jazz-Funky House' },
-      { id: '395F9Ny1evTEhzBEeXdE9N', playlist: 'Jazz-Funky House' },
-      { id: '2upjPXCYscwhOgazz6Remz', playlist: 'Jazz-Funky House' },
-      { id: '5G21xDksGi4bc2Nfh4QvQW', playlist: 'Jazz-Funky House' },
-      { id: '7yZvQowjC97UFQ2RFcoAXd', playlist: 'Jazz-Funky House' },
-      // Glitchato
-      { id: '1lbNgoJ5iMrMluCyhI4OQP', playlist: 'Glitchato' },
-      { id: '04JDdGVfvFtlhBnDAExRtt', playlist: 'Glitchato' },
-      { id: '4A3ri9SFKKgv5ydmHMAbhQ', playlist: 'Glitchato' },
-      { id: '4qJzVJ3QzvYq6PrahkUlAI', playlist: 'Glitchato' },
-      { id: '2gZpDSPgPs0N41CAtErXWz', playlist: 'Glitchato' },
-      { id: '38l4HezLcZ6lmQ4ISf7bs9', playlist: 'Glitchato' },
-      { id: '2U9RtZORzcu54vkWI19PIL', playlist: 'Glitchato' },
-      { id: '6HfMZs0fb0RyyTnBRUun0x', playlist: 'Glitchato' },
-      { id: '65fPnec9ZIWi4YSMYOQXRm', playlist: 'Glitchato' },
-      { id: '6s0XiiD5NE5MetCoOVY0yM', playlist: 'Glitchato' },
-    ];
+    let songDatabase = [];
+    let songsLoaded = false;
+
+    // Load the tracks JSON
+    fetch('spotify_tracks.json')
+      .then(r => r.json())
+      .then(data => {
+        songDatabase = data.t.map(t => ({ id: t[0], playlist: t[1] }));
+        songsLoaded = true;
+        console.log(`🎵 Loaded ${songDatabase.length} tracks from ${data.p.length} playlists`);
+      })
+      .catch(err => console.warn('Could not load spotify_tracks.json:', err));
 
     const shuffleBtn = document.getElementById('shuffleBtn');
     const songPlaceholder = document.getElementById('songPlaceholder');
@@ -637,6 +609,14 @@
     let lastTrackIndex = -1;
 
     shuffleBtn.addEventListener('click', () => {
+      if (!songsLoaded || songDatabase.length === 0) {
+        songTrackName.textContent = 'Loading tracks... please wait ⏳';
+        songPlaylistName.textContent = '';
+        songPlaceholder.style.display = 'none';
+        songResult.style.display = 'block';
+        return;
+      }
+
       // Pick a random track, avoid repeating the same one
       let idx;
       do {
