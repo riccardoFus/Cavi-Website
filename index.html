@@ -436,6 +436,33 @@
     </div>
   </section>
 
+  <!-- ===== SONG RECOMMENDER ===== -->
+  <section id="song-picker" class="song-picker-section py-5">
+    <div class="container">
+      <h2 class="section-title text-center mb-2 glitch" data-text="Track Roulette" data-i18n="song_title">Track Roulette</h2>
+      <p class="text-center music-tagline" data-i18n="song_tagline">Press SHUFFLE — let the machine pick a track from my playlists 🎲</p>
+
+      <div class="song-picker-box vapor-reveal">
+        <div class="song-display" id="songDisplay">
+          <div class="song-placeholder" id="songPlaceholder">
+            <i class="fas fa-compact-disc song-disc-icon"></i>
+            <p data-i18n="song_placeholder">Ready when you are...</p>
+          </div>
+          <div class="song-result" id="songResult" style="display: none;">
+            <iframe id="songFrame" src="" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
+            <p class="song-track-name" id="songTrackName"></p>
+            <p class="song-playlist-name" id="songPlaylistName"></p>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <button class="btn btn-vapor btn-glitch shuffle-btn" id="shuffleBtn">
+            <i class="fas fa-shuffle me-2"></i> <span data-i18n="song_shuffle">SHUFFLE</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Footer -->
   <footer id="contact" class="contact-footer py-5">
     <div class="container">
@@ -558,6 +585,82 @@
     });
 
     // ============================================
+    // SONG ROULETTE — Random track picker
+    // ============================================
+    const songDatabase = [
+      // Jazz-Funky House
+      { id: '3uDikYhOqUyEBFxiEmIIuO', playlist: 'Jazz-Funky House' },
+      { id: '3HnJq0iCE0bVO1yYFxNX1C', playlist: 'Jazz-Funky House' },
+      { id: '7feieBR6UkUYjgjKhlMvo9', playlist: 'Jazz-Funky House' },
+      { id: '2I1fQi4hOUMwdGGOdNP7gL', playlist: 'Jazz-Funky House' },
+      { id: '5WeQ2Y5nPsldSFwmqfBbXJ', playlist: 'Jazz-Funky House' },
+      { id: '7BpyfQEmvi0sUmOq29plEE', playlist: 'Jazz-Funky House' },
+      { id: '1ULn7HUoNkc7KgAonydM2i', playlist: 'Jazz-Funky House' },
+      { id: '08XDypkeVbvjZkVBEkORmT', playlist: 'Jazz-Funky House' },
+      { id: '0aL5jEWqfIwNDB3tdzyzH4', playlist: 'Jazz-Funky House' },
+      { id: '27FmM2RvYOFVqv3kkR5yXO', playlist: 'Jazz-Funky House' },
+      { id: '7BFXQINSdAqgOmMydTGnKG', playlist: 'Jazz-Funky House' },
+      { id: '7LiBdIjTaowl2NIy92FA3g', playlist: 'Jazz-Funky House' },
+      { id: '4AgAhaqv9RA6q7JnnyCMdv', playlist: 'Jazz-Funky House' },
+      { id: '0jHbdahuCNgwy6Th5vbZFt', playlist: 'Jazz-Funky House' },
+      { id: '5mLH2SnrW7cpJmxeBYc53T', playlist: 'Jazz-Funky House' },
+      { id: '5LKcFDG0QW6gKYlL0dmket', playlist: 'Jazz-Funky House' },
+      { id: '01uTWsJMRCTtQtj8esSN97', playlist: 'Jazz-Funky House' },
+      { id: '598lzqNKYDQo8M17IQznRk', playlist: 'Jazz-Funky House' },
+      { id: '3pEfNOwk9Z12QP2qMfu5kM', playlist: 'Jazz-Funky House' },
+      { id: '3uzebsHzwFBBYTd2qFPRh9', playlist: 'Jazz-Funky House' },
+      { id: '6z7Y23tSMqnHVDU51I3VjT', playlist: 'Jazz-Funky House' },
+      { id: '23PIMIlFx1FeiCmmIf1RgZ', playlist: 'Jazz-Funky House' },
+      { id: '395F9Ny1evTEhzBEeXdE9N', playlist: 'Jazz-Funky House' },
+      { id: '2upjPXCYscwhOgazz6Remz', playlist: 'Jazz-Funky House' },
+      { id: '5G21xDksGi4bc2Nfh4QvQW', playlist: 'Jazz-Funky House' },
+      { id: '7yZvQowjC97UFQ2RFcoAXd', playlist: 'Jazz-Funky House' },
+      // Glitchato
+      { id: '1lbNgoJ5iMrMluCyhI4OQP', playlist: 'Glitchato' },
+      { id: '04JDdGVfvFtlhBnDAExRtt', playlist: 'Glitchato' },
+      { id: '4A3ri9SFKKgv5ydmHMAbhQ', playlist: 'Glitchato' },
+      { id: '4qJzVJ3QzvYq6PrahkUlAI', playlist: 'Glitchato' },
+      { id: '2gZpDSPgPs0N41CAtErXWz', playlist: 'Glitchato' },
+      { id: '38l4HezLcZ6lmQ4ISf7bs9', playlist: 'Glitchato' },
+      { id: '2U9RtZORzcu54vkWI19PIL', playlist: 'Glitchato' },
+      { id: '6HfMZs0fb0RyyTnBRUun0x', playlist: 'Glitchato' },
+      { id: '65fPnec9ZIWi4YSMYOQXRm', playlist: 'Glitchato' },
+      { id: '6s0XiiD5NE5MetCoOVY0yM', playlist: 'Glitchato' },
+    ];
+
+    const shuffleBtn = document.getElementById('shuffleBtn');
+    const songPlaceholder = document.getElementById('songPlaceholder');
+    const songResult = document.getElementById('songResult');
+    const songFrame = document.getElementById('songFrame');
+    const songTrackName = document.getElementById('songTrackName');
+    const songPlaylistName = document.getElementById('songPlaylistName');
+    let lastTrackIndex = -1;
+
+    shuffleBtn.addEventListener('click', () => {
+      // Pick a random track, avoid repeating the same one
+      let idx;
+      do {
+        idx = Math.floor(Math.random() * songDatabase.length);
+      } while (idx === lastTrackIndex && songDatabase.length > 1);
+      lastTrackIndex = idx;
+
+      const track = songDatabase[idx];
+
+      // Spin animation
+      shuffleBtn.classList.add('spinning');
+      songPlaceholder.style.display = 'none';
+      songResult.style.display = 'none';
+
+      setTimeout(() => {
+        songFrame.src = 'https://open.spotify.com/embed/track/' + track.id;
+        songTrackName.textContent = '';
+        songPlaylistName.textContent = '♫ from: ' + track.playlist;
+        songResult.style.display = 'block';
+        shuffleBtn.classList.remove('spinning');
+      }, 600);
+    });
+
+    // ============================================
     // MULTILINGUAL SYSTEM (EN / IT)
     // ============================================
     const translations = {
@@ -635,6 +738,11 @@
         music_ig_desc: 'Music · DJ · Vibes',
         music_ig_visit: 'View Profile',
         music_ig_cta: 'Follow @cavi.media',
+        // Song Roulette
+        song_title: 'Track Roulette',
+        song_tagline: 'Press SHUFFLE — let the machine pick a track from my playlists 🎲',
+        song_placeholder: 'Ready when you are...',
+        song_shuffle: 'SHUFFLE',
         // Contact
         contact_title: '// CONTACT_ME',
         connect_title: '// CONNECT',
@@ -716,6 +824,11 @@
         music_ig_desc: 'Musica · DJ · Vibes',
         music_ig_visit: 'Vedi profilo',
         music_ig_cta: 'Segui @cavi.media',
+        // Song Roulette
+        song_title: 'Track Roulette',
+        song_tagline: 'Premi SHUFFLE — lascia che la macchina scelga un brano dalle mie playlist 🎲',
+        song_placeholder: 'Pronto quando vuoi...',
+        song_shuffle: 'SHUFFLE',
         // Contact
         contact_title: '// CONTATTAMI',
         connect_title: '// SEGUIMI',
