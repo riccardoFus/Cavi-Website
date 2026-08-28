@@ -65,6 +65,7 @@
           <li class="nav-item"><a class="nav-link" href="#experience" data-i18n="nav_experience">// Experience</a></li>
           <li class="nav-item"><a class="nav-link" href="#education" data-i18n="nav_education">// Education</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects" data-i18n="nav_projects">// Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#music" data-i18n="nav_music">// Music</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav_contact">// Contact</a></li>
           <li class="nav-item">
             <button class="lang-toggle" id="langToggle" title="Switch Language">
@@ -332,6 +333,109 @@
       </div>
   </section>
 
+  <!-- ===== MUSIC SECTION (cavi.wav) ===== -->
+  <section id="music" class="music-section py-5">
+    <div class="container">
+      <h2 class="section-title text-center mb-2 glitch" data-text="cavi.wav" data-i18n="music_title">cavi.wav</h2>
+      <p class="text-center music-tagline" data-i18n="music_tagline">Sharing good vibes through music 🎶✨</p>
+
+      <!-- Carousel Tabs -->
+      <div class="music-tabs vapor-reveal">
+        <button class="music-tab active" data-tab="spotify" data-i18n="music_tab_spotify">// SPOTIFY</button>
+        <button class="music-tab" data-tab="youtube" data-i18n="music_tab_youtube">// YOUTUBE</button>
+        <button class="music-tab" data-tab="instagram" data-i18n="music_tab_instagram">// INSTAGRAM</button>
+      </div>
+
+      <!-- ===== SPOTIFY PANEL ===== -->
+      <div class="music-panel active" id="panel-spotify">
+        <div class="spotify-grid">
+          <div class="spotify-card">
+            <iframe src="https://open.spotify.com/embed/playlist/5WXVYnbA08tIUIexoFm0GP" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
+            <p class="spotify-label">Jazz-Funky House</p>
+          </div>
+          <div class="spotify-card">
+            <iframe src="https://open.spotify.com/embed/playlist/3mCXkog9fWWtxIYX5mbaWJ" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
+            <p class="spotify-label">Glitchato</p>
+          </div>
+          <div class="spotify-card">
+            <iframe src="https://open.spotify.com/embed/playlist/39CWgfBArrnIoXfnEpK1XA" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
+            <p class="spotify-label">Soundtrack fuori di testa</p>
+          </div>
+          <div class="spotify-card">
+            <iframe src="https://open.spotify.com/embed/playlist/6AYfZqv8yufAK4ynfZICKw" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
+            <p class="spotify-label">Jungle Vibes</p>
+          </div>
+          <div class="spotify-card">
+            <iframe src="https://open.spotify.com/embed/playlist/7pCNudfXyp25BJp5EGXy1m" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
+            <p class="spotify-label">Dream man</p>
+          </div>
+          <div class="spotify-card">
+            <iframe src="https://open.spotify.com/embed/playlist/72c80SP8YSASEz9Bkwkxh2" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
+            <p class="spotify-label">Karaokando</p>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <a href="https://open.spotify.com/user/11134519888" target="_blank" class="btn btn-vapor btn-vapor-cyan btn-glitch music-cta">
+            <i class="fab fa-spotify me-2"></i> <span data-i18n="music_spotify_cta">Open all 47 playlists</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ===== YOUTUBE PANEL ===== -->
+      <div class="music-panel" id="panel-youtube">
+        <div class="youtube-grid">
+          <div class="youtube-card">
+            <div class="youtube-thumb" onclick="window.open('https://www.youtube.com/@Caviiiiii', '_blank')">
+              <i class="fab fa-youtube youtube-play-icon"></i>
+              <div class="youtube-thumb-overlay">
+                <span data-i18n="music_yt_visit">Visit Channel</span>
+              </div>
+            </div>
+            <div class="youtube-info">
+              <h5>cavi.wav</h5>
+              <p data-i18n="music_yt_desc">DJ sets, mixes & music content</p>
+              <a href="https://www.youtube.com/@Caviiiiii" target="_blank" class="youtube-link">
+                <i class="fab fa-youtube me-1"></i> @Caviiiiii
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+          <a href="https://www.youtube.com/@Caviiiiii" target="_blank" class="btn btn-vapor btn-glitch music-cta">
+            <i class="fab fa-youtube me-2"></i> <span data-i18n="music_yt_cta">Subscribe on YouTube</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ===== INSTAGRAM PANEL ===== -->
+      <div class="music-panel" id="panel-instagram">
+        <div class="instagram-card">
+          <div class="instagram-header">
+            <div class="instagram-avatar">
+              <i class="fab fa-instagram"></i>
+            </div>
+            <div class="instagram-meta">
+              <h5>cavi.media</h5>
+              <p data-i18n="music_ig_desc">Music · DJ · Vibes</p>
+            </div>
+          </div>
+          <div class="instagram-preview">
+            <div class="instagram-post" onclick="window.open('https://www.instagram.com/cavi.media', '_blank')">
+              <i class="fab fa-instagram ig-post-icon"></i>
+              <span data-i18n="music_ig_visit">View Profile</span>
+            </div>
+          </div>
+          <div class="text-center mt-3">
+            <a href="https://www.instagram.com/cavi.media" target="_blank" class="btn btn-vapor btn-vapor-cyan btn-glitch music-cta">
+              <i class="fab fa-instagram me-2"></i> <span data-i18n="music_ig_cta">Follow @cavi.media</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- Contact Footer -->
   <footer id="contact" class="contact-footer py-5">
     <div class="container">
@@ -435,6 +539,25 @@
     }
 
     // ============================================
+    // MUSIC SECTION — TAB SWITCHER
+    // ============================================
+    const musicTabs = document.querySelectorAll('.music-tab');
+    const musicPanels = document.querySelectorAll('.music-panel');
+    musicTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+        musicTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        musicPanels.forEach(p => {
+          p.classList.remove('active');
+          if (p.id === 'panel-' + target) {
+            p.classList.add('active');
+          }
+        });
+      });
+    });
+
+    // ============================================
     // MULTILINGUAL SYSTEM (EN / IT)
     // ============================================
     const translations = {
@@ -445,6 +568,7 @@
         nav_experience: '// Experience',
         nav_education: '// Education',
         nav_projects: '// Projects',
+        nav_music: '// Music',
         nav_contact: '// Contact',
         // Hero
         hero_subtitle: 'AI Student & Software Developer',
@@ -498,6 +622,19 @@
         project_win_title: 'shelfy_project.exe',
         project_quote: '"Digital library at your fingertips."',
         project_desc: 'A personal project focusing on digital book management, allowing users to organize and track their reading collections efficiently.',
+        // Music
+        music_title: 'cavi.wav',
+        music_tagline: 'Sharing good vibes through music 🎶✨',
+        music_tab_spotify: '// SPOTIFY',
+        music_tab_youtube: '// YOUTUBE',
+        music_tab_instagram: '// INSTAGRAM',
+        music_spotify_cta: 'Open all 47 playlists',
+        music_yt_visit: 'Visit Channel',
+        music_yt_desc: 'DJ sets, mixes & music content',
+        music_yt_cta: 'Subscribe on YouTube',
+        music_ig_desc: 'Music · DJ · Vibes',
+        music_ig_visit: 'View Profile',
+        music_ig_cta: 'Follow @cavi.media',
         // Contact
         contact_title: '// CONTACT_ME',
         connect_title: '// CONNECT',
@@ -512,6 +649,7 @@
         nav_experience: '// Esperienza',
         nav_education: '// Formazione',
         nav_projects: '// Progetti',
+        nav_music: '// Musica',
         nav_contact: '// Contatti',
         // Hero
         hero_subtitle: 'Studente AI & Sviluppatore Software',
@@ -565,6 +703,19 @@
         project_win_title: 'progetto_shelfy.exe',
         project_quote: '"La tua libreria digitale a portata di mano."',
         project_desc: 'Un progetto personale focalizzato sulla gestione digitale dei libri, che permette agli utenti di organizzare e tracciare le proprie collezioni di lettura in modo efficiente.',
+        // Music
+        music_title: 'cavi.wav',
+        music_tagline: 'Condivido buone vibrazioni attraverso la musica 🎶✨',
+        music_tab_spotify: '// SPOTIFY',
+        music_tab_youtube: '// YOUTUBE',
+        music_tab_instagram: '// INSTAGRAM',
+        music_spotify_cta: 'Apri tutte le 47 playlist',
+        music_yt_visit: 'Visita il canale',
+        music_yt_desc: 'DJ set, mix & contenuti musicali',
+        music_yt_cta: 'Iscriviti su YouTube',
+        music_ig_desc: 'Musica · DJ · Vibes',
+        music_ig_visit: 'Vedi profilo',
+        music_ig_cta: 'Segui @cavi.media',
         // Contact
         contact_title: '// CONTATTAMI',
         connect_title: '// SEGUIMI',
