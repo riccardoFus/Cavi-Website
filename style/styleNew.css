@@ -2281,6 +2281,8 @@ main, section, header, footer, nav {
   overflow: hidden;
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .spotify-card:hover {
@@ -2292,6 +2294,8 @@ main, section, header, footer, nav {
 .spotify-card iframe {
   display: block;
   border-radius: 8px 8px 0 0;
+  width: 100% !important;
+  max-width: 100%;
 }
 
 .spotify-label {
@@ -2302,6 +2306,8 @@ main, section, header, footer, nav {
   padding: 6px 10px;
   margin: 0;
   background: rgba(11, 0, 26, 0.5);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* --- YouTube Grid --- */
@@ -2539,6 +2545,20 @@ main, section, header, footer, nav {
   .spotify-grid {
     grid-template-columns: 1fr;
     gap: 15px;
+    padding: 0 5px;
+  }
+
+  .spotify-card {
+    max-width: 100%;
+  }
+
+  .spotify-card iframe {
+    height: 152px;
+  }
+
+  .spotify-label {
+    font-size: 0.9rem;
+    padding: 5px 8px;
   }
 
   .music-tab {
@@ -2589,15 +2609,42 @@ main, section, header, footer, nav {
   }
 
   .spotify-grid {
+    grid-template-columns: 1fr;
     gap: 12px;
+    padding: 0;
   }
 
   .spotify-card iframe {
     height: 140px;
   }
 
+  .spotify-label {
+    font-size: 0.85rem;
+    padding: 4px 6px;
+  }
+
   .youtube-thumb {
     height: 140px;
+  }
+}
+
+@media (max-width: 360px) {
+  .spotify-grid {
+    gap: 10px;
+  }
+
+  .spotify-card iframe {
+    height: 120px;
+  }
+
+  .spotify-label {
+    font-size: 0.8rem;
+    padding: 3px 5px;
+  }
+
+  .music-tab {
+    font-size: 0.4rem;
+    padding: 5px 8px;
   }
 }
 
