@@ -66,6 +66,7 @@
           <li class="nav-item"><a class="nav-link" href="#education" data-i18n="nav_education">// Education</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects" data-i18n="nav_projects">// Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#music" data-i18n="nav_music">// Music</a></li>
+          <li class="nav-item"><a class="nav-link" href="#docs" data-i18n="nav_docs">// Docs</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav_contact">// Contact</a></li>
           <li class="nav-item">
             <button class="lang-toggle" id="langToggle" title="Switch Language">
@@ -463,6 +464,35 @@
     </div>
   </section>
 
+  <!-- ===== DOCS SECTION ===== -->
+  <section id="docs" class="docs-section py-5">
+    <div class="container">
+      <h2 class="section-title text-center mb-2 glitch" data-text="Documents" data-i18n="docs_title">Documents</h2>
+      <p class="text-center music-tagline mb-4" data-i18n="docs_tagline">My study notes & personal docs 📚</p>
+
+      <div class="docs-window vapor-reveal">
+        <!-- Win95 Title Bar -->
+        <div class="docs-titlebar">
+          <span class="docs-titlebar-text">
+            <i class="fas fa-folder-open"></i> C:\DOCUMENTS\NOTES\
+          </span>
+          <div class="docs-controls">
+            <span class="docs-win-btn">_</span>
+            <span class="docs-win-btn">□</span>
+            <span class="docs-win-btn">✕</span>
+          </div>
+        </div>
+
+        <!-- Lista Documenti Dinamica -->
+        <div class="docs-body">
+          <ul class="docs-file-list" id="docsFileList">
+            <!-- Vengono inseriti dinamicamente via JS -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contact Footer -->
   <footer id="contact" class="contact-footer py-5">
     <div class="container">
@@ -641,6 +671,59 @@
     });
 
     // ============================================
+    // DOCS SECTION — Caricamento & Apertura Nuova Pagina
+    // ============================================
+    const docsFileList = document.getElementById('docsFileList');
+
+    // File predefiniti (funzionano SEMPRE, anche senza server locale)
+    const defaultDocs = [
+      {
+        title: "Machine Learning — Appunti Completi v2",
+        file: "Machine Learning — Appunti Completi v2.md"
+      }
+      // Puoi aggiungere qui a mano altri file se non usi un web server locale:
+      // { title: "Deep Learning Notes", file: "Deep Learning.html" }
+    ];
+
+    function buildDocsList(items) {
+      if (!docsFileList) return;
+      docsFileList.innerHTML = '';
+
+      items.forEach(doc => {
+        const li = document.createElement('li');
+        li.className = 'docs-file-item';
+        li.innerHTML = `
+          <div class="docs-file-title">
+            <i class="fas fa-file-code"></i>
+            <span>${doc.title}</span>
+          </div>
+          <span class="docs-open-badge">
+            <i class="fas fa-external-link-alt me-1"></i> APRI.EXE
+          </span>
+        `;
+
+        // Al click apre la nuova pagina viewer.html passando il nome del file nell'URL
+        li.addEventListener('click', () => {
+          const targetFile = encodeURIComponent(doc.file || doc.filename);
+          window.open(`viewer.html?file=${targetFile}`, '_blank');
+        });
+
+        docsFileList.appendChild(li);
+      });
+    }
+
+    // Prova a caricare da misc/docs.json, se fallisce (es. CORS in locale) usa defaultDocs
+    fetch('misc/docs.json')
+      .then(res => {
+        if (!res.ok) throw new Error('docs.json non accessibile');
+        return res.json();
+      })
+      .then(data => buildDocsList(data))
+      .catch(() => {
+        buildDocsList(defaultDocs);
+      });
+
+    // ============================================
     // MULTILINGUAL SYSTEM (EN / IT)
     // ============================================
     const translations = {
@@ -652,6 +735,7 @@
         nav_education: '// Education',
         nav_projects: '// Projects',
         nav_music: '// Music',
+        nav_docs: '// Docs',
         nav_contact: '// Contact',
         // Hero
         hero_subtitle: 'AI Student & Software Developer',
@@ -723,6 +807,11 @@
         song_tagline: 'Press SHUFFLE — let the machine pick a track from my playlists 🎲',
         song_placeholder: 'Ready when you are...',
         song_shuffle: 'SHUFFLE',
+        // Docs
+        docs_title: 'Documents',
+        docs_tagline: 'My study notes & personal docs 📚',
+        docs_files: '// FILES',
+        docs_placeholder: 'Select a file from the sidebar to view it',
         // Contact
         contact_title: '// CONTACT_ME',
         connect_title: '// CONNECT',
@@ -738,6 +827,7 @@
         nav_education: '// Formazione',
         nav_projects: '// Progetti',
         nav_music: '// Musica',
+        nav_docs: '// Documenti',
         nav_contact: '// Contatti',
         // Hero
         hero_subtitle: 'Studente AI & Sviluppatore Software',
@@ -809,6 +899,11 @@
         song_tagline: 'Premi SHUFFLE — lascia che la macchina scelga un brano dalle mie playlist 🎲',
         song_placeholder: 'Pronto quando vuoi...',
         song_shuffle: 'SHUFFLE',
+        // Docs
+        docs_title: 'Documenti',
+        docs_tagline: 'I miei appunti di studio & documenti 📚',
+        docs_files: '// FILE',
+        docs_placeholder: 'Seleziona un file dalla sidebar per visualizzarlo',
         // Contact
         contact_title: '// CONTATTAMI',
         connect_title: '// SEGUIMI',

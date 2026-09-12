@@ -2851,3 +2851,131 @@ img {
     font-size: 0.55rem; /* Rimpicciolisce ulteriormente il font 8-bit per farlo entrare */
   }
 }
+
+/* ============================================
+   DOCS SECTION — Win95 Synthwave File Explorer
+   ============================================ */
+.docs-section {
+  background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-deep) 100%);
+  position: relative;
+  z-index: 1;
+}
+
+.docs-window {
+  background: var(--win95-bg);
+  border: 3px solid;
+  border-color: var(--win95-light) var(--win95-dark) var(--win95-dark) var(--win95-light);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 255, 255, 0.2);
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+.docs-titlebar {
+  background: linear-gradient(90deg, var(--win95-title), #1084d0);
+  color: white;
+  font-family: var(--font-sub);
+  font-size: 1.1rem;
+  padding: 4px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+
+.docs-titlebar-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.docs-controls {
+  display: flex;
+  gap: 3px;
+}
+
+.docs-win-btn {
+  width: 18px;
+  height: 18px;
+  background: var(--win95-bg);
+  border: 2px solid;
+  border-color: var(--win95-light) var(--win95-dark) var(--win95-dark) var(--win95-light);
+  font-family: var(--font-sub);
+  font-size: 10px;
+  color: #000;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.docs-win-btn:hover {
+  background: #e0e0e0;
+}
+
+.docs-body {
+  background: var(--bg-dark);
+  padding: 20px;
+}
+
+.docs-file-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.docs-file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(18, 0, 50, 0.85);
+  border: 1px solid var(--neon-purple);
+  padding: 14px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-bright);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.docs-file-item:hover {
+  border-color: var(--neon-cyan);
+  background: rgba(0, 255, 255, 0.08);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
+  transform: translateX(4px);
+  color: #fff;
+}
+
+.docs-file-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  word-break: break-word;
+}
+
+.docs-file-title i {
+  color: var(--neon-magenta);
+  font-size: 1.2rem;
+}
+
+.docs-open-badge {
+  font-family: var(--font-heading);
+  font-size: 0.6rem;
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+  padding: 5px 10px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.docs-file-item:hover .docs-open-badge {
+  background: var(--neon-cyan);
+  color: var(--bg-deep);
+  box-shadow: 0 0 10px var(--neon-cyan);
+}
