@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
-  <meta name="theme-color" content="#0b001a" />
+  <meta name="theme-color" content="#0a0a0c" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="color-scheme" content="dark" />
   <style>
     /* Prevent white flash on mobile */
-    html, body { background-color: #0b001a !important; }
+    html, body { background-color: #0a0a0c !important; }
   </style>
-  <title>Riccardo Fusiello | AI Student & Developer</title>
-  <!-- Google Fonts -->
+  <title>Riccardo Fusiello | Issue #01 — AI Developer</title>
+  <!-- Google Fonts (Comic Noir type system) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Fira+Code:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Bootstrap CSS -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Special+Elite&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS (grid + collapse only) -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -24,38 +24,64 @@
   />
   <!-- Font Awesome (For Icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Custom CSS (styleNew.css) -->
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="style/styleNew.css" />
 </head>
 <body>
-  <!-- Scroll Progress Bar -->
-  <div class="scroll-progress" aria-hidden="true">
-    <div class="scroll-progress-fill" id="scrollProgressFill"></div>
+
+  <!-- ============================================================
+       INK SPLASH PAGE TRANSITION
+  ============================================================ -->
+  <div class="ink-splash" id="inkSplash" aria-hidden="true">
+    <span class="ink-splash__blot"></span>
   </div>
 
-  <!-- Loading Screen -->
+  <!-- ============================================================
+       PRINT OVERLAYS / TEXTURES
+  ============================================================ -->
+  <div class="comic-grain" aria-hidden="true"></div>
+  <div class="comic-vignette" aria-hidden="true"></div>
+  <div class="halftone-floor" aria-hidden="true"></div>
+  <div class="speed-lines" id="speedLines" aria-hidden="true"></div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- Custom inked cursor -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <span class="cursor__ring"></span>
+    <span class="cursor__dot"></span>
+    <span class="cursor__label">OPEN</span>
+  </div>
+  <div class="ink-trail" id="inkTrail" aria-hidden="true"></div>
+
+  <!-- Scroll Progress as an ink stroke -->
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress-fill" id="scrollProgressFill"></div>
+    <span class="scroll-progress__label">INK</span>
+  </div>
+
+  <!-- ============================================================
+       LOADING SCREEN — "PRINTING THE ISSUE"
+  ============================================================ -->
   <div class="loading-screen" id="loadingScreen">
+    <div class="loading-mark">A CAVI PRODUCTION</div>
     <div class="loading-text">
-      <span class="dos-prompt">C:\&gt;</span> <span id="loadingText">LOADING PORTFOLIO.EXE...</span>
+      <span class="dos-prompt">C:\&gt;</span> <span id="loadingText">PRINTING ISSUE #01...</span>
     </div>
     <div class="loading-bar">
       <div class="loading-bar-fill" id="loadingBarFill"></div>
     </div>
+    <div class="loading-scan">HALFTONE · INK · NOIR · CYBER</div>
   </div>
 
-  <!-- VHS Tracking Line -->
-  <div class="vhs-line" style="top: 30%;"></div>
-  <div class="vhs-line" style="top: 65%; animation-delay: 3s;"></div>
-
-  <!-- Retro Grid Background -->
-  <div class="retro-grid"></div>
-
-  <!-- Synthwave Sun -->
-  <div class="synthwave-sun"></div>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg fixed-top">
+  <!-- ============================================================
+       NAVIGATION — MASTHEAD
+  ============================================================ -->
+  <nav class="navbar navbar-expand-lg fixed-top comic-nav">
     <div class="container">
+      <a class="nav-brand" href="#hero">
+        <span class="nav-brand__mark">CAVI</span>
+        <span class="nav-brand__sub">COMICS · #01</span>
+      </a>
       <button class="navbar-toggler vapor-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="vapor-toggler-bars">
           <span></span>
@@ -83,54 +109,86 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <header id="hero" class="hero-section d-flex align-items-center justify-content-center text-center">
+  <!-- ============================================================
+       HERO — "COVER ISSUE #1"
+  ============================================================ -->
+  <header id="hero" class="hero-section">
+    <!-- parallax layers -->
+    <div class="hero-city" aria-hidden="true"></div>
+    <div class="hero-rain" aria-hidden="true"></div>
+    <div class="hero-smoke" aria-hidden="true"></div>
     <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
-    <div class="container vapor-reveal hero-content">
-      <h1 class="hero-title glitch neon-text" data-text="Riccardo Fusiello">Riccardo Fusiello</h1>
-      <p class="hero-subtitle neon-text-cyan"><span id="heroTyped">AI Student &amp; Software Developer</span><span class="typing-cursor"></span></p>
-      <div class="mt-4">
-        <a href="misc/CV.pdf" target="_blank" class="btn btn-vapor btn-glitch me-2">
+
+    <div class="container hero-content">
+      <div class="issue-badge" data-depth="0.06">
+        <span class="issue-badge__num">#01</span>
+        <span class="issue-badge__txt">COLLECTOR'S EDITION</span>
+      </div>
+      <p class="hero-kicker" data-depth="0.04" data-i18n="hero_kicker">A CAVI PRODUCTION · ISSUE #01</p>
+      <h1 class="hero-title glitch" data-depth="0.02" data-text="Riccardo Fusiello">Riccardo Fusiello</h1>
+      <p class="hero-subtitle" data-depth="0.03"><span id="heroTyped">AI Student &amp; Software Developer</span><span class="typing-cursor"></span></p>
+      <div class="hero-actions" data-depth="0.02">
+        <a href="misc/CV.pdf" target="_blank" class="btn-vapor">
           <i class="fas fa-download me-2"></i> <span data-i18n="hero_cv">DOWNLOAD_CV.exe</span>
         </a>
-        <a href="#contact" class="btn btn-vapor btn-vapor-cyan btn-glitch">
+        <a href="#contact" class="btn-vapor btn-vapor--blood">
           <i class="fas fa-envelope me-2"></i> <span data-i18n="hero_contact">CONTACT.bat</span>
         </a>
       </div>
     </div>
+
+    <div class="hero-stamp" data-depth="0.08">OPEN TO OPPORTUNITIES · 2026</div>
+    <div class="hero-barcode" data-depth="0.07" aria-hidden="true">
+      <span class="hero-barcode__bars"></span>
+      <span class="hero-barcode__code">0 0111 0100 1101</span>
+    </div>
+    <div class="hero-scrollcue" aria-hidden="true">
+      <span>SCROLL</span><i class="fas fa-chevron-down"></i>
+    </div>
   </header>
 
-  <!-- Profile Intro Section -->
-  <section id="profile-intro" class="profile-intro-section py-5">
+  <!-- ============================================================
+       PROFILE — "WHO IS CAVI" ID CARD
+  ============================================================ -->
+  <section id="profile-intro" class="profile-intro-section">
     <div class="container">
-      <div class="row align-items-center text-center text-md-start">
-        <div class="col-md-4 mb-4 mb-md-0 d-flex justify-content-center vapor-reveal-left">
-          <img class="profile-photo img-fluid" style="max-width: 300px;" src="misc/1756748267986.png" alt="Riccardo Fusiello"/>
+      <div class="row align-items-center g-5">
+        <div class="col-md-4 d-flex justify-content-center ink-reveal ink-reveal--left">
+          <div class="id-card comic-panel tilt-card">
+            <div class="id-card__frame">
+              <img class="profile-photo" src="misc/1756748267986.png" alt="Riccardo Fusiello"/>
+              <span class="id-card__scan"></span>
+            </div>
+            <div class="id-card__stamp">FILE #01</div>
+            <span class="id-card__barcode"></span>
+          </div>
         </div>
-        <div class="col-md-8 vapor-reveal-right">
+        <div class="col-md-8 ink-reveal ink-reveal--right">
+          <p class="section-kicker" data-issue="00">CHARACTER FILE</p>
           <h2 class="section-title text-start" data-i18n="profile_hello">Hello!</h2>
           <p class="lead" data-i18n="profile_intro">
             I am a <strong>Software Developer</strong> and <strong>AI Student</strong> based in Andria, Italy.
           </p>
           <p data-i18n="profile_detail">
-            Currently enrolled in the Master's Degree in <strong>Artificial Intelligence</strong> at the <a href="https://www.uniba.it/it" target="_blank">University of Bari</a>. 
+            Currently enrolled in the Master's Degree in <strong>Artificial Intelligence</strong> at the <a href="https://www.uniba.it/it" target="_blank">University of Bari</a>.
             I previously graduated in Computer Science from the <a href="https://www.unitn.it/en" target="_blank">University of Trento</a>.
           </p>
-          <p>
-            <i class="fas fa-map-marker-alt me-2"></i> Via Pericle 120, 76123 Andria (Italia)
-          </p>
+          <p class="id-location"><i class="fas fa-map-marker-alt me-2"></i> Via Pericle 120, 76123 Andria (Italia)</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About Me Section -->
-  <section id="about-section" class="about-me-section py-5">
+  <!-- ============================================================
+       ABOUT — "THE ORIGIN STORY"
+  ============================================================ -->
+  <section id="about-section" class="about-me-section">
     <div class="container">
-      <h2 class="section-title text-center mb-4 glitch" data-text="About Me" data-i18n="about_title" data-i18n-glitch="about_title">About Me</h2>
-      <div class="row">
-        <div class="col-lg-10 mx-auto text-center vapor-reveal">
-          <!-- Win95 Window Style -->
+      <p class="section-kicker" data-issue="01">ISSUE #01 — THE ORIGIN STORY</p>
+      <h2 class="section-title" data-text="Origin Story" data-i18n="about_title" data-i18n-glitch="about_title">About Me</h2>
+
+      <div class="row g-4 mt-2">
+        <div class="col-lg-10 mx-auto ink-reveal">
           <div class="win95-window tilt-card">
             <div class="win95-titlebar">
               <span class="win95-titlebar-text" data-i18n="about_win_title">about_me.txt</span>
@@ -154,15 +212,18 @@
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="skills-section py-5">
+  <!-- ============================================================
+       SKILLS — "POWER SET"
+  ============================================================ -->
+  <section id="skills" class="skills-section">
     <div class="container">
-      <h2 class="section-title text-center mb-5 glitch" data-text="Technical Skills" data-i18n="skills_title" data-i18n-glitch="skills_title">Technical Skills</h2>
-      
+      <p class="section-kicker" data-issue="02">ISSUE #02 — POWER SET</p>
+      <h2 class="section-title" data-text="Technical Skills" data-i18n="skills_title" data-i18n-glitch="skills_title">Technical Skills</h2>
+
       <div class="row justify-content-center">
-        <div class="col-md-8 text-center vapor-reveal">
-          <h4 class="mb-3" data-i18n="skills_languages">// LANGUAGES</h4>
-          <div class="mb-4">
+        <div class="col-lg-9 text-center ink-reveal">
+          <h4 class="power-heading" data-i18n="skills_languages">// LANGUAGES</h4>
+          <div class="badge-cloud mb-5">
             <span class="skill-badge">C / C++</span>
             <span class="skill-badge">Java</span>
             <span class="skill-badge">Kotlin</span>
@@ -173,9 +234,9 @@
             <span class="skill-badge">Shell / Bash</span>
             <span class="skill-badge">PHP</span>
           </div>
-          
-          <h4 class="mb-3" data-i18n="skills_frameworks">// FRAMEWORKS & TOOLS</h4>
-          <div>
+
+          <h4 class="power-heading" data-i18n="skills_frameworks">// FRAMEWORKS & TOOLS</h4>
+          <div class="badge-cloud">
             <span class="skill-badge">Jetpack Compose</span>
             <span class="skill-badge">Arduino</span>
             <span class="skill-badge">Google Suite Scripting</span>
@@ -194,159 +255,175 @@
     </div>
   </section>
 
-  <!-- Work Experience Section -->
-  <section id="experience" class="experience-section py-5">
+  <!-- ============================================================
+       EXPERIENCE — "CASE FILES"
+  ============================================================ -->
+  <section id="experience" class="experience-section">
     <div class="container">
-      <h2 class="section-title text-center mb-5 glitch" data-text="Working Experience" data-i18n="experience_title" data-i18n-glitch="experience_title">Working Experience</h2>
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          
-          <!-- Job 1 -->
-          <div class="neon-panel vapor-reveal tilt-card">
-            <span class="text-muted small">06/09/2024 -- Present</span>
-            <h4 class="fw-bold mt-1" data-i18n="job1_title">Software Developer</h4>
-            <h5 class="text-primary-custom">System Project S.r.L, Andria</h5>
+      <p class="section-kicker" data-issue="03">ISSUE #03 — CASE FILES</p>
+      <h2 class="section-title" data-text="Case Files" data-i18n="experience_title" data-i18n-glitch="experience_title">Working Experience</h2>
+
+      <div class="case-files">
+        <!-- Job 1 -->
+        <article class="case-file comic-panel tilt-card ink-reveal">
+          <span class="case-file__tab">CASE 01</span>
+          <div class="case-file__body">
+            <span class="case-file__date">06/09/2024 — PRESENT</span>
+            <h4 class="case-file__title" data-i18n="job1_title">Software Developer</h4>
+            <h5 class="case-file__org">System Project S.r.L, Andria</h5>
             <p data-i18n="job1_desc">Development of software solutions and system integration.</p>
           </div>
+        </article>
 
-          <!-- Job 2 -->
-          <div class="neon-panel vapor-reveal tilt-card">
-            <span class="text-muted small">10/05/2024 -- Present</span>
-            <h4 class="fw-bold mt-1" data-i18n="job2_title">Freelance Developer</h4>
-            <h5 class="text-primary-custom" data-i18n="job2_company">Self-employed</h5>
+        <!-- Job 2 -->
+        <article class="case-file comic-panel tilt-card ink-reveal">
+          <span class="case-file__tab">CASE 02</span>
+          <div class="case-file__body">
+            <span class="case-file__date">10/05/2024 — PRESENT</span>
+            <h4 class="case-file__title" data-i18n="job2_title">Freelance Developer</h4>
+            <h5 class="case-file__org" data-i18n="job2_company">Self-employed</h5>
             <p data-i18n="job2_desc">Automation of psychological tests using Google Suite scripting.</p>
           </div>
+        </article>
 
-          <!-- Job 3 -->
-          <div class="neon-panel vapor-reveal tilt-card">
-            <span class="text-muted small">05/02/2024 -- 29/03/2024</span>
-            <h4 class="fw-bold mt-1" data-i18n="job3_title">Machine Learning Intern</h4>
-            <h5 class="text-primary-custom">University of Trento</h5>
+        <!-- Job 3 -->
+        <article class="case-file comic-panel tilt-card ink-reveal">
+          <span class="case-file__tab">CASE 03</span>
+          <div class="case-file__body">
+            <span class="case-file__date">05/02/2024 — 29/03/2024</span>
+            <h4 class="case-file__title" data-i18n="job3_title">Machine Learning Intern</h4>
+            <h5 class="case-file__org">University of Trento</h5>
             <p data-i18n="job3_desc">Research and implementation of ML models for academic projects.</p>
           </div>
+        </article>
 
-          <!-- Job 4 -->
-          <div class="neon-panel vapor-reveal tilt-card">
-            <span class="text-muted small">13/03/2023 -- 29/03/2024</span>
-            <h4 class="fw-bold mt-1" data-i18n="job4_title">IT Service Desk</h4>
-            <h5 class="text-primary-custom">University of Trento</h5>
+        <!-- Job 4 -->
+        <article class="case-file comic-panel tilt-card ink-reveal">
+          <span class="case-file__tab">CASE 04</span>
+          <div class="case-file__body">
+            <span class="case-file__date">13/03/2023 — 29/03/2024</span>
+            <h4 class="case-file__title" data-i18n="job4_title">IT Service Desk</h4>
+            <h5 class="case-file__org">University of Trento</h5>
             <p data-i18n="job4_desc">Technical support and hardware/software troubleshooting for students and staff.</p>
           </div>
+        </article>
 
-          <!-- Job 5 -->
-          <div class="neon-panel vapor-reveal tilt-card">
-             <span class="text-muted small">01/03/2022 -- 15/03/2022</span>
-             <h4 class="fw-bold mt-1" data-i18n="job5_title">Full Stack Developer</h4>
-             <h5 class="text-primary-custom" data-i18n="job5_company">Reply S.p.A, Remote</h5>
-             <p data-i18n="job5_desc">Short-term intense development project.</p>
+        <!-- Job 5 -->
+        <article class="case-file comic-panel tilt-card ink-reveal">
+          <span class="case-file__tab">CASE 05</span>
+          <div class="case-file__body">
+            <span class="case-file__date">01/03/2022 — 15/03/2022</span>
+            <h4 class="case-file__title" data-i18n="job5_title">Full Stack Developer</h4>
+            <h5 class="case-file__org" data-i18n="job5_company">Reply S.p.A, Remote</h5>
+            <p data-i18n="job5_desc">Short-term intense development project.</p>
           </div>
+        </article>
 
-           <!-- Job 6 -->
-           <div class="neon-panel vapor-reveal tilt-card">
-            <span class="text-muted small">15/06/2020 -- 15/09/2020</span>
-            <h4 class="fw-bold mt-1" data-i18n="job6_title">Full Stack Developer</h4>
-            <h5 class="text-primary-custom" data-i18n="job6_company">Nuvité S.r.l, Andria</h5>
+        <!-- Job 6 -->
+        <article class="case-file comic-panel tilt-card ink-reveal">
+          <span class="case-file__tab">CASE 06</span>
+          <div class="case-file__body">
+            <span class="case-file__date">15/06/2020 — 15/09/2020</span>
+            <h4 class="case-file__title" data-i18n="job6_title">Full Stack Developer</h4>
+            <h5 class="case-file__org" data-i18n="job6_company">Nuvité S.r.l, Andria</h5>
             <p data-i18n="job6_desc">Web development and database management.</p>
-         </div>
-
-        </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- Education Section -->
-  <section id="education" class="education-section py-5">
+  <!-- ============================================================
+       EDUCATION — "ORIGIN CHAPTERS"
+  ============================================================ -->
+  <section id="education" class="education-section">
     <div class="container">
-      <h2 class="section-title text-center mb-5 glitch" data-text="Education & Certifications" data-i18n="education_title" data-i18n-glitch="education_title">Education & Certifications</h2>
-      <div class="row">
-        
-        <!-- Master's -->
-        <div class="col-md-4 mb-4 vapor-reveal">
-          <div class="card h-100 scanline-overlay tilt-card">
-            <div class="card-body">
-              <span class="badge bg-primary mb-2" data-i18n="edu_present">Present</span>
-              <h5 class="card-title fw-bold" data-i18n="edu_master_title">Master's in AI</h5>
-              <h6 data-i18n="edu_master_uni">University of Bari</h6>
-              <p class="card-text small mt-3" data-i18n="edu_master_desc">Focus on Machine Learning, Deep Learning, and Data Science.</p>
-            </div>
+      <p class="section-kicker" data-issue="04">ISSUE #04 — ORIGIN CHAPTERS</p>
+      <h2 class="section-title" data-text="Education" data-i18n="education_title" data-i18n-glitch="education_title">Education &amp; Certifications</h2>
+
+      <div class="row g-4">
+        <div class="col-md-4 ink-reveal">
+          <div class="origin-card comic-panel scanline-overlay tilt-card">
+            <span class="origin-card__badge" data-i18n="edu_present">Present</span>
+            <span class="origin-card__chapter">CHAPTER 04</span>
+            <h5 class="origin-card__title" data-i18n="edu_master_title">Master's in AI</h5>
+            <h6 class="origin-card__org" data-i18n="edu_master_uni">University of Bari</h6>
+            <p class="origin-card__desc" data-i18n="edu_master_desc">Focus on Machine Learning, Deep Learning, and Data Science.</p>
           </div>
         </div>
 
-        <!-- Bachelor's -->
-        <div class="col-md-4 mb-4 vapor-reveal">
-          <div class="card h-100 scanline-overlay tilt-card">
-            <div class="card-body">
-              <span class="badge bg-secondary mb-2">2021 - 2024</span>
-              <h5 class="card-title fw-bold" data-i18n="edu_bachelor_title">Bachelor's in CS</h5>
-              <h6 data-i18n="edu_bachelor_uni">University of Trento</h6>
-              <p class="card-text small mt-3" data-i18n="edu_bachelor_desc">Grade: 106/110. Thesis focused on software architecture.</p>
-            </div>
+        <div class="col-md-4 ink-reveal">
+          <div class="origin-card comic-panel scanline-overlay tilt-card">
+            <span class="origin-card__badge">2021 — 2024</span>
+            <span class="origin-card__chapter">CHAPTER 03</span>
+            <h5 class="origin-card__title" data-i18n="edu_bachelor_title">Bachelor's in CS</h5>
+            <h6 class="origin-card__org" data-i18n="edu_bachelor_uni">University of Trento</h6>
+            <p class="origin-card__desc" data-i18n="edu_bachelor_desc">Grade: 106/110. Thesis focused on software architecture.</p>
           </div>
         </div>
 
-        <!-- Diploma -->
-        <div class="col-md-4 mb-4 vapor-reveal">
-          <div class="card h-100 scanline-overlay tilt-card">
-            <div class="card-body">
-              <span class="badge bg-secondary mb-2">2016 - 2021</span>
-              <h5 class="card-title fw-bold" data-i18n="edu_diploma_title">Diploma in IT</h5>
-              <h6 data-i18n="edu_diploma_school">ITIS Sen. Onofrio Jannuzzi</h6>
-              <p class="card-text small mt-3" data-i18n="edu_diploma_desc">Grade: 100L/100.</p>
-            </div>
+        <div class="col-md-4 ink-reveal">
+          <div class="origin-card comic-panel scanline-overlay tilt-card">
+            <span class="origin-card__badge">2016 — 2021</span>
+            <span class="origin-card__chapter">CHAPTER 02</span>
+            <h5 class="origin-card__title" data-i18n="edu_diploma_title">Diploma in IT</h5>
+            <h6 class="origin-card__org" data-i18n="edu_diploma_school">ITIS Sen. Onofrio Jannuzzi</h6>
+            <p class="origin-card__desc" data-i18n="edu_diploma_desc">Grade: 100L/100.</p>
           </div>
         </div>
-
       </div>
 
-      <!-- Certifications List -->
-      <div class="row mt-4 justify-content-center certifications-section vapor-reveal">
-          <div class="col-md-8 text-center">
-              <h5 class="fw-bold mb-3" data-i18n="cert_title">// CERTIFICATIONS</h5>
-              <ul class="list-inline">
-                  <li class="list-inline-item mx-2"><i class="fas fa-certificate"></i> CCNA Routing and Switching (2020)</li>
-                  <li class="list-inline-item mx-2"><i class="fas fa-certificate"></i> Comau Academy (2021)</li>
-                  <li class="list-inline-item mx-2"><i class="fas fa-certificate"></i> Odoo Masterclass (2024)</li>
-              </ul>
-          </div>
+      <div class="certifications-section ink-reveal">
+        <h5 class="power-heading" data-i18n="cert_title">// CERTIFICATIONS</h5>
+        <ul class="cert-list">
+          <li><i class="fas fa-certificate"></i> CCNA Routing and Switching (2020)</li>
+          <li><i class="fas fa-certificate"></i> Comau Academy (2021)</li>
+          <li><i class="fas fa-certificate"></i> Odoo Masterclass (2024)</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="projects-section py-5">
-      <div class="container">
-          <h2 class="section-title text-center mb-4 glitch" data-text="Projects" data-i18n="projects_title" data-i18n-glitch="projects_title">Projects</h2>
-          <div class="row justify-content-center">
-              <div class="col-md-6 vapor-reveal">
-                  <!-- Win95 Window Style for Project -->
-                  <div class="win95-window tilt-card">
-                      <div class="win95-titlebar">
-                          <span class="win95-titlebar-text" data-i18n="project_win_title">shelfy_project.exe</span>
-                          <div class="win95-controls">
-                              <div class="win95-btn">_</div>
-                              <div class="win95-btn">□</div>
-                              <div class="win95-btn">✕</div>
-                          </div>
-                      </div>
-                      <div class="win95-body">
-                          <h3 class="card-title" style="font-family: 'Press Start 2P', monospace; font-size: 0.9rem; color: #000080;">Shelfy</h3>
-                          <p style="font-family: 'VT323', monospace; font-size: 1.1rem; color: #008080; font-style: italic;" data-i18n="project_quote">"Digital library at your fingertips."</p>
-                          <p data-i18n="project_desc">A personal project focusing on digital book management, allowing users to organize and track their reading collections efficiently.</p>
-                      </div>
-                  </div>
-              </div>
+  <!-- ============================================================
+       PROJECTS — "THE CHRONICLES"
+  ============================================================ -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <p class="section-kicker" data-issue="05">ISSUE #05 — THE CHRONICLES</p>
+      <h2 class="section-title" data-text="The Chronicles" data-i18n="projects_title" data-i18n-glitch="projects_title">Projects</h2>
+      <p class="section-intro">Selected work and experiments.</p>
+
+      <div class="chronicles-grid">
+        <article class="chronicle chronicle--feature comic-panel tilt-card ink-reveal"
+                 data-title="Shelfy"
+                 data-quote="&quot;Digital library at your fingertips.&quot;"
+                 data-i18n-desc="project_desc">
+          <div class="chronicle__art" aria-hidden="true">
+            <span class="chronicle__halftone"></span>
+            <span class="chronicle__glyph"><i class="fas fa-book-open"></i></span>
           </div>
+          <div class="chronicle__meta">
+            <span class="chronicle__num">CHRONICLE #01</span>
+            <h3 class="chronicle__title" data-i18n="project_win_title">shelfy_project.exe</h3>
+            <p class="chronicle__quote" data-i18n="project_quote">"Digital library at your fingertips."</p>
+            <p class="chronicle__desc" data-i18n="project_desc">A personal project focusing on digital book management, allowing users to organize and track their reading collections efficiently.</p>
+            <span class="chronicle__cta">OPEN FILE <i class="fas fa-arrow-right"></i></span>
+          </div>
+        </article>
       </div>
+    </div>
   </section>
 
-  <!-- ===== MUSIC SECTION (cavi.wav) ===== -->
-  <section id="music" class="music-section py-5">
+  <!-- ============================================================
+       MUSIC — "THE SOUNDTRACK"
+  ============================================================ -->
+  <section id="music" class="music-section">
     <div class="container">
-      <h2 class="section-title text-center mb-2 glitch" data-text="cavi.wav" data-i18n="music_title">cavi.wav</h2>
-      <p class="text-center music-tagline" data-i18n="music_tagline">Sharing good vibes through music 🎶✨</p>
+      <p class="section-kicker" data-issue="06">ISSUE #06 — THE SOUNDTRACK</p>
+      <h2 class="section-title" data-text="cavi.wav" data-i18n="music_title">cavi.wav</h2>
+      <p class="music-tagline" data-i18n="music_tagline">Sharing good vibes through music 🎶✨</p>
 
-      <!-- Carousel Tabs -->
-      <div class="music-tabs vapor-reveal">
+      <div class="music-tabs ink-reveal">
         <button class="music-tab active" data-tab="spotify" data-i18n="music_tab_spotify">// SPOTIFY</button>
         <button class="music-tab" data-tab="youtube" data-i18n="music_tab_youtube">// YOUTUBE</button>
         <button class="music-tab" data-tab="instagram" data-i18n="music_tab_instagram">// INSTAGRAM</button>
@@ -355,33 +432,33 @@
       <!-- ===== SPOTIFY PANEL ===== -->
       <div class="music-panel active" id="panel-spotify">
         <div class="spotify-grid">
-          <div class="spotify-card tilt-card">
+          <div class="spotify-card comic-panel tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/5WXVYnbA08tIUIexoFm0GP" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Jazz-Funky House</p>
           </div>
-          <div class="spotify-card tilt-card">
+          <div class="spotify-card comic-panel tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/3mCXkog9fWWtxIYX5mbaWJ" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Glitchato</p>
           </div>
-          <div class="spotify-card tilt-card">
+          <div class="spotify-card comic-panel tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/39CWgfBArrnIoXfnEpK1XA" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Soundtrack fuori di testa</p>
           </div>
-          <div class="spotify-card tilt-card">
+          <div class="spotify-card comic-panel tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/6AYfZqv8yufAK4ynfZICKw" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Jungle Vibes</p>
           </div>
-          <div class="spotify-card tilt-card">
+          <div class="spotify-card comic-panel tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/7pCNudfXyp25BJp5EGXy1m" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Dream man</p>
           </div>
-          <div class="spotify-card tilt-card">
+          <div class="spotify-card comic-panel tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/72c80SP8YSASEz9Bkwkxh2" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Karaokando</p>
           </div>
         </div>
         <div class="text-center mt-3">
-          <a href="https://open.spotify.com/user/11134519888" target="_blank" class="btn btn-vapor btn-vapor-cyan btn-glitch music-cta">
+          <a href="https://open.spotify.com/user/11134519888" target="_blank" class="btn-vapor btn-vapor--acid music-cta">
             <i class="fab fa-spotify me-2"></i> <span data-i18n="music_spotify_cta">Open all 47 playlists</span>
           </a>
         </div>
@@ -390,8 +467,8 @@
       <!-- ===== YOUTUBE PANEL ===== -->
       <div class="music-panel" id="panel-youtube">
         <div class="youtube-grid">
-          <div class="youtube-card tilt-card">
-            <div class="youtube-thumb" onclick="window.open('https://www.youtube.com/@Caviiiiii', '_blank')">
+          <div class="youtube-card comic-panel tilt-card">
+            <div class="youtube-thumb" data-href="https://www.youtube.com/@Caviiiiii">
               <i class="fab fa-youtube youtube-play-icon"></i>
               <div class="youtube-thumb-overlay">
                 <span data-i18n="music_yt_visit">Visit Channel</span>
@@ -407,7 +484,7 @@
           </div>
         </div>
         <div class="text-center mt-3">
-          <a href="https://www.youtube.com/@Caviiiiii" target="_blank" class="btn btn-vapor btn-glitch music-cta">
+          <a href="https://www.youtube.com/@Caviiiiii" target="_blank" class="btn-vapor music-cta">
             <i class="fab fa-youtube me-2"></i> <span data-i18n="music_yt_cta">Subscribe on YouTube</span>
           </a>
         </div>
@@ -415,7 +492,7 @@
 
       <!-- ===== INSTAGRAM PANEL ===== -->
       <div class="music-panel" id="panel-instagram">
-        <div class="instagram-card tilt-card">
+        <div class="instagram-card comic-panel tilt-card">
           <div class="instagram-header">
             <div class="instagram-avatar">
               <i class="fab fa-instagram"></i>
@@ -426,29 +503,31 @@
             </div>
           </div>
           <div class="instagram-preview">
-            <div class="instagram-post" onclick="window.open('https://www.instagram.com/cavi.media', '_blank')">
+            <div class="instagram-post" data-href="https://www.instagram.com/cavi.media">
               <i class="fab fa-instagram ig-post-icon"></i>
               <span data-i18n="music_ig_visit">View Profile</span>
             </div>
           </div>
           <div class="text-center mt-3">
-            <a href="https://www.instagram.com/cavi.media" target="_blank" class="btn btn-vapor btn-vapor-cyan btn-glitch music-cta">
+            <a href="https://www.instagram.com/cavi.media" target="_blank" class="btn-vapor btn-vapor--acid music-cta">
               <i class="fab fa-instagram me-2"></i> <span data-i18n="music_ig_cta">Follow @cavi.media</span>
             </a>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ===== SONG RECOMMENDER ===== -->
-  <section id="song-picker" class="song-picker-section py-5">
+  <!-- ============================================================
+       TRACK ROULETTE
+  ============================================================ -->
+  <section id="song-picker" class="song-picker-section">
     <div class="container">
-      <h2 class="section-title text-center mb-2 glitch" data-text="Track Roulette" data-i18n="song_title">Track Roulette</h2>
-      <p class="text-center music-tagline" data-i18n="song_tagline">Press SHUFFLE — let the machine pick a track from my playlists 🎲</p>
+      <p class="section-kicker" data-issue="07">ISSUE #07 — THE JUKEBOX</p>
+      <h2 class="section-title" data-text="Track Roulette" data-i18n="song_title">Track Roulette</h2>
+      <p class="music-tagline" data-i18n="song_tagline">Press SHUFFLE — let the machine pick a track from my playlists 🎲</p>
 
-      <div class="song-picker-box vapor-reveal tilt-card">
+      <div class="song-picker-box comic-panel tilt-card ink-reveal">
         <div class="song-display" id="songDisplay">
           <div class="song-placeholder" id="songPlaceholder">
             <i class="fas fa-compact-disc song-disc-icon"></i>
@@ -461,7 +540,7 @@
           </div>
         </div>
         <div class="text-center mt-3">
-          <button class="btn btn-vapor btn-glitch shuffle-btn" id="shuffleBtn">
+          <button class="btn-vapor shuffle-btn" id="shuffleBtn">
             <i class="fas fa-shuffle me-2"></i> <span data-i18n="song_shuffle">SHUFFLE</span>
           </button>
         </div>
@@ -469,271 +548,292 @@
     </div>
   </section>
 
-  <!-- Contact Footer -->
-  <footer id="contact" class="contact-footer py-5">
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <footer id="contact" class="contact-footer">
     <div class="container">
-      <div class="row text-center text-md-start">
-        
-        <div class="col-md-6 mb-4 mb-md-0">
-            <h4 class="mb-3" data-i18n="contact_title">// CONTACT_ME</h4>
+      <p class="section-kicker" data-issue="08">ISSUE #08 — CONTACT</p>
+
+      <div class="row g-4 align-items-stretch">
+        <div class="col-md-6 ink-reveal">
+          <div class="contact-block comic-panel">
+            <h4 class="contact-block__title" data-i18n="contact_title">// CONTACT_ME</h4>
             <p><a href="mailto:riccardo.fusiello02@gmail.com"><i class="fas fa-envelope me-2"></i> riccardo.fusiello02@gmail.com</a></p>
             <p><a href="tel:+393895398639"><i class="fas fa-phone me-2"></i> (+39) 389 539 8639</a></p>
+          </div>
         </div>
 
-        <div class="col-md-6 text-center text-md-end">
-          <h4 class="mb-3" data-i18n="connect_title">// CONNECT</h4>
-          <div class="social-links">
-            <a href="https://www.linkedin.com/in/riccardo-fusiello-a02446216/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/riccardofus" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://www.instagram.com/riccardo.fusiello/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://open.spotify.com/user/11134519888?si=5ef3217eab024590" target="_blank"><i class="fab fa-spotify"></i></a>
+        <div class="col-md-6 ink-reveal ink-reveal--right">
+          <div class="connect-block comic-panel">
+            <h4 class="connect-block__title" data-i18n="connect_title">// CONNECT</h4>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/riccardo-fusiello-a02446216/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="https://github.com/riccardofus" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://www.instagram.com/riccardo.fusiello/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="https://open.spotify.com/user/11134519888?si=5ef3217eab024590" target="_blank" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+            </div>
           </div>
         </div>
       </div>
-      
-      <hr class="my-4">
-      
-      <div class="text-center">
-        <p class="mb-0 small text-white-50" data-i18n="copyright">© 2026 Riccardo Fusiello. All Rights Reserved. // Built with <span style="color: var(--neon-magenta);">&lt;3</span> and <span style="color: var(--neon-cyan);">caffeine</span></p>
-      </div>
+
+      <div class="footer-rule"></div>
+      <p class="footer-copy small" data-i18n="copyright">© 2026 Riccardo Fusiello. All Rights Reserved.</p>
     </div>
   </footer>
 
+  <!-- Comic panel modal (breaking the frame) -->
+  <div class="comic-modal" id="comicModal" aria-hidden="true">
+    <div class="comic-modal__backdrop"></div>
+    <div class="comic-modal__frame comic-panel" role="dialog" aria-modal="true">
+      <button class="comic-modal__close" aria-label="Close">✕</button>
+      <span class="comic-modal__tag">CHRONICLE FILE</span>
+      <h3 class="comic-modal__title"></h3>
+      <p class="comic-modal__quote"></p>
+      <p class="comic-modal__desc"></p>
+    </div>
+  </div>
+
   <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-  
-  <!-- Vaporwave Scroll Animations & Loading Screen -->
+
+  <!-- ============================================================
+       APP SCRIPT
+  ============================================================ -->
   <script>
-    // Loading Screen
-    const loadingBar = document.getElementById('loadingBarFill');
-    const loadingScreen = document.getElementById('loadingScreen');
-    let progress = 0;
-    const loadingInterval = setInterval(() => {
-      progress += Math.random() * 15 + 5;
-      if (progress >= 100) {
-        progress = 100;
-        clearInterval(loadingInterval);
-        setTimeout(() => {
-          loadingScreen.classList.add('hidden');
-          setTimeout(() => {
-            loadingScreen.style.display = 'none';
-          }, 800);
-        }, 300);
-      }
-      loadingBar.style.width = progress + '%';
-    }, 200);
-
-    // Scroll Reveal Animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.vapor-reveal, .vapor-reveal-left, .vapor-reveal-right, .vapor-boot').forEach(el => {
-      observer.observe(el);
-    });
-
-    // Smooth scroll for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-
-    // Vaporwave toggler: toggle 'active' class for X animation
-    const vaporToggler = document.querySelector('.vapor-toggler');
-    const navbarCollapse = document.getElementById('navbarNav');
-    if (vaporToggler && navbarCollapse) {
-      vaporToggler.addEventListener('click', function() {
-        setTimeout(() => {
-          const isOpen = navbarCollapse.classList.contains('show');
-          vaporToggler.classList.toggle('active', isOpen);
-        }, 10);
-      });
-      // Also close menu when a nav link is clicked
-      navbarCollapse.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-          vaporToggler.classList.remove('active');
-        });
-      });
-    }
-
-    // ============================================
-    // MUSIC SECTION — TAB SWITCHER
-    // ============================================
-    const musicTabs = document.querySelectorAll('.music-tab');
-    const musicPanels = document.querySelectorAll('.music-panel');
-    musicTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.getAttribute('data-tab');
-        musicTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        musicPanels.forEach(p => {
-          p.classList.remove('active');
-          if (p.id === 'panel-' + target) {
-            p.classList.add('active');
-          }
-        });
-      });
-    });
-
-    // ============================================
-    // SONG ROULETTE — Random track picker (loads from JSON)
-    // ============================================
-    let songDatabase = [];
-    let songsLoaded = false;
-
-    // Load the tracks JSON
-    fetch('spotify_tracks.json')
-      .then(r => r.json())
-      .then(data => {
-        songDatabase = data.t.map(t => ({ id: t[0], playlist: t[1] }));
-        songsLoaded = true;
-        console.log(`🎵 Loaded ${songDatabase.length} tracks from ${data.p.length} playlists`);
-      })
-      .catch(err => console.warn('Could not load spotify_tracks.json:', err));
-
-    const shuffleBtn = document.getElementById('shuffleBtn');
-    const songPlaceholder = document.getElementById('songPlaceholder');
-    const songResult = document.getElementById('songResult');
-    const songFrame = document.getElementById('songFrame');
-    const songTrackName = document.getElementById('songTrackName');
-    const songPlaylistName = document.getElementById('songPlaylistName');
-    let lastTrackIndex = -1;
-
-    shuffleBtn.addEventListener('click', () => {
-      if (!songsLoaded || songDatabase.length === 0) {
-        songTrackName.textContent = 'Loading tracks... please wait ⏳';
-        songPlaylistName.textContent = '';
-        songPlaceholder.style.display = 'none';
-        songResult.style.display = 'block';
-        return;
-      }
-
-      // Pick a random track, avoid repeating the same one
-      let idx;
-      do {
-        idx = Math.floor(Math.random() * songDatabase.length);
-      } while (idx === lastTrackIndex && songDatabase.length > 1);
-      lastTrackIndex = idx;
-
-      const track = songDatabase[idx];
-
-      // Spin animation
-      shuffleBtn.classList.add('spinning');
-      songPlaceholder.style.display = 'none';
-      songResult.style.display = 'none';
-
-      setTimeout(() => {
-        songFrame.src = 'https://open.spotify.com/embed/track/' + track.id;
-        songTrackName.textContent = '';
-        songPlaylistName.textContent = '♫ from: ' + track.playlist;
-        songResult.style.display = 'block';
-        shuffleBtn.classList.remove('spinning');
-      }, 600);
-    });
-
-    // ============================================
-    // DYNAMIC ANIMATIONS — scroll, parallax, tilt
-    // ============================================
+    /* global preferences */
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
-    // ---- Scroll progress bar ----
+    /* ============================================================
+       1. LOADING SCREEN — INK SPLASH REVEAL
+    ============================================================ */
+    const loadingBar = document.getElementById('loadingBarFill');
+    const loadingScreen = document.getElementById('loadingScreen');
+    const inkSplash = document.getElementById('inkSplash');
+    let progress = 0;
+    const loadingInterval = setInterval(() => {
+      progress += Math.random() * 16 + 6;
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(loadingInterval);
+        loadingBar.style.width = '100%';
+        setTimeout(() => {
+          loadingScreen.classList.add('hidden');
+          document.body.classList.add('is-loaded');
+          setTimeout(() => { loadingScreen.style.display = 'none'; }, 800);
+        }, 350);
+        return;
+      }
+      loadingBar.style.width = progress + '%';
+    }, 180);
+
+    /* ============================================================
+       2. CUSTOM INKED CURSOR
+    ============================================================ */
+    const cursor = document.getElementById('cursor');
+    const inkTrail = document.getElementById('inkTrail');
+    let cursorX = window.innerWidth / 2;
+    let cursorY = window.innerHeight / 2;
+    let ringX = cursorX;
+    let ringY = cursorY;
+    let lastBlot = 0;
+
+    function initCursor() {
+      if (isTouchDevice || !cursor) { if (cursor) cursor.style.display = 'none'; return; }
+      document.body.classList.add('has-custom-cursor');
+
+      window.addEventListener('mousemove', (e) => {
+        cursorX = e.clientX;
+        cursorY = e.clientY;
+        cursor.style.setProperty('--px', cursorX + 'px');
+        cursor.style.setProperty('--py', cursorY + 'px');
+
+        const now = performance.now();
+        if (!prefersReducedMotion && now - lastBlot > 55) {
+          lastBlot = now;
+          const blot = document.createElement('span');
+          blot.className = 'ink-blot';
+          const size = 4 + Math.random() * 8;
+          blot.style.width = size + 'px';
+          blot.style.height = size + 'px';
+          blot.style.left = cursorX + 'px';
+          blot.style.top = cursorY + 'px';
+          inkTrail.appendChild(blot);
+          setTimeout(() => blot.remove(), 700);
+        }
+      });
+
+      const interactive = document.querySelectorAll('a, button, .tilt-card, .skill-badge, .chronicle, input, textarea');
+      interactive.forEach((el) => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('cursor--active'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--active'));
+      });
+
+      (function follow() {
+        ringX += (cursorX - ringX) * 0.18;
+        ringY += (cursorY - ringY) * 0.18;
+        cursor.style.setProperty('--rx', ringX + 'px');
+        cursor.style.setProperty('--ry', ringY + 'px');
+        requestAnimationFrame(follow);
+      })();
+    }
+
+    /* ============================================================
+       4. SCROLL PROGRESS + SPEED LINES
+    ============================================================ */
     const progressFill = document.getElementById('scrollProgressFill');
+    const speedLines = document.getElementById('speedLines');
+    let lastScrollY = window.scrollY;
+    let speedTimer = null;
+
     function updateScrollProgress() {
-      if (!progressFill) return;
       const doc = document.documentElement;
       const max = doc.scrollHeight - doc.clientHeight;
       const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
-      progressFill.style.width = pct + '%';
-    }
-
-    // ---- Scroll parallax (background layers) ----
-    const synthSun = document.querySelector('.synthwave-sun');
-    const retroGrid = document.querySelector('.retro-grid');
-    let parallaxTicking = false;
-
-    function applyParallax() {
-      const y = window.scrollY || window.pageYOffset;
-      if (synthSun) synthSun.style.setProperty('--parallax-sun', (y * 0.18) + 'px');
-      if (retroGrid) retroGrid.style.setProperty('--parallax-grid', (y * 0.06) + 'px');
-      parallaxTicking = false;
+      if (progressFill) progressFill.style.width = pct + '%';
     }
 
     function onScroll() {
+      const y = window.scrollY;
+      const velocity = Math.abs(y - lastScrollY);
+      lastScrollY = y;
       updateScrollProgress();
-      if (!parallaxTicking && !prefersReducedMotion && !isTouchDevice) {
-        parallaxTicking = true;
-        requestAnimationFrame(applyParallax);
-      }
-    }
 
+      if (!prefersReducedMotion && speedLines && velocity > 35) {
+        speedLines.classList.add('is-active');
+        clearTimeout(speedTimer);
+        speedTimer = setTimeout(() => speedLines.classList.remove('is-active'), 220);
+      }
+      applyHeroParallax(y);
+    }
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', updateScrollProgress);
     updateScrollProgress();
 
-    // ---- Hero mouse-reactive depth ----
+    /* ============================================================
+       5. HERO PARALLAX (scroll + mouse depth)
+    ============================================================ */
     const hero = document.getElementById('hero');
+    function applyHeroParallax(scrollY) {
+      if (!hero || prefersReducedMotion) return;
+      const y = scrollY || window.scrollY;
+      hero.querySelectorAll('[data-depth]').forEach((layer) => {
+        const d = parseFloat(layer.dataset.depth) || 0;
+        layer.style.setProperty('--parallax-y', (y * d) + 'px');
+      });
+      hero.style.setProperty('--city-y', (y * 0.12) + 'px');
+      hero.style.setProperty('--smoke-y', (y * 0.08) + 'px');
+    }
+
     if (hero && !isTouchDevice && !prefersReducedMotion) {
       hero.addEventListener('mousemove', (e) => {
         const r = hero.getBoundingClientRect();
         const mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
         const my = ((e.clientY - r.top) / r.height - 0.5) * 2;
-        hero.style.setProperty('--mx', mx.toFixed(3));
-        hero.style.setProperty('--my', my.toFixed(3));
-        if (synthSun) synthSun.style.setProperty('--hero-mx', (mx * 18).toFixed(1) + 'px');
+        hero.querySelectorAll('[data-depth]').forEach((layer) => {
+          const d = parseFloat(layer.dataset.depth) || 0;
+          layer.style.setProperty('--parallax-x', (mx * d * 90).toFixed(1) + 'px');
+          layer.style.setProperty('--parallax-my', (my * d * 70).toFixed(1) + 'px');
+        });
       });
       hero.addEventListener('mouseleave', () => {
-        hero.style.setProperty('--mx', '0');
-        hero.style.setProperty('--my', '0');
-        if (synthSun) synthSun.style.setProperty('--hero-mx', '0px');
+        hero.querySelectorAll('[data-depth]').forEach((layer) => {
+          layer.style.setProperty('--parallax-x', '0px');
+          layer.style.setProperty('--parallax-my', '0px');
+        });
       });
     }
 
-    // ---- Hero floating particles ----
+    /* ============================================================
+       6. HERO FLOATING PARTICLES (embers / ink specks)
+    ============================================================ */
     const heroParticles = document.getElementById('heroParticles');
     if (heroParticles && !prefersReducedMotion) {
-      const count = window.innerWidth < 768 ? 10 : 22;
+      const count = window.innerWidth < 768 ? 12 : 26;
       for (let i = 0; i < count; i++) {
         const p = document.createElement('span');
-        p.className = 'hero-particle' + (Math.random() > 0.5 ? ' magenta' : '');
+        p.className = 'hero-particle' + (Math.random() > 0.65 ? ' blood' : '');
         p.style.left = (Math.random() * 100).toFixed(2) + '%';
-        p.style.animationDuration = (6 + Math.random() * 8).toFixed(1) + 's';
-        p.style.animationDelay = (Math.random() * 8).toFixed(1) + 's';
-        const size = (2 + Math.random() * 3).toFixed(1);
+        p.style.animationDuration = (6 + Math.random() * 9).toFixed(1) + 's';
+        p.style.animationDelay = (Math.random() * 9).toFixed(1) + 's';
+        const size = (1.5 + Math.random() * 3).toFixed(1);
         p.style.width = size + 'px';
         p.style.height = size + 'px';
         heroParticles.appendChild(p);
       }
     }
 
-    // ---- 3D tilt + spotlight on cards ----
+    /* ============================================================
+       7. SCROLL REVEAL (ink panels)
+    ============================================================ */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.ink-reveal').forEach((el) => revealObserver.observe(el));
+
+    /* Skill badges pop-in */
+    const skillsSection = document.querySelector('.skills-section');
+    if (skillsSection) {
+      const badgeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-badges');
+            badgeObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      badgeObserver.observe(skillsSection);
+    }
+
+    /* ============================================================
+       8. SMOOTH SCROLL
+    ============================================================ */
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* ============================================================
+       9. NAV TOGGLER
+    ============================================================ */
+    const vaporToggler = document.querySelector('.vapor-toggler');
+    const navbarCollapse = document.getElementById('navbarNav');
+    if (vaporToggler && navbarCollapse) {
+      vaporToggler.addEventListener('click', function () {
+        setTimeout(() => {
+          const isOpen = navbarCollapse.classList.contains('show');
+          vaporToggler.classList.toggle('active', isOpen);
+        }, 10);
+      });
+      navbarCollapse.querySelectorAll('.nav-link').forEach((link) => {
+        link.addEventListener('click', () => vaporToggler.classList.remove('active'));
+      });
+    }
+
+    /* ============================================================
+       10. 3D TILT + SPOTLIGHT
+    ============================================================ */
     function initTiltCards() {
       if (isTouchDevice || prefersReducedMotion) return;
-
       document.querySelectorAll('.tilt-card').forEach((card) => {
-        if (!card.classList.contains('win95-window') && !card.querySelector('.card-spotlight')) {
+        if (!card.querySelector('.card-spotlight')) {
           const glow = document.createElement('span');
           glow.className = 'card-spotlight';
           card.insertBefore(glow, card.firstChild);
         }
-
-        const maxTilt = (card.classList.contains('spotify-card') || card.classList.contains('youtube-card')) ? 6 : 8;
-
+        const maxTilt = 7;
         card.addEventListener('mouseenter', () => card.classList.add('is-tilting'));
         card.addEventListener('mousemove', (e) => {
           const r = card.getBoundingClientRect();
@@ -752,42 +852,26 @@
       });
     }
 
-    // ---- Magnetic interactive elements ----
+    /* ============================================================
+       11. MAGNETIC BUTTONS
+    ============================================================ */
     function initMagnetic() {
       if (isTouchDevice || prefersReducedMotion) return;
-
       document.querySelectorAll('.btn-vapor, .shuffle-btn, .music-tab, .lang-toggle').forEach((btn) => {
         btn.classList.add('magnetic');
         btn.addEventListener('mousemove', (e) => {
           const r = btn.getBoundingClientRect();
-          const x = (e.clientX - (r.left + r.width / 2)) * 0.25;
-          const y = (e.clientY - (r.top + r.height / 2)) * 0.25;
+          const x = (e.clientX - (r.left + r.width / 2)) * 0.22;
+          const y = (e.clientY - (r.top + r.height / 2)) * 0.22;
           btn.style.transform = 'translate(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px)';
         });
-        btn.addEventListener('mouseleave', () => {
-          btn.style.transform = '';
-        });
+        btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
       });
     }
 
-    // ---- Skill badges pop-in on scroll ----
-    const skillsSection = document.querySelector('.skills-section');
-    if (skillsSection) {
-      const badgeObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate-badges');
-            badgeObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      badgeObserver.observe(skillsSection);
-    }
-
-    initTiltCards();
-    initMagnetic();
-
-    // ---- Hero typewriter (language-aware) ----
+    /* ============================================================
+       12. HERO TYPEWRITER (language-aware)
+    ============================================================ */
     const heroTypedPhrases = {
       en: [
         'AI Student & Software Developer',
@@ -808,13 +892,9 @@
       const el = document.getElementById('heroTyped');
       if (!el) return;
       clearTimeout(heroTypeTimer);
-
       const phrases = heroTypedPhrases[lang] || heroTypedPhrases.en;
 
-      if (prefersReducedMotion) {
-        el.textContent = phrases[0];
-        return;
-      }
+      if (prefersReducedMotion) { el.textContent = phrases[0]; return; }
 
       let phraseIndex = 0;
       let charIndex = 0;
@@ -822,7 +902,6 @@
 
       function tick() {
         const current = phrases[phraseIndex];
-
         if (!deleting) {
           charIndex++;
           el.textContent = current.slice(0, charIndex);
@@ -844,17 +923,117 @@
           heroTypeTimer = setTimeout(tick, 35);
         }
       }
-
       el.textContent = '';
       heroTypeTimer = setTimeout(tick, 500);
     }
 
-    // ============================================
-    // MULTILINGUAL SYSTEM (EN / IT)
-    // ============================================
+    /* ============================================================
+       13. MUSIC TABS
+    ============================================================ */
+    const musicTabs = document.querySelectorAll('.music-tab');
+    const musicPanels = document.querySelectorAll('.music-panel');
+    musicTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+        musicTabs.forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
+        musicPanels.forEach((p) => {
+          p.classList.remove('active');
+          if (p.id === 'panel-' + target) p.classList.add('active');
+        });
+      });
+    });
+
+    /* Generic [data-href] click navigation */
+    document.querySelectorAll('[data-href]').forEach((el) => {
+      el.addEventListener('click', () => window.open(el.getAttribute('data-href'), '_blank'));
+    });
+
+    /* ============================================================
+       14. SONG ROULETTE
+    ============================================================ */
+    let songDatabase = [];
+    let songsLoaded = false;
+
+    fetch('spotify_tracks.json')
+      .then((r) => r.json())
+      .then((data) => {
+        songDatabase = data.t.map((t) => ({ id: t[0], playlist: t[1] }));
+        songsLoaded = true;
+        console.log('Loaded ' + songDatabase.length + ' tracks');
+      })
+      .catch((err) => console.warn('Could not load spotify_tracks.json:', err));
+
+    const shuffleBtn = document.getElementById('shuffleBtn');
+    const songPlaceholder = document.getElementById('songPlaceholder');
+    const songResult = document.getElementById('songResult');
+    const songFrame = document.getElementById('songFrame');
+    const songTrackName = document.getElementById('songTrackName');
+    const songPlaylistName = document.getElementById('songPlaylistName');
+    let lastTrackIndex = -1;
+
+    if (shuffleBtn) {
+      shuffleBtn.addEventListener('click', () => {
+        if (!songsLoaded || songDatabase.length === 0) {
+          songTrackName.textContent = 'Loading tracks... please wait';
+          songPlaylistName.textContent = '';
+          songPlaceholder.style.display = 'none';
+          songResult.style.display = 'block';
+          return;
+        }
+        let idx;
+        do { idx = Math.floor(Math.random() * songDatabase.length); }
+        while (idx === lastTrackIndex && songDatabase.length > 1);
+        lastTrackIndex = idx;
+        const track = songDatabase[idx];
+
+        shuffleBtn.classList.add('spinning');
+        songPlaceholder.style.display = 'none';
+        songResult.style.display = 'none';
+
+        setTimeout(() => {
+          songFrame.src = 'https://open.spotify.com/embed/track/' + track.id;
+          songTrackName.textContent = '';
+          songPlaylistName.textContent = '♫ from: ' + track.playlist;
+          songResult.style.display = 'block';
+          shuffleBtn.classList.remove('spinning');
+        }, 600);
+      });
+    }
+
+    /* ============================================================
+       15. COMIC MODAL — BREAKING THE FRAME
+    ============================================================ */
+    const modal = document.getElementById('comicModal');
+    function openComicModal(card) {
+      if (!modal) return;
+      modal.querySelector('.comic-modal__title').textContent = card.dataset.title || '';
+      modal.querySelector('.comic-modal__quote').textContent = card.dataset.quote || '';
+      const descKey = card.dataset.i18nDesc;
+      const descEl = card.querySelector('.chronicle__desc');
+      modal.querySelector('.comic-modal__desc').textContent = descEl ? descEl.textContent : '';
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+    function closeComicModal() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+    document.querySelectorAll('.chronicle').forEach((card) => {
+      card.addEventListener('click', () => openComicModal(card));
+    });
+    if (modal) {
+      modal.querySelector('.comic-modal__backdrop').addEventListener('click', closeComicModal);
+      modal.querySelector('.comic-modal__close').addEventListener('click', closeComicModal);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeComicModal(); });
+    }
+
+    /* ============================================================
+       16. MULTILINGUAL SYSTEM (EN / IT)
+    ============================================================ */
     const translations = {
       en: {
-        // Nav
         nav_about: '// About',
         nav_skills: '// Skills',
         nav_experience: '// Experience',
@@ -862,24 +1041,20 @@
         nav_projects: '// Projects',
         nav_music: '// Music',
         nav_contact: '// Contact',
-        // Hero
+        hero_kicker: 'A CAVI PRODUCTION · ISSUE #01',
         hero_subtitle: 'AI Student & Software Developer',
         hero_cv: 'DOWNLOAD_CV.exe',
         hero_contact: 'CONTACT.bat',
-        // Profile
         profile_hello: 'Hello!',
         profile_intro: 'I am a <strong>Software Developer</strong> and <strong>AI Student</strong> based in Andria, Italy.',
         profile_detail: 'Currently enrolled in the Master\'s Degree in <strong>Artificial Intelligence</strong> at the <a href="https://www.uniba.it/it" target="_blank">University of Bari</a>. I previously graduated in Computer Science from the <a href="https://www.unitn.it/en" target="_blank">University of Trento</a>.',
-        // About
         about_title: 'About Me',
         about_win_title: 'about_me.txt',
         about_p1: 'I don\'t just write code — I architect intelligent systems. My sweet spot is where software engineering meets artificial intelligence: taking complex research and turning it into products that actually work. Precision, curiosity, and a relentless drive to build define my approach.',
         about_p2: 'Beyond the code, music is my way of life. Born in 2002 and surrounded by music-loving parents, I am a passionate <strong>DJ</strong>. Whether I\'m training a Machine Learning model or mixing a set, I\'m driven by creativity and the desire to create something unique.',
-        // Skills
         skills_title: 'Technical Skills',
         skills_languages: '// LANGUAGES',
         skills_frameworks: '// FRAMEWORKS & TOOLS',
-        // Experience
         experience_title: 'Working Experience',
         job1_title: 'Software Developer',
         job1_desc: 'Development of software solutions and system integration.',
@@ -896,7 +1071,6 @@
         job6_title: 'Full Stack Developer',
         job6_company: 'Nuvité S.r.l, Andria',
         job6_desc: 'Web development and database management.',
-        // Education
         education_title: 'Education & Certifications',
         edu_present: 'Present',
         edu_master_title: "Master's in AI",
@@ -909,12 +1083,10 @@
         edu_diploma_school: 'ITIS Sen. Onofrio Jannuzzi',
         edu_diploma_desc: 'Grade: 100L/100.',
         cert_title: '// CERTIFICATIONS',
-        // Projects
         projects_title: 'Projects',
         project_win_title: 'shelfy_project.exe',
         project_quote: '"Digital library at your fingertips."',
         project_desc: 'A personal project focusing on digital book management, allowing users to organize and track their reading collections efficiently.',
-        // Music
         music_title: 'cavi.wav',
         music_tagline: 'Sharing good vibes through music 🎶✨',
         music_tab_spotify: '// SPOTIFY',
@@ -927,20 +1099,16 @@
         music_ig_desc: 'Music · DJ · Vibes',
         music_ig_visit: 'View Profile',
         music_ig_cta: 'Follow @cavi.media',
-        // Song Roulette
         song_title: 'Track Roulette',
         song_tagline: 'Press SHUFFLE — let the machine pick a track from my playlists 🎲',
         song_placeholder: 'Ready when you are...',
         song_shuffle: 'SHUFFLE',
-        // Contact
         contact_title: '// CONTACT_ME',
         connect_title: '// CONNECT',
-        copyright: '© 2026 Riccardo Fusiello. All Rights Reserved. // Built with <span style="color: var(--neon-magenta);">&lt;3</span> and <span style="color: var(--neon-cyan);">caffeine</span>',
-        // Loading
-        loading_text: 'LOADING PORTFOLIO.EXE...'
+        copyright: '© 2026 Riccardo Fusiello. All Rights Reserved.',
+        loading_text: 'PRINTING ISSUE #01...'
       },
       it: {
-        // Nav
         nav_about: '// Chi Sono',
         nav_skills: '// Competenze',
         nav_experience: '// Esperienza',
@@ -948,24 +1116,20 @@
         nav_projects: '// Progetti',
         nav_music: '// Musica',
         nav_contact: '// Contatti',
-        // Hero
+        hero_kicker: 'UNA PRODUZIONE CAVI · NUMERO #01',
         hero_subtitle: 'Studente AI & Sviluppatore Software',
         hero_cv: 'SCARICA_CV.exe',
         hero_contact: 'CONTATTAMI.bat',
-        // Profile
         profile_hello: 'Ciao!',
         profile_intro: 'Sono uno <strong>Sviluppatore Software</strong> e <strong>Studente di AI</strong> con sede ad Andria, Italia.',
         profile_detail: 'Attualmente iscritto alla Laurea Magistrale in <strong>Intelligenza Artificiale</strong> presso l\'<a href="https://www.uniba.it/it" target="_blank">Università degli Studi di Bari</a>. Precedentemente mi sono laureato in Informatica presso l\'<a href="https://www.unitn.it/en" target="_blank">Università di Trento</a>.',
-        // About
         about_title: 'Chi Sono',
         about_win_title: 'chi_sono.txt',
         about_p1: 'Non scrivo solo codice — progetto sistemi intelligenti. Il mio punto di forza è l\'intersezione tra ingegneria del software e intelligenza artificiale: trasformare ricerca complessa in prodotti che funzionano davvero. Precisione, curiosità e una spinta incessante a costruire definiscono il mio approccio.',
         about_p2: 'Oltre il codice, la musica è il mio stile di vita. Nato nel 2002 e circondato da genitori amanti della musica, sono un <strong>DJ</strong> appassionato. Che io stia addestrando un modello di Machine Learning o mixando un set, sono guidato dalla creatività e dal desiderio di creare qualcosa di unico.',
-        // Skills
         skills_title: 'Competenze Tecniche',
         skills_languages: '// LINGUAGGI',
         skills_frameworks: '// FRAMEWORK & STRUMENTI',
-        // Experience
         experience_title: 'Esperienza Lavorativa',
         job1_title: 'Sviluppatore Software',
         job1_desc: 'Sviluppo di soluzioni software e integrazione di sistemi.',
@@ -982,7 +1146,6 @@
         job6_title: 'Sviluppatore Full Stack',
         job6_company: 'Nuvité S.r.l, Andria',
         job6_desc: 'Sviluppo web e gestione database.',
-        // Education
         education_title: 'Formazione & Certificazioni',
         edu_present: 'In corso',
         edu_master_title: 'Laurea Magistrale in AI',
@@ -995,12 +1158,10 @@
         edu_diploma_school: 'ITIS Sen. Onofrio Jannuzzi',
         edu_diploma_desc: 'Voto: 100L/100.',
         cert_title: '// CERTIFICAZIONI',
-        // Projects
         projects_title: 'Progetti',
         project_win_title: 'progetto_shelfy.exe',
         project_quote: '"La tua libreria digitale a portata di mano."',
         project_desc: 'Un progetto personale focalizzato sulla gestione digitale dei libri, che permette agli utenti di organizzare e tracciare le proprie collezioni di lettura in modo efficiente.',
-        // Music
         music_title: 'cavi.wav',
         music_tagline: 'Condivido buone vibrazioni attraverso la musica 🎶✨',
         music_tab_spotify: '// SPOTIFY',
@@ -1013,17 +1174,14 @@
         music_ig_desc: 'Musica · DJ · Vibes',
         music_ig_visit: 'Vedi profilo',
         music_ig_cta: 'Segui @cavi.media',
-        // Song Roulette
         song_title: 'Track Roulette',
         song_tagline: 'Premi SHUFFLE — lascia che la macchina scelga un brano dalle mie playlist 🎲',
         song_placeholder: 'Pronto quando vuoi...',
         song_shuffle: 'SHUFFLE',
-        // Contact
         contact_title: '// CONTATTAMI',
         connect_title: '// SEGUIMI',
-        copyright: '© 2026 Riccardo Fusiello. Tutti i diritti riservati. // Fatto con <span style="color: var(--neon-magenta);">&lt;3</span> e <span style="color: var(--neon-cyan);">caffeina</span>',
-        // Loading
-        loading_text: 'CARICAMENTO_PORTFOLIO.EXE...'
+        copyright: '© 2026 Riccardo Fusiello. Tutti i diritti riservati.',
+        loading_text: 'STAMPA NUMERO #01...'
       }
     };
 
@@ -1034,11 +1192,9 @@
       localStorage.setItem('lang', lang);
       document.documentElement.lang = lang;
 
-      // Update all translatable elements
-      document.querySelectorAll('[data-i18n]').forEach(el => {
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang][key]) {
-          // Add fade effect
           el.classList.add('lang-fade');
           setTimeout(() => {
             el.innerHTML = translations[lang][key];
@@ -1047,50 +1203,45 @@
         }
       });
 
-      // Update glitch data-text attributes
-      document.querySelectorAll('[data-i18n-glitch]').forEach(el => {
+      document.querySelectorAll('[data-i18n-glitch]').forEach((el) => {
         const key = el.getAttribute('data-i18n-glitch');
-        if (translations[lang][key]) {
-          el.setAttribute('data-text', translations[lang][key]);
-        }
+        if (translations[lang][key]) el.setAttribute('data-text', translations[lang][key]);
       });
 
-      // Update language toggle button
       const langFlag = document.getElementById('langFlag');
       const langLabel = document.getElementById('langLabel');
-      if (lang === 'en') {
-        langFlag.textContent = '🇬🇧';
-        langLabel.textContent = 'EN';
-      } else {
-        langFlag.textContent = '🇮🇹';
-        langLabel.textContent = 'IT';
+      if (langFlag && langLabel) {
+        langFlag.textContent = lang === 'en' ? '🇬🇧' : '🇮🇹';
+        langLabel.textContent = lang === 'en' ? 'EN' : 'IT';
       }
 
-      // Update loading text
       const loadingTextEl = document.getElementById('loadingText');
-      if (loadingTextEl) {
-        loadingTextEl.textContent = translations[lang].loading_text;
-      }
+      if (loadingTextEl) loadingTextEl.textContent = translations[lang].loading_text;
 
-      // Glitch animation on the toggle button
       const toggle = document.getElementById('langToggle');
-      toggle.classList.add('lang-switching');
-      setTimeout(() => toggle.classList.remove('lang-switching'), 400);
-
-      // Restart the hero typewriter with the new language phrases
-      if (typeof startHeroTyping === 'function') {
-        startHeroTyping(lang);
+      if (toggle) {
+        toggle.classList.add('lang-switching');
+        setTimeout(() => toggle.classList.remove('lang-switching'), 400);
       }
+
+      if (typeof startHeroTyping === 'function') startHeroTyping(lang);
     }
 
-    // Language toggle click handler
-    document.getElementById('langToggle').addEventListener('click', function() {
-      const newLang = currentLang === 'en' ? 'it' : 'en';
-      setLanguage(newLang);
-    });
+    const langToggleBtn = document.getElementById('langToggle');
+    if (langToggleBtn) {
+      langToggleBtn.addEventListener('click', function () {
+        setLanguage(currentLang === 'en' ? 'it' : 'en');
+      });
+    }
 
-    // Initialize language on page load
+    /* ============================================================
+       INIT
+    ============================================================ */
+    initCursor();
+    initTiltCards();
+    initMagnetic();
     setLanguage(currentLang);
+    applyHeroParallax(window.scrollY);
   </script>
 </body>
 </html>
