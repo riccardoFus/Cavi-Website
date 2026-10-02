@@ -28,6 +28,11 @@
   <link rel="stylesheet" href="style/styleNew.css" />
 </head>
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress-fill" id="scrollProgressFill"></div>
+  </div>
+
   <!-- Loading Screen -->
   <div class="loading-screen" id="loadingScreen">
     <div class="loading-text">
@@ -66,7 +71,6 @@
           <li class="nav-item"><a class="nav-link" href="#education" data-i18n="nav_education">// Education</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects" data-i18n="nav_projects">// Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#music" data-i18n="nav_music">// Music</a></li>
-          <li class="nav-item"><a class="nav-link" href="#docs" data-i18n="nav_docs">// Docs</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav_contact">// Contact</a></li>
           <li class="nav-item">
             <button class="lang-toggle" id="langToggle" title="Switch Language">
@@ -81,9 +85,10 @@
 
   <!-- Hero Section -->
   <header id="hero" class="hero-section d-flex align-items-center justify-content-center text-center">
-    <div class="container vapor-reveal">
+    <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
+    <div class="container vapor-reveal hero-content">
       <h1 class="hero-title glitch neon-text" data-text="Riccardo Fusiello">Riccardo Fusiello</h1>
-      <p class="hero-subtitle neon-text-cyan"><span data-i18n="hero_subtitle">AI Student & Software Developer</span><span class="typing-cursor"></span></p>
+      <p class="hero-subtitle neon-text-cyan"><span id="heroTyped">AI Student &amp; Software Developer</span><span class="typing-cursor"></span></p>
       <div class="mt-4">
         <a href="misc/CV.pdf" target="_blank" class="btn btn-vapor btn-glitch me-2">
           <i class="fas fa-download me-2"></i> <span data-i18n="hero_cv">DOWNLOAD_CV.exe</span>
@@ -126,7 +131,7 @@
       <div class="row">
         <div class="col-lg-10 mx-auto text-center vapor-reveal">
           <!-- Win95 Window Style -->
-          <div class="win95-window">
+          <div class="win95-window tilt-card">
             <div class="win95-titlebar">
               <span class="win95-titlebar-text" data-i18n="about_win_title">about_me.txt</span>
               <div class="win95-controls">
@@ -197,7 +202,7 @@
         <div class="col-lg-8">
           
           <!-- Job 1 -->
-          <div class="neon-panel vapor-reveal">
+          <div class="neon-panel vapor-reveal tilt-card">
             <span class="text-muted small">06/09/2024 -- Present</span>
             <h4 class="fw-bold mt-1" data-i18n="job1_title">Software Developer</h4>
             <h5 class="text-primary-custom">System Project S.r.L, Andria</h5>
@@ -205,7 +210,7 @@
           </div>
 
           <!-- Job 2 -->
-          <div class="neon-panel vapor-reveal">
+          <div class="neon-panel vapor-reveal tilt-card">
             <span class="text-muted small">10/05/2024 -- Present</span>
             <h4 class="fw-bold mt-1" data-i18n="job2_title">Freelance Developer</h4>
             <h5 class="text-primary-custom" data-i18n="job2_company">Self-employed</h5>
@@ -213,7 +218,7 @@
           </div>
 
           <!-- Job 3 -->
-          <div class="neon-panel vapor-reveal">
+          <div class="neon-panel vapor-reveal tilt-card">
             <span class="text-muted small">05/02/2024 -- 29/03/2024</span>
             <h4 class="fw-bold mt-1" data-i18n="job3_title">Machine Learning Intern</h4>
             <h5 class="text-primary-custom">University of Trento</h5>
@@ -221,7 +226,7 @@
           </div>
 
           <!-- Job 4 -->
-          <div class="neon-panel vapor-reveal">
+          <div class="neon-panel vapor-reveal tilt-card">
             <span class="text-muted small">13/03/2023 -- 29/03/2024</span>
             <h4 class="fw-bold mt-1" data-i18n="job4_title">IT Service Desk</h4>
             <h5 class="text-primary-custom">University of Trento</h5>
@@ -229,7 +234,7 @@
           </div>
 
           <!-- Job 5 -->
-          <div class="neon-panel vapor-reveal">
+          <div class="neon-panel vapor-reveal tilt-card">
              <span class="text-muted small">01/03/2022 -- 15/03/2022</span>
              <h4 class="fw-bold mt-1" data-i18n="job5_title">Full Stack Developer</h4>
              <h5 class="text-primary-custom" data-i18n="job5_company">Reply S.p.A, Remote</h5>
@@ -237,7 +242,7 @@
           </div>
 
            <!-- Job 6 -->
-           <div class="neon-panel vapor-reveal">
+           <div class="neon-panel vapor-reveal tilt-card">
             <span class="text-muted small">15/06/2020 -- 15/09/2020</span>
             <h4 class="fw-bold mt-1" data-i18n="job6_title">Full Stack Developer</h4>
             <h5 class="text-primary-custom" data-i18n="job6_company">Nuvité S.r.l, Andria</h5>
@@ -257,7 +262,7 @@
         
         <!-- Master's -->
         <div class="col-md-4 mb-4 vapor-reveal">
-          <div class="card h-100 scanline-overlay">
+          <div class="card h-100 scanline-overlay tilt-card">
             <div class="card-body">
               <span class="badge bg-primary mb-2" data-i18n="edu_present">Present</span>
               <h5 class="card-title fw-bold" data-i18n="edu_master_title">Master's in AI</h5>
@@ -269,7 +274,7 @@
 
         <!-- Bachelor's -->
         <div class="col-md-4 mb-4 vapor-reveal">
-          <div class="card h-100 scanline-overlay">
+          <div class="card h-100 scanline-overlay tilt-card">
             <div class="card-body">
               <span class="badge bg-secondary mb-2">2021 - 2024</span>
               <h5 class="card-title fw-bold" data-i18n="edu_bachelor_title">Bachelor's in CS</h5>
@@ -281,7 +286,7 @@
 
         <!-- Diploma -->
         <div class="col-md-4 mb-4 vapor-reveal">
-          <div class="card h-100 scanline-overlay">
+          <div class="card h-100 scanline-overlay tilt-card">
             <div class="card-body">
               <span class="badge bg-secondary mb-2">2016 - 2021</span>
               <h5 class="card-title fw-bold" data-i18n="edu_diploma_title">Diploma in IT</h5>
@@ -314,7 +319,7 @@
           <div class="row justify-content-center">
               <div class="col-md-6 vapor-reveal">
                   <!-- Win95 Window Style for Project -->
-                  <div class="win95-window">
+                  <div class="win95-window tilt-card">
                       <div class="win95-titlebar">
                           <span class="win95-titlebar-text" data-i18n="project_win_title">shelfy_project.exe</span>
                           <div class="win95-controls">
@@ -350,27 +355,27 @@
       <!-- ===== SPOTIFY PANEL ===== -->
       <div class="music-panel active" id="panel-spotify">
         <div class="spotify-grid">
-          <div class="spotify-card">
+          <div class="spotify-card tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/5WXVYnbA08tIUIexoFm0GP" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Jazz-Funky House</p>
           </div>
-          <div class="spotify-card">
+          <div class="spotify-card tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/3mCXkog9fWWtxIYX5mbaWJ" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Glitchato</p>
           </div>
-          <div class="spotify-card">
+          <div class="spotify-card tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/39CWgfBArrnIoXfnEpK1XA" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Soundtrack fuori di testa</p>
           </div>
-          <div class="spotify-card">
+          <div class="spotify-card tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/6AYfZqv8yufAK4ynfZICKw" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Jungle Vibes</p>
           </div>
-          <div class="spotify-card">
+          <div class="spotify-card tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/7pCNudfXyp25BJp5EGXy1m" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Dream man</p>
           </div>
-          <div class="spotify-card">
+          <div class="spotify-card tilt-card">
             <iframe src="https://open.spotify.com/embed/playlist/72c80SP8YSASEz9Bkwkxh2" width="100%" height="152" frameborder="0" allowtransparency="true" allow="encrypted-media" loading="lazy"></iframe>
             <p class="spotify-label">Karaokando</p>
           </div>
@@ -385,7 +390,7 @@
       <!-- ===== YOUTUBE PANEL ===== -->
       <div class="music-panel" id="panel-youtube">
         <div class="youtube-grid">
-          <div class="youtube-card">
+          <div class="youtube-card tilt-card">
             <div class="youtube-thumb" onclick="window.open('https://www.youtube.com/@Caviiiiii', '_blank')">
               <i class="fab fa-youtube youtube-play-icon"></i>
               <div class="youtube-thumb-overlay">
@@ -410,7 +415,7 @@
 
       <!-- ===== INSTAGRAM PANEL ===== -->
       <div class="music-panel" id="panel-instagram">
-        <div class="instagram-card">
+        <div class="instagram-card tilt-card">
           <div class="instagram-header">
             <div class="instagram-avatar">
               <i class="fab fa-instagram"></i>
@@ -443,7 +448,7 @@
       <h2 class="section-title text-center mb-2 glitch" data-text="Track Roulette" data-i18n="song_title">Track Roulette</h2>
       <p class="text-center music-tagline" data-i18n="song_tagline">Press SHUFFLE — let the machine pick a track from my playlists 🎲</p>
 
-      <div class="song-picker-box vapor-reveal">
+      <div class="song-picker-box vapor-reveal tilt-card">
         <div class="song-display" id="songDisplay">
           <div class="song-placeholder" id="songPlaceholder">
             <i class="fas fa-compact-disc song-disc-icon"></i>
@@ -459,35 +464,6 @@
           <button class="btn btn-vapor btn-glitch shuffle-btn" id="shuffleBtn">
             <i class="fas fa-shuffle me-2"></i> <span data-i18n="song_shuffle">SHUFFLE</span>
           </button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== DOCS SECTION ===== -->
-  <section id="docs" class="docs-section py-5">
-    <div class="container">
-      <h2 class="section-title text-center mb-2 glitch" data-text="Documents" data-i18n="docs_title">Documents</h2>
-      <p class="text-center music-tagline mb-4" data-i18n="docs_tagline">My study notes & personal docs 📚</p>
-
-      <div class="docs-window vapor-reveal">
-        <!-- Win95 Title Bar -->
-        <div class="docs-titlebar">
-          <span class="docs-titlebar-text">
-            <i class="fas fa-folder-open"></i> C:\DOCUMENTS\NOTES\
-          </span>
-          <div class="docs-controls">
-            <span class="docs-win-btn">_</span>
-            <span class="docs-win-btn">□</span>
-            <span class="docs-win-btn">✕</span>
-          </div>
-        </div>
-
-        <!-- Lista Documenti Dinamica -->
-        <div class="docs-body">
-          <ul class="docs-file-list" id="docsFileList">
-            <!-- Vengono inseriti dinamicamente via JS -->
-          </ul>
         </div>
       </div>
     </div>
@@ -671,57 +647,207 @@
     });
 
     // ============================================
-    // DOCS SECTION — Caricamento & Apertura Nuova Pagina
+    // DYNAMIC ANIMATIONS — scroll, parallax, tilt
     // ============================================
-    const docsFileList = document.getElementById('docsFileList');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
-    // File predefiniti (funzionano SEMPRE, anche senza server locale)
-    const defaultDocs = [
-      {
-        title: "Machine Learning — Appunti Completi v2",
-        file: "Machine Learning — Appunti Completi v2.html"
+    // ---- Scroll progress bar ----
+    const progressFill = document.getElementById('scrollProgressFill');
+    function updateScrollProgress() {
+      if (!progressFill) return;
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - doc.clientHeight;
+      const pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+      progressFill.style.width = pct + '%';
+    }
+
+    // ---- Scroll parallax (background layers) ----
+    const synthSun = document.querySelector('.synthwave-sun');
+    const retroGrid = document.querySelector('.retro-grid');
+    let parallaxTicking = false;
+
+    function applyParallax() {
+      const y = window.scrollY || window.pageYOffset;
+      if (synthSun) synthSun.style.setProperty('--parallax-sun', (y * 0.18) + 'px');
+      if (retroGrid) retroGrid.style.setProperty('--parallax-grid', (y * 0.06) + 'px');
+      parallaxTicking = false;
+    }
+
+    function onScroll() {
+      updateScrollProgress();
+      if (!parallaxTicking && !prefersReducedMotion && !isTouchDevice) {
+        parallaxTicking = true;
+        requestAnimationFrame(applyParallax);
       }
-      // Puoi aggiungere qui a mano altri file se non usi un web server locale:
-      // { title: "Deep Learning Notes", file: "Deep Learning.html" }
-    ];
+    }
 
-    function buildDocsList(items) {
-      if (!docsFileList) return;
-      docsFileList.innerHTML = '';
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateScrollProgress);
+    updateScrollProgress();
 
-      items.forEach(doc => {
-        const li = document.createElement('li');
-        li.className = 'docs-file-item';
-        li.innerHTML = `
-          <div class="docs-file-title">
-            <i class="fas fa-file-code"></i>
-            <span>${doc.title}</span>
-          </div>
-          <span class="docs-open-badge">
-            <i class="fas fa-external-link-alt me-1"></i> APRI.EXE
-          </span>
-        `;
-
-        // Al click apre la nuova pagina viewer.html passando il nome del file nell'URL
-        li.addEventListener('click', () => {
-          const targetFile = encodeURIComponent(doc.file || doc.filename);
-          window.open(`viewer.html?file=${targetFile}`, '_blank');
-        });
-
-        docsFileList.appendChild(li);
+    // ---- Hero mouse-reactive depth ----
+    const hero = document.getElementById('hero');
+    if (hero && !isTouchDevice && !prefersReducedMotion) {
+      hero.addEventListener('mousemove', (e) => {
+        const r = hero.getBoundingClientRect();
+        const mx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        const my = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        hero.style.setProperty('--mx', mx.toFixed(3));
+        hero.style.setProperty('--my', my.toFixed(3));
+        if (synthSun) synthSun.style.setProperty('--hero-mx', (mx * 18).toFixed(1) + 'px');
+      });
+      hero.addEventListener('mouseleave', () => {
+        hero.style.setProperty('--mx', '0');
+        hero.style.setProperty('--my', '0');
+        if (synthSun) synthSun.style.setProperty('--hero-mx', '0px');
       });
     }
 
-    // Prova a caricare da misc/docs.json, se fallisce (es. CORS in locale) usa defaultDocs
-    fetch('misc/docs.json')
-      .then(res => {
-        if (!res.ok) throw new Error('docs.json non accessibile');
-        return res.json();
-      })
-      .then(data => buildDocsList(data))
-      .catch(() => {
-        buildDocsList(defaultDocs);
+    // ---- Hero floating particles ----
+    const heroParticles = document.getElementById('heroParticles');
+    if (heroParticles && !prefersReducedMotion) {
+      const count = window.innerWidth < 768 ? 10 : 22;
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('span');
+        p.className = 'hero-particle' + (Math.random() > 0.5 ? ' magenta' : '');
+        p.style.left = (Math.random() * 100).toFixed(2) + '%';
+        p.style.animationDuration = (6 + Math.random() * 8).toFixed(1) + 's';
+        p.style.animationDelay = (Math.random() * 8).toFixed(1) + 's';
+        const size = (2 + Math.random() * 3).toFixed(1);
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        heroParticles.appendChild(p);
+      }
+    }
+
+    // ---- 3D tilt + spotlight on cards ----
+    function initTiltCards() {
+      if (isTouchDevice || prefersReducedMotion) return;
+
+      document.querySelectorAll('.tilt-card').forEach((card) => {
+        if (!card.classList.contains('win95-window') && !card.querySelector('.card-spotlight')) {
+          const glow = document.createElement('span');
+          glow.className = 'card-spotlight';
+          card.insertBefore(glow, card.firstChild);
+        }
+
+        const maxTilt = (card.classList.contains('spotify-card') || card.classList.contains('youtube-card')) ? 6 : 8;
+
+        card.addEventListener('mouseenter', () => card.classList.add('is-tilting'));
+        card.addEventListener('mousemove', (e) => {
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width;
+          const py = (e.clientY - r.top) / r.height;
+          card.style.setProperty('--tilt-rx', ((0.5 - py) * maxTilt).toFixed(2) + 'deg');
+          card.style.setProperty('--tilt-ry', ((px - 0.5) * maxTilt).toFixed(2) + 'deg');
+          card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+          card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+        });
+        card.addEventListener('mouseleave', () => {
+          card.classList.remove('is-tilting');
+          card.style.setProperty('--tilt-rx', '0deg');
+          card.style.setProperty('--tilt-ry', '0deg');
+        });
       });
+    }
+
+    // ---- Magnetic interactive elements ----
+    function initMagnetic() {
+      if (isTouchDevice || prefersReducedMotion) return;
+
+      document.querySelectorAll('.btn-vapor, .shuffle-btn, .music-tab, .lang-toggle').forEach((btn) => {
+        btn.classList.add('magnetic');
+        btn.addEventListener('mousemove', (e) => {
+          const r = btn.getBoundingClientRect();
+          const x = (e.clientX - (r.left + r.width / 2)) * 0.25;
+          const y = (e.clientY - (r.top + r.height / 2)) * 0.25;
+          btn.style.transform = 'translate(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px)';
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = '';
+        });
+      });
+    }
+
+    // ---- Skill badges pop-in on scroll ----
+    const skillsSection = document.querySelector('.skills-section');
+    if (skillsSection) {
+      const badgeObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-badges');
+            badgeObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      badgeObserver.observe(skillsSection);
+    }
+
+    initTiltCards();
+    initMagnetic();
+
+    // ---- Hero typewriter (language-aware) ----
+    const heroTypedPhrases = {
+      en: [
+        'AI Student & Software Developer',
+        'Building intelligent systems',
+        'Software Engineer & DJ',
+        'Turning research into products'
+      ],
+      it: [
+        'Studente AI & Sviluppatore Software',
+        'Costruisco sistemi intelligenti',
+        'Software Engineer & DJ',
+        'Trasformo la ricerca in prodotti'
+      ]
+    };
+    let heroTypeTimer = null;
+
+    function startHeroTyping(lang) {
+      const el = document.getElementById('heroTyped');
+      if (!el) return;
+      clearTimeout(heroTypeTimer);
+
+      const phrases = heroTypedPhrases[lang] || heroTypedPhrases.en;
+
+      if (prefersReducedMotion) {
+        el.textContent = phrases[0];
+        return;
+      }
+
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+
+      function tick() {
+        const current = phrases[phraseIndex];
+
+        if (!deleting) {
+          charIndex++;
+          el.textContent = current.slice(0, charIndex);
+          if (charIndex >= current.length) {
+            deleting = true;
+            heroTypeTimer = setTimeout(tick, 1800);
+            return;
+          }
+          heroTypeTimer = setTimeout(tick, 70);
+        } else {
+          charIndex--;
+          el.textContent = current.slice(0, charIndex);
+          if (charIndex <= 0) {
+            deleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            heroTypeTimer = setTimeout(tick, 400);
+            return;
+          }
+          heroTypeTimer = setTimeout(tick, 35);
+        }
+      }
+
+      el.textContent = '';
+      heroTypeTimer = setTimeout(tick, 500);
+    }
 
     // ============================================
     // MULTILINGUAL SYSTEM (EN / IT)
@@ -735,7 +861,6 @@
         nav_education: '// Education',
         nav_projects: '// Projects',
         nav_music: '// Music',
-        nav_docs: '// Docs',
         nav_contact: '// Contact',
         // Hero
         hero_subtitle: 'AI Student & Software Developer',
@@ -807,11 +932,6 @@
         song_tagline: 'Press SHUFFLE — let the machine pick a track from my playlists 🎲',
         song_placeholder: 'Ready when you are...',
         song_shuffle: 'SHUFFLE',
-        // Docs
-        docs_title: 'Documents',
-        docs_tagline: 'My study notes & personal docs 📚',
-        docs_files: '// FILES',
-        docs_placeholder: 'Select a file from the sidebar to view it',
         // Contact
         contact_title: '// CONTACT_ME',
         connect_title: '// CONNECT',
@@ -827,7 +947,6 @@
         nav_education: '// Formazione',
         nav_projects: '// Progetti',
         nav_music: '// Musica',
-        nav_docs: '// Documenti',
         nav_contact: '// Contatti',
         // Hero
         hero_subtitle: 'Studente AI & Sviluppatore Software',
@@ -899,11 +1018,6 @@
         song_tagline: 'Premi SHUFFLE — lascia che la macchina scelga un brano dalle mie playlist 🎲',
         song_placeholder: 'Pronto quando vuoi...',
         song_shuffle: 'SHUFFLE',
-        // Docs
-        docs_title: 'Documenti',
-        docs_tagline: 'I miei appunti di studio & documenti 📚',
-        docs_files: '// FILE',
-        docs_placeholder: 'Seleziona un file dalla sidebar per visualizzarlo',
         // Contact
         contact_title: '// CONTATTAMI',
         connect_title: '// SEGUIMI',
@@ -962,6 +1076,11 @@
       const toggle = document.getElementById('langToggle');
       toggle.classList.add('lang-switching');
       setTimeout(() => toggle.classList.remove('lang-switching'), 400);
+
+      // Restart the hero typewriter with the new language phrases
+      if (typeof startHeroTyping === 'function') {
+        startHeroTyping(lang);
+      }
     }
 
     // Language toggle click handler
