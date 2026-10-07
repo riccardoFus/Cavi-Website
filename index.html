@@ -96,6 +96,7 @@
           <li class="nav-item"><a class="nav-link" href="#experience" data-i18n="nav_experience">// Experience</a></li>
           <li class="nav-item"><a class="nav-link" href="#education" data-i18n="nav_education">// Education</a></li>
           <li class="nav-item"><a class="nav-link" href="#projects" data-i18n="nav_projects">// Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#lists" id="listsNavLink" data-i18n="nav_lists">// Lists</a></li>
           <li class="nav-item"><a class="nav-link" href="#music" data-i18n="nav_music">// Music</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="nav_contact">// Contact</a></li>
           <li class="nav-item">
@@ -582,6 +583,42 @@
     </div>
   </footer>
 
+  <!-- ============================================================
+       MY LISTS — ARCHIVE OVERLAY (above the site)
+  ============================================================ -->
+  <div class="lists-overlay" id="listsOverlay" aria-hidden="true">
+    <div class="lists-overlay__backdrop" data-close-lists></div>
+    <div class="lists-overlay__frame comic-panel" role="dialog" aria-modal="true" aria-label="My Lists">
+      <button class="comic-modal__close" id="listsClose" aria-label="Close">✕</button>
+      <p class="section-kicker" data-issue="L">THE ARCHIVE</p>
+      <h2 class="section-title" data-text="My Lists" data-i18n="lists_title">My Lists</h2>
+      <p class="section-intro" data-i18n="lists_tagline">Books, films and albums I keep track of.</p>
+
+      <div class="lists-controls">
+        <div class="music-tabs lists-tabs" id="listsTabs"></div>
+        <label class="lists-search">
+          <i class="fas fa-search"></i>
+          <input type="search" id="listsSearch" data-i18n-ph="lists_filter" placeholder="Filter the archive...">
+        </label>
+      </div>
+
+      <div class="lists-table-wrap">
+        <div class="lists-empty" id="listsEmpty" data-i18n="lists_loading">Loading the archive...</div>
+        <table class="lists-table" id="listsTable" hidden>
+          <thead>
+            <tr>
+              <th data-key="title" data-i18n="lists_col_title">TITLE</th>
+              <th data-key="year" data-i18n="lists_col_year">YEAR</th>
+              <th data-key="artist" data-i18n="lists_col_artist">ARTIST</th>
+            </tr>
+          </thead>
+          <tbody id="listsBody"></tbody>
+        </table>
+      </div>
+      <p class="lists-hint" id="listsHint"></p>
+    </div>
+  </div>
+
   <!-- Comic panel modal (breaking the frame) -->
   <div class="comic-modal" id="comicModal" aria-hidden="true">
     <div class="comic-modal__backdrop"></div>
@@ -1030,7 +1067,205 @@
     }
 
     /* ============================================================
-       16. MULTILINGUAL SYSTEM (EN / IT)
+       16. MY LISTS — CSV ARCHIVE OVERLAY
+    ============================================================ */
+    const listsOverlay = document.getElementById('listsOverlay');
+    const listsTabsEl = document.getElementById('listsTabs');
+    const listsTable = document.getElementById('listsTable');
+    const listsBody = document.getElementById('listsBody');
+    const listsEmpty = document.getElementById('listsEmpty');
+    const listsHint = document.getElementById('listsHint');
+    const listsSearch = document.getElementById('listsSearch');
+
+    let listsLoaded = false;
+    let listsLoading = false;
+    let listsData = [];
+    let listsActive = 0;
+    let listsSortKey = 'year';
+    let listsSortDir = -1;
+
+    function t(key) {
+      return (translations[currentLang] && translations[currentLang][key]) || '';
+    }
+
+    function detectDelimiter(line) {
+      const counts = { ',': 0, ';': 0, '\t': 0 };
+      let inQ = false;
+      for (const ch of line) {
+        if (ch === '"') inQ = !inQ;
+        else if (!inQ && ch in counts) counts[ch]++;
+      }
+      return Object.keys(counts).reduce((a, b) => (counts[a] >= counts[b] ? a : b), ',');
+    }
+
+    function parseCSV(text, delim) {
+      text = String(text).replace(/^\uFEFF/, '');
+      const rows = [];
+      let row = [];
+      let field = '';
+      let inQ = false;
+      for (let i = 0; i < text.length; i++) {
+        const c = text[i];
+        if (inQ) {
+          if (c === '"') {
+            if (text[i + 1] === '"') { field += '"'; i++; }
+            else inQ = false;
+          } else field += c;
+        } else if (c === '"') {
+          inQ = true;
+        } else if (c === delim) {
+          row.push(field); field = '';
+        } else if (c === '\n') {
+          row.push(field); rows.push(row); row = []; field = '';
+        } else if (c !== '\r') {
+          field += c;
+        }
+      }
+      if (field !== '' || row.length) { row.push(field); rows.push(row); }
+      return rows.filter((r) => r.some((c) => c.trim() !== ''));
+    }
+
+    function normalizeHeader(h) {
+      return String(h).trim().toLowerCase().replace(/["']/g, '');
+    }
+
+    function findCol(headers, candidates) {
+      for (const c of candidates) {
+        const i = headers.findIndex((h) => h === c || h.includes(c));
+        if (i !== -1) return i;
+      }
+      return -1;
+    }
+
+    async function loadLists() {
+      if (listsLoaded || listsLoading) return;
+      listsLoading = true;
+      listsEmpty.hidden = false;
+      listsEmpty.textContent = t('lists_loading');
+      listsTable.hidden = true;
+      try {
+        const manifestRes = await fetch('lists/manifest.json', { cache: 'no-cache' });
+        if (!manifestRes.ok) throw new Error('manifest ' + manifestRes.status);
+        const manifest = await manifestRes.json();
+        listsData = await Promise.all(manifest.map(async (entry) => {
+          const res = await fetch('lists/' + entry.file, { cache: 'no-cache' });
+          if (!res.ok) throw new Error(entry.file + ' ' + res.status);
+          const text = await res.text();
+          const firstLine = text.split(/\r?\n/)[0] || '';
+          const rows = parseCSV(text, detectDelimiter(firstLine));
+          if (!rows.length) return { label: entry.label, items: [] };
+          const headers = rows[0].map(normalizeHeader);
+          const iTitle = findCol(headers, ['titolo', 'title', 'nome']);
+          const iYear = findCol(headers, ['anno', 'year', 'data']);
+          const iArtist = findCol(headers, ['artista', 'artist', 'autore', 'regista', 'author']);
+          const items = rows.slice(1).map((r) => ({
+            title: (iTitle !== -1 ? r[iTitle] : r[0]) || '',
+            year: (iYear !== -1 ? r[iYear] : r[1]) || '',
+            artist: (iArtist !== -1 ? r[iArtist] : r[2]) || ''
+          }));
+          return { label: entry.label, items };
+        }));
+        listsLoaded = true;
+        renderLists();
+      } catch (err) {
+        console.warn('Lists load error:', err);
+        listsEmpty.hidden = false;
+        listsEmpty.textContent = t('lists_error');
+        listsTable.hidden = true;
+        listsHint.textContent = '';
+      } finally {
+        listsLoading = false;
+      }
+    }
+
+    function renderLists() {
+      if (!listsLoaded) return;
+      listsTabsEl.innerHTML = '';
+      listsData.forEach((list, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'music-tab' + (i === listsActive ? ' active' : '');
+        btn.textContent = list.label;
+        btn.addEventListener('click', () => { listsActive = i; renderLists(); });
+        listsTabsEl.appendChild(btn);
+      });
+
+      listsTable.querySelectorAll('thead th').forEach((th) => {
+        th.classList.toggle('sorted', th.dataset.key === listsSortKey);
+      });
+
+      const list = listsData[listsActive] || { items: [] };
+      const q = (listsSearch.value || '').trim().toLowerCase();
+      const items = list.items.filter((it) =>
+        !q || (it.title + ' ' + it.artist + ' ' + it.year).toLowerCase().includes(q));
+      items.sort((a, b) => {
+        let av = a[listsSortKey];
+        let bv = b[listsSortKey];
+        if (listsSortKey === 'year') { av = parseInt(av, 10) || 0; bv = parseInt(bv, 10) || 0; }
+        else { av = String(av).toLowerCase(); bv = String(bv).toLowerCase(); }
+        if (av < bv) return -1 * listsSortDir;
+        if (av > bv) return 1 * listsSortDir;
+        return 0;
+      });
+
+      listsBody.innerHTML = '';
+      items.forEach((it) => {
+        const tr = document.createElement('tr');
+        const tdT = document.createElement('td');
+        tdT.className = 'list-title'; tdT.dataset.label = t('lists_col_title'); tdT.textContent = it.title;
+        const tdY = document.createElement('td');
+        tdY.className = 'list-year'; tdY.dataset.label = t('lists_col_year'); tdY.textContent = it.year;
+        const tdA = document.createElement('td');
+        tdA.className = 'list-artist'; tdA.dataset.label = t('lists_col_artist'); tdA.textContent = it.artist;
+        tr.append(tdT, tdY, tdA);
+        listsBody.appendChild(tr);
+      });
+
+      const has = items.length > 0;
+      listsTable.hidden = !has;
+      listsEmpty.hidden = has;
+      if (!has) listsEmpty.textContent = t('lists_empty');
+      listsHint.textContent = t('lists_count').replace('{n}', items.length);
+      listsSearch.setAttribute('placeholder', t('lists_filter'));
+    }
+
+    function openLists() {
+      if (!listsOverlay) return;
+      listsOverlay.classList.add('is-open');
+      listsOverlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('lists-open');
+      loadLists();
+      if (listsLoaded) renderLists();
+    }
+
+    function closeLists() {
+      if (!listsOverlay) return;
+      listsOverlay.classList.remove('is-open');
+      listsOverlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('lists-open');
+    }
+
+    const listsNavLink = document.getElementById('listsNavLink');
+    if (listsNavLink) listsNavLink.addEventListener('click', (e) => { e.preventDefault(); openLists(); });
+    if (listsOverlay) {
+      listsOverlay.querySelector('[data-close-lists]').addEventListener('click', closeLists);
+      document.getElementById('listsClose').addEventListener('click', closeLists);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && listsOverlay.classList.contains('is-open')) closeLists();
+      });
+    }
+    if (listsSearch) listsSearch.addEventListener('input', renderLists);
+    listsTable.querySelectorAll('thead th').forEach((th) => {
+      th.addEventListener('click', () => {
+        const key = th.dataset.key;
+        if (listsSortKey === key) listsSortDir *= -1;
+        else { listsSortKey = key; listsSortDir = key === 'year' ? -1 : 1; }
+        renderLists();
+      });
+    });
+
+    /* ============================================================
+       17. MULTILINGUAL SYSTEM (EN / IT)
     ============================================================ */
     const translations = {
       en: {
@@ -1039,6 +1274,7 @@
         nav_experience: '// Experience',
         nav_education: '// Education',
         nav_projects: '// Projects',
+        nav_lists: '// Lists',
         nav_music: '// Music',
         nav_contact: '// Contact',
         hero_kicker: 'A CAVI PRODUCTION · ISSUE #01',
@@ -1105,6 +1341,16 @@
         song_shuffle: 'SHUFFLE',
         contact_title: '// CONTACT_ME',
         connect_title: '// CONNECT',
+        lists_title: 'My Lists',
+        lists_tagline: 'Books, films and albums I keep track of.',
+        lists_col_title: 'TITLE',
+        lists_col_year: 'YEAR',
+        lists_col_artist: 'ARTIST',
+        lists_filter: 'Filter the archive...',
+        lists_loading: 'Loading the archive...',
+        lists_empty: 'No entries found.',
+        lists_error: 'Could not load the lists/ folder — serve the site over HTTP.',
+        lists_count: '{n} entries',
         copyright: '© 2026 Riccardo Fusiello. All Rights Reserved.',
         loading_text: 'PRINTING ISSUE #01...'
       },
@@ -1114,6 +1360,7 @@
         nav_experience: '// Esperienza',
         nav_education: '// Formazione',
         nav_projects: '// Progetti',
+        nav_lists: '// Liste',
         nav_music: '// Musica',
         nav_contact: '// Contatti',
         hero_kicker: 'UNA PRODUZIONE CAVI · NUMERO #01',
@@ -1180,6 +1427,16 @@
         song_shuffle: 'SHUFFLE',
         contact_title: '// CONTATTAMI',
         connect_title: '// SEGUIMI',
+        lists_title: 'Le Mie Liste',
+        lists_tagline: 'Libri, film e album che tengo traccia.',
+        lists_col_title: 'TITOLO',
+        lists_col_year: 'ANNO',
+        lists_col_artist: 'ARTISTA',
+        lists_filter: 'Filtra l\'archivio...',
+        lists_loading: 'Caricamento archivio...',
+        lists_empty: 'Nessun elemento trovato.',
+        lists_error: 'Impossibile caricare la cartella lists/ — serve un server HTTP.',
+        lists_count: '{n} elementi',
         copyright: '© 2026 Riccardo Fusiello. Tutti i diritti riservati.',
         loading_text: 'STAMPA NUMERO #01...'
       }
@@ -1224,7 +1481,13 @@
         setTimeout(() => toggle.classList.remove('lang-switching'), 400);
       }
 
+      document.querySelectorAll('[data-i18n-ph]').forEach((el) => {
+        const key = el.getAttribute('data-i18n-ph');
+        if (translations[lang][key]) el.setAttribute('placeholder', translations[lang][key]);
+      });
+
       if (typeof startHeroTyping === 'function') startHeroTyping(lang);
+      if (typeof renderLists === 'function' && typeof listsLoaded !== 'undefined' && listsLoaded) renderLists();
     }
 
     const langToggleBtn = document.getElementById('langToggle');

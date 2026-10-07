@@ -1,0 +1,5 @@
+[
+  { "file": "libri.csv", "label": "Libri" },
+  { "file": "film.csv", "label": "Film" },
+  { "file": "album.csv", "label": "Album" }
+]
