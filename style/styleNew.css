@@ -1190,7 +1190,9 @@ section { position: relative; padding: 5.5rem 0; }
 /* ============================================================================
    25. MY LISTS — ARCHIVE OVERLAY
    ============================================================================ */
+html.lists-open,
 body.lists-open { overflow: hidden; }
+body.lists-open { position: fixed; left: 0; right: 0; width: 100%; }
 .lists-overlay { position: fixed; inset: 0; z-index: 9992; display: none; }
 .lists-overlay.is-open { display: block; }
 .lists-overlay__backdrop {

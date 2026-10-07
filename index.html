@@ -1229,11 +1229,16 @@
       listsSearch.setAttribute('placeholder', t('lists_filter'));
     }
 
+    let listsScrollY = 0;
+
     function openLists() {
       if (!listsOverlay) return;
+      listsScrollY = window.scrollY || window.pageYOffset || 0;
       listsOverlay.classList.add('is-open');
       listsOverlay.setAttribute('aria-hidden', 'false');
+      document.documentElement.classList.add('lists-open');
       document.body.classList.add('lists-open');
+      document.body.style.top = (-listsScrollY) + 'px';
       loadLists();
       if (listsLoaded) renderLists();
     }
@@ -1242,7 +1247,10 @@
       if (!listsOverlay) return;
       listsOverlay.classList.remove('is-open');
       listsOverlay.setAttribute('aria-hidden', 'true');
+      document.documentElement.classList.remove('lists-open');
       document.body.classList.remove('lists-open');
+      document.body.style.top = '';
+      window.scrollTo(0, listsScrollY);
     }
 
     const listsNavLink = document.getElementById('listsNavLink');
