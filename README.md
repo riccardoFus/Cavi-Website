@@ -1,9 +1,7 @@
-# riccardofus.github.io
+# Cavi-Website
 
-User site for **Riccardo Fusiello**.
+Old project-site URL. It now redirects to the portfolio at the domain root:
 
-The root URL redirects to the portfolio:
+**https://riccardofus.github.io/**
 
-**https://riccardofus.github.io/Cavi-Website/**
-
-Source: [riccardoFus/Cavi-Website](https://github.com/riccardoFus/Cavi-Website)
+The site itself lives in [riccardoFus/riccardofus.github.io](https://github.com/riccardoFus/riccardofus.github.io).
